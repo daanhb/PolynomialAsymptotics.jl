@@ -1,40 +1,43 @@
 
 
-function asy_gaussjacobi(n::Integer, α, β)
-    T = promote_type(typeof(α), typeof(β))
+function asy_gaussjacobi(n::Integer, α, β, T = jac_heuristic_T(n, α, β))
+    ELT = promote_type(typeof(α), typeof(β))
 
-    x = zeros(T, n)
-    w = zeros(T, n)
-    asy_gaussjacobi!(x, w, α, β)
+    x = zeros(ELT, n)
+    w = zeros(ELT, n)
+    asy_gaussjacobi!(x, w, α, β, T)
 end
 
+# Heuristic for the number of terms
+jac_heuristic_T(n, α, β) = ceil(Int, 50/log(n))
 
-function asy_gaussjacobi!(x, w, α, β)
+jac_z(n, α, β) = 1/(2n+α+β+1)
+
+function asy_gaussjacobi!(x, w, α, β, T)
     @assert length(x) == length(w)
 
-    T = eltype(x)
     n = length(x)
     k_left = ceil(Int, sqrt(n))
     k_right = n-k_left+1
 
-    z = 1/(2n+α+β+1)
+    z = jac_z(n, α, β)
     jb = besselroots(β, k_left)
     for k in 1:k_left
-        x[k], w[k] = asy_jacobi_leftendpoint(n, k, α, β, jb[k], z)
+        x[k], w[k] = asy_jacobi_leftendpoint(n, k, α, β, jb[k], T, z)
     end
     ja = besselroots(α, k_left)
     for k in k_right:n
-        x[k], w[k] = asy_jacobi_rightendpoint(n, k, α, β, ja[n-k+1], z)
+        x[k], w[k] = asy_jacobi_rightendpoint(n, k, α, β, ja[n-k+1], T, z)
     end
     for k in k_left+1:k_right-1
-        x[k], w[k] = asy_jacobi_bulk(n, k, α, β, 11, z)
+        x[k], w[k] = asy_jacobi_bulk(n, k, α, β, T, z)
     end
     x, w
 end
 
-function asy_jacobi_leftendpoint(n, k, α::ELT, β::ELT, jbk, z = 1/(2n+α+β+1)) where {ELT <: AbstractFloat}
-    T = max(1, ceil(Int, 50/log(n)))
+function asy_jacobi_leftendpoint(n::Int, k::Int, α, β, jbk, T, z = jac_z(n, α, β))
 
+    ELT = promote_type(typeof(α), typeof(β))
     x = zero(ELT)
     w = zero(ELT)
 
@@ -77,13 +80,14 @@ function asy_jacobi_leftendpoint(n, k, α::ELT, β::ELT, jbk, z = 1/(2n+α+β+1)
     x, w
 end
 
-function asy_jacobi_rightendpoint(n, k, α, β, jak, z = 1/(2n+α+β+1))
-    x, w = asy_jacobi_leftendpoint(n, n-k, β, α, jak, z)
+function asy_jacobi_rightendpoint(n, k, α, β, jak, T, z = jac_z(n, α, β))
+    x, w = asy_jacobi_leftendpoint(n, n-k, β, α, jak, T, z)
     -x, w
 end
 
 
-function asy_jacobi_bulk(n, k, α, β, T, z = 1/(2n+α+β+1))
+function asy_jacobi_bulk(n, k, α, β, T, z = jac_z(n, α, β))
+
     t = cos(pi * (4n-4k+2α+3)/(4n+2α+2β+2))
 
     ELT = eltype(α)
