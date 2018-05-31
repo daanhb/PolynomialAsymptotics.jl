@@ -1,6 +1,10 @@
 module PolynomialAsymptotics
 
 using FastGaussQuadrature
+using SpecialFunctions
+using Roots
+
+import FastGaussQuadrature: besselroots
 
 include("laguerre.jl")
 
