@@ -1,0 +1,20 @@
+This code is based on the article by Alfredo Deano, Daan Huybrechs and Peter Opsomer. 
+Construction and implementation of asymptotic expansions for Jacobi–type orthogonal polynomials. In preparation. It uses the Riemann-Hilbert analysis from A. B. J. Kuijlaars, K. T.-R. McLaughlin, W. Van Assche, and M. Vanlessen. The Riemann-Hilbert approach to strong asymptotics of orthogonal polynomials on [−1, 1]. Adv. Math., 188:337–398, 2004.
+
+This Julia version is tested on Version 0.4.0-dev+7011 (2015-08-26 21:07 UTC), using matplotlib.pyplot: Pkg.add("PyPlot").
+
+-----------------------------------------------------------------------------------
+
+Main script is computePlotsFromArticle.jl, which computes the plots in the article. The script illustrateFunctionality contains a test suite, heuristics and Gaussian quadrature.
+
+Most functions require the (maximum) number of terms in the asymptotic expansions.
+
+asy_expansions.jl: asy_lens, asy_outer, asy_right and asy_left evaluate the asymptotic expansion of the orthogonal polynomials and optionally their derivatives, with a chosen normalisation. It needs the U-matrices from UQ in precomputations.jl and results Dinf and psi from contour_integrals, which calls for trap_rule if no exact results are known yet.
+
+asy_expansions.jl: alphan, betan and gamman evaluate the asymptotic expansion of the recurrence coefficients and the leading order coefficients of the orthonormal polynomials using the U-matrices.
+
+UExplicit.jl contains the explicit results from the appendix and some additional terms. Has possible CPU overload when editing and long computational times when  calling the function.
+
+precomputations.jl: UQ calculates the U- and optionally the Q-matrices as explained in the paper using Dinf, c and d from contour_integrals. It calls for WV, which carries out the convolutions.
+
+validation.jl: plotConv allows an interpretable plot and exactPolys computes the exact polynomials. The OPQ-routines from Walter Gautschi that are used in it (gauss and r_jacobi), are included.

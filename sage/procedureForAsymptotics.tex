@@ -1,0 +1,602 @@
+\documentclass[11pt]{article}
+
+\pdfoutput=1
+\usepackage[T2A,T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian,english]{babel}
+
+\usepackage[labelfont=bf]{caption}
+\usepackage[top=50pt, bottom=50pt, left=50pt, right=50pt]{geometry}
+%\usepackage{autonum} % only numbers when referenced
+
+\usepackage{graphicx,amsmath,amssymb,amsthm}
+\usepackage[outdir=./fig/]{epstopdf}
+\usepackage{pifont, url, romanbar,subfig,listings}%,hyperref}
+\usepackage{tikz, verbatim}%, cleveref}
+
+
+\usepackage{hyperref}
+\usepackage{cleveref}
+\usepackage{autonum} % only numbers when referenced but gives undefined control seq if loaded without showkeys? also when deleted .aux etc -> comment te makeatletter etc below
+%\usepackage{autonum, showkeys} % only numbers when referenced
+%\usepackage{showkeys}
+%\usepackage{showkeys, autonum} 
+
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+\allowdisplaybreaks
+
+\newcommand*{\Chi}{X}
+\newcommand*{\todo}[1]{{\color{red}?? TODO: #1 ??}}
+\newcommand*{\Pc}[1]{{\color{blue}#1}}
+\newcommand*{\Pe}[1]{{\color{orange}#1}}
+
+\newcommand{\R}{{\operatorname{right}}}
+\renewcommand{\L}{{\operatorname{left}}}
+\renewcommand{\O}{{\operatorname{outer}}}
+
+\newcommand{\lln}{L{\tiny\Rleft} n}
+\newcommand{\lld}{L{\tiny\Rleft} d}
+\newcommand{\lls}{L{\tiny\Rleft} s}
+\newcommand{\lag}{L}
+
+\newcommand{\qg}{q}
+\newcommand{\ql}{L}
+\newcommand{\qj}{J}
+\newcommand{\qh}{H}
+
+\newcommand{\rg}{r}
+\newcommand{\rb}{{\scriptsize \Romanbar{1}} }
+\newcommand{\rr}{{\scriptsize \Romanbar{3}} }
+\newcommand{\rl}{{\scriptsize \Romanbar{4}} }
+
+\newcommand{\pg}{p}
+\newcommand{\pn}{n}
+\newcommand{\pd}{d}
+\newcommand{\ps}{s}
+
+\newcommand{\dint}{{\rm d}}
+
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{proposition}[lemma]{Proposition}
+\newtheorem{remark}[lemma]{Remark}
+\usetikzlibrary{patterns,arrows,decorations.markings}
+
+\numberwithin{equation}{section}
+%\numberwithin{lemma}{chapter}
+\usepackage{remreset} \makeatletter \@removefromreset{lemma}{section} \makeatother
+
+\newcommand{\Ri}{\Romanbar{1}}
+\newcommand{\Ro}{\Romanbar{2}}
+\newcommand{\Rright}{\Romanbar{3}}
+\newcommand{\Rleft}{\Romanbar{4}}
+
+\newcommand{\MO}{{\mathcal O}}
+\newcommand{\ee}{\mathrm{e}}
+
+\DeclareMathOperator{\arccosh}{arcosh}%{arcCosh}
+\DeclareMathOperator*{\argmin}{arg\,min}%\DeclareMathOperator{\argmin}{argmin}
+
+
+%\makeatletter %To combine cref with cleveref
+%  \SK@def\cref#1{\SK@\SK@@ref{#1}\SK@cref{#1}}
+%  \SK@def\Cref#1{\SK@\SK@@ref{#1}\SK@Cref{#1}}
+%\makeatother
+
+\addto\captionsenglish{
+    % Second argument is singular, third is plural
+    \crefname{figure}{Figure}{Figures}
+    \Crefname{figure}{Figure}{Figures}
+    \crefname{table}{Table}{Tables}%    \Crefname{table}{Table}{Tables}
+    \crefname{section}{\S}{\S}
+    \Crefname{section}{\S}{\S}
+    \crefname{equation}{}{}
+    \Crefname{equation}{}{}
+    \crefname{remark}{Remark}{Remarks}%    \Crefname{remark}{Remark}{Remarks}
+    \crefname{algorithm}{Algorithm}{Algorithms}
+    \crefname{appendix}{Appendix}{Appendices}
+}
+
+
+\begin{document}
+
+% ***************************************************************************
+
+%Appendix: 
+
+
+
+%\begin{appendix}
+
+\section{Procedure to derive the asymptotic expansions} \label{SsageWorksheets}
+%\section{Procedure to derive asymptotic expansions of Gauss-Jacobi and Gauss-Laguerre-type nodes and weights} \label{SsageWorksheets}
+This document explains the procedure we used to derive the asymptotic expansions of nodes and weights of classical and modified Gauss-Jacobi and Gauss-Laguerre quadrature rules for an arbitrary order in $n$. This procedure is implemented in the Sage worksheets that are available with this document. These files accompany the article "Arbitrary-order asymptotic expansions of {G}aussian quadrature rules with classical and generalised weight functions" by Daan Huybrechs and Peter Opsomer \cite{quadr}.%"Arbitrary-order asymptotic expansions of Gaussian quadrature rules with classical and generalized weight functions" by Daan Huybrechs and Peter Opsomer.
+
+\subsection{Introduction}
+
+The asymptotic formulae in the article %\cref{EpiInt} -- \cref{Epilboun} 
+have a very similar structure for all regions and also between Laguerre-, Hermite- and Jacobi type orthogonal polynomials. We retain this analogy by using the same symbols for analogous expansion coefficients, while three symbols in the superscript specify them. The first character is \qg~in general and denotes the type of quadrature rule: \ql~for Laguerre-type and \qj~ for Jacobi-type. There is no separate symbol for the Hermite case as we treat it in the paper. % \cref{SquadrGH}. 
+If present, the second symbol is \rg~and indicates the region: \rl~for the left boundary region, \rb~for the lens or bulk and \rr~for the right boundary region. If present, the third character is \pg~in general and indicates which polynomial we are computing: \pn~for $p_n(x)$, \pd~for $p_n'(x)$ and \ps~for $p_{n-1}(x)$. The Kronecker delta function is used to distinguish between the cases, and avoids tedious repetitions of similar formulae. %This distinction does not appear frequently in \cref{SprevWork} and would have unnecessarily burdened the notation there. \Pc{Of toch in \cref{SprevWork} veranderen bij het inkorten daarvan?}
+
+There are four types of asymptotic expansions for the Jacobi polynomials, the Laguerre polynomials, as well as for the Hermite polynomials. As a result, one would expect that 24 long asymptotic formulae should be provided for a complete and accurate characterisation of the nodes and weights. However, the expansions in the outer region are not of interest as this region does not contain zeros. Moreover, Gauss-Hermite quadrature rules can straightforwardly be derived from Gauss-Laguerre rules as elaborated on in the article. % \cref{SquadrGH}. 
+Next, only the expansions of the polynomials in the lens involve the evaluation of functions such as $J_\alpha, Ai$ and $\cos$ at large arguments, such that we could evaluate the weights near the endpoints by inserting the asymptotic expansion of the polynomial into the formula 
+\begin{equation} 
+	w_k = \frac{-\gamma_{n+1}}{\gamma_n p_n^\prime(x_k) p_{n+1}(x_k) } = \frac{\gamma_n}{\gamma_{n-1} p'_n(x_k) p_{n-1}(x_k)} > 0. \label{Eweights} 
+\end{equation} %\cref{Eweights} 
+without loss of accuracy due to this effect. However, we do also derive explicit formulae for the weights near the endpoints as these are expected to require significantly less computational time. Finally, there is a symmetry between the expansions in the left and right region in the Jacobi case, which we exploit in the paper. %\cref{SexplStdGJ}. 
+Taking all this into account, two times four explicit formulae are sufficient and are presented in the article.%will be presented in \cref{SexplStdGL} -- \cref{SexplGenGJ}.
+
+For Laguerre-type polynomials, the only difference between monomial and general function $Q(x)$ is the formula for $f_j$, the expansion coefficient of the phase function detailed in \cite[\S 6]{laguerre}. The procedure for general polynomial $Q(x)$ yields fractional powers of $n$, which was considered too technical for the scope of this research. Arbitrary-order expansions near the soft edge were not pursued, as the corresponding weights underflow even for moderate $n$. As a result, the formulae in this document %\cref{SsageWorksheets} 
+are not valid for the combination $\ql\rr\pg$. However, the paper %\cref{SexplGenGL} 
+does present the leading order term for nodes and weights there.%with general functions $Q(x)$ and \cref{SexplStdGL} further specifies this for the standard associated Gauss-Laguerre case. 
+
+
+For the expansions in the lens, again for Laguerre-type polynomials, we only consider the case where $Q(x)$ is a monomial. Otherwise, we would have to compute Newton iterations on and series expansion coefficients of (an integral of) a contour integral of $Q^\prime(x)$ %the contour integral in \cref{EHnunified} 
+for $z$ near $z_{1,1}$ for each node $x_k$, and this may be quite time-consuming. However, for some weights, it might be possible to obtain explicit symbolic expressions for such series expansion coefficients via residue calculus as in \cite[\S 5.2]{jacobi} and \cite[\S 3.4]{laguerre}. Near the endpoints, such coefficients may be reused as they are independent of $k$ and represent a series expansion which 
+is already used to construct higher order terms of the asymptotic expansions of the orthogonal polynomials. 
+
+
+%Time measurements were performed on a standard laptop with $7.7$ GB memory and four $3.0$ GHz i7-3540M CPU's, or on a server with $66$ GB memory and 32 $2.6$ GHz E5-2650 CPU's. The values of the weights we compare with are computed using the explicit expression for the weights \cref{Eweights}. For the nodes, we use a Newton procedure on the recurrence relation for orthonormal Laguerre polynomials and a similar recurrence relation for its derivative with $p_{-1}'(x) = 0 = p_0'(x) = p_{-1}(x) = 0$ and $p_0(x) = (\Gamma[\alpha+1])^{-1/2}$:\begin{align}	p_{k+1}(x) & = \frac{x -2k -\alpha+1}{\sqrt{k(\alpha+k)} } p_k(x) -\sqrt{\frac{(k-1+\alpha)(k-1)}{k(k+\alpha)}} p_{k-1}(x). \label{ErecurOnLag} \\	p_{k+1}'(x) & = \frac{p_k(x) + (x -2k -\alpha+1)p_k'(x)}{\sqrt{k(\alpha+k)} }  -\sqrt{\frac{(k-1+\alpha)(k-1)}{k(k+\alpha)}} p_{k-1}'(x). \label{ErecurOnLagDer}\end{align}
+
+
+
+
+%\todo{??TODO check whether included ??} 
+%Our expansions were computed as inverse powers of $n$, but the following notation for the expansions is considerably shorter. %expansion of the \textbf{nodes near the hard edge} is considerably shorter
+%The procedure we used to derive asymptotic expansions of nodes and weights of Gauss-Jacobi-type and Gauss-Laguerre-type nodes and weights for arbitrary orders in $n$ is given in this appendix for the sake of presentation. We consider this essential information if one would want to modify the Sagemath worksheets \cite{ninesLag,ninesJac} to obtain more terms or to generalise our results. \Pc{Evt: They contain for example infinities to generate an error when unwanted quantities are used. } %This section contains the superscripts and Kronecker Delta functions mentioned in \cref{Sstrat} which densen the notation but avoid repeating similar formulae. \Pc{All hail the Peterism!} 
+%Although expansions of temporary variables were computed as inverse powers of $n$, the notation for the expansions of nodes and weights in \cref{SexplStdGL,SexplStdGJ} is considerably shorter and could facilitate computing temporary variables.
+
+%\todo{compare with sage worksheets}
+
+
+\subsection{Powers of $z$}
+
+The unknowns $z_{1,q}^{\qg\rg\pn}$ provide the expansion of the nodes. The $z$ in the asymptotic expansions only changes for the shifted Laguerre polynomial % shifted polynomial
+evaluated at the node $p_{n-1}(x_k)$: 
+\begin{align}
+	z^{\qg\rg\pg} & = \frac{x_k}{\beta_{n-\delta_{\pg,\ps} }} \sim a\delta_{\rg, \rl} + %\sim \frac{
+\frac{\beta_n}{\beta_{n-\delta_{\pg,\ps}}} \sum_{q=1}^\infty z_{1,q}^{\qg\rg\pg} n^{ 1 -2\delta_{\rg,\rl} -q}, \label{Eexpzgen} \\
+	\left(\frac{n^{2\delta_{\rg,\rl} } z^{\qg\rg\pg} }{z_{1,1}^{\qg\rg\pn}} -1\right)^u & \sim \sum_{j=u}^\infty \chi_{u,j}^{\qg\rg\pg} n^{-j}, \\
+	\chi_{1,j}^{\qg\rg\pg} & = \frac{z_{1,j+1}^{\qg\rg\pg} }{z_{1,1}^{\qg\rg\pn}}, \qquad \chi_{u,j}^{\qg\rg\pg}  = \sum_{y=1}^{j-1} \chi_{1,j-y}^{\qg\rg\pg} \chi_{u-1,y}^{\qg\rg\pg}.
+\end{align}
+Although expansions of temporary variables were computed as inverse powers of $n$ here, the notation for the expansions of nodes and weights in the paper is considerably shorter and could facilitate computing temporary variables here. %Moved
+Using the notation $|_{z=z^{\qg\rg\pg}}$ for evaluation of the zeroth or first derivative at $z=z^{\qg\rg\pg}$, integer %[Alex notation |_{}] Integer 
+powers and the square root expand as
+\begin{align}
+	\left(z^{\qg\rg\pg} -a \right)^j & \sim \sum_{l=1 + \delta_{\rg,\rl}(2j-2)}^\infty z_{j,l}^{\qg\rg\pg} n^{1 -2\delta_{\rg,\rl} -l}, \\ %\left(z^{\qg\rg\pg} +\delta_{\qg,\qj}\delta_{\rg,\rl} \right)^j%\left(z^{\qg\rg\pg} \right)^j & \s
+	z_{j,l}^{\qg\rg\pg} & = \sum_{m=\delta_{\rg,\rl}(2j-3)}^{\delta_{\rg,\rl}(l-2)} z_{1,l-m-1}^{\qg\rg\pg}  z_{j-1,m}^{\qg\rg\pg}, \\
+	\left.\frac{\partial^{(\delta_{\pg,\pd})} \sqrt{z-a}}{\partial z^{(\delta_{\pg,\pd})}}\right|_{z=z^{\qg\rg\pg}}   & \sim \sum_{m=1}^\infty \omega_m^{\qg\rg\pg}  n^{ 1 -m -\delta_{\rg,\rl} (1+2\delta_{\pg,\pd})}, \\ % \sqrt{z}}{\par
+	\omega_m^{\qg\rg\pg} & = \left\{ z_{1,1}^{\qg\rg\pn} -a \right\}^{1/2 -\delta_{\pg,\pd}} 2^{-\delta_{\pg,\pd}\delta_{\qg,\ql} } \left( \delta_{m,1} + \sum_{u=1}^{m-1} {1/2-\delta_{\pd,\pd} \choose u} \chi_{u,m-1}^{\qg\rg\pg} \right), \\ %\left\{ z_{1,1}^{\qg\rg\pn} \right\}^{1/2 -\delta_{\pg,\pd}}  2^{-\delta_{\pg,\pd} } \left( \d
+	\Chi_{1,j}^{\ql\rb\pg} & = \frac{z_{1,j+1}^{\ql\rb\pg}}{z_{1,1}^{\ql\rb\pg}-1} \\
+	\Chi_{u,j}^{\ql\rb\pg} & = \sum_{y=1}^{j} \Chi_{1,1-y+j}^{\ql\rb\pg} \Chi_{u-1,y}^{\ql\rb\pg}, \\
+	\left.\frac{\partial^{(\delta_{\pg,\pd})} \sqrt{1-z} }{\partial z^{(\delta_{\pg,\pd})}}\right|_{z=z^{\ql\rb\pg}} & \sim \sum_{m=1}^\infty \Omega_m^{\ql\rb\pg} n^{1 -m}, \\
+	\Omega_m^{\ql\rb\pg} & = \left\{1-z_{1,1}\right\}^{1/2 -\delta_{\pg,\pd}} (-2)^{-\delta_{\pg,\pd} }  \left(\delta_{m,1} + \sum_{u=1}^{m-1} {1/2 -\delta_{\pg,\pd} \choose u} \Chi_{u,m-u}^{\ql\rb\pg} \right).
+\end{align}
+
+
+
+\subsection{Phase function} \label{SquadrPhasefct}
+
+
+%The arccosine in the shifted polynomial expands to 
+%\begin{align}
+%	& \left.\frac{\partial^{(\delta_{\pg,\pd})} \arccos\left(\frac{2z -a-1}{1-a}\right) }{\partial z^{(\delta_{\pg,\pd})}}\right|_{z=z^{\qg\rg\pg}}  \sim \arccos\left(\frac{2\left.z^{\qg\rg\pg}\right|_{n=\infty} -a-1}{1-a}\right) \left(1-\delta_{\pg,\pd}\right) + \sum_{r=1}^\infty \zeta_{1,r}^{\qg\rg\pg} n^{1-\delta_{\rg,\rl}\left(1-2\delta_{\pg,\pd}\right) -r}.
+%\end{align}
+%The coefficients in this series expansion, respectively for the left boundary region and the bulk, equal
+%\begin{align}
+%	\zeta_{1,r}^{\qg\rl\pg} & = \left[-2^{1+a/2 -\delta_{\pg,\pd}} \frac{ (1/2)_{(r-1)/2} }{[(r-1)/2!]\{r + \delta_{\pg,\pd} (1-r) \}} \left(z_{1,1}^{\qg\rl\pg} \right)^{r/2 -\delta_{\pg,\pd}} \right]_{r \text{ odd}} \\
+%	&  -  2^{1+a/2 -\delta_{\pg,\pd}}  \sum_{u=1}^{r-1} \sum_{l=0}^{(r-1-u)/2} \frac{ (1/2)_{l} \left(z_{1,1}^{\qg\rl\pg} \right)^{l+1/2- \delta_{\pg,\pd}} }{(l!)(1+2l -\delta_{\pg,\pd} 2l )} {l +1/2 -\delta_{\pg,\pd} \choose u} \chi_{u,r-1-2l}^{\qg\rl\pg}, \\ 
+%	\zeta_{1,r}^{\qg\rb\pg} & = \arccos\left(\frac{2z_{1,1}^{\qg\rb\pg} -a-1}{1-a}\right) \delta_{1,k}(1-\delta_{\pg,\pd}) - \delta_{1,k}\delta_{\pg,\pd} \left(z_{1,1}^{\qg\rb\pg}\right)^{5/2}  \left(1 -z_{1,1}^{\qg\rb\pg} \right)^{-1/2} \\
+%	& - \sum_{l=2}^{k} \left(1 + \delta_{\pg,\pd}[l-1]\right) \chi_{l-1,k}^{\qg\rb\pg} \sum_{n=0}^{l-2+\delta_{\pg,\pd} } \frac{(-1)^n}{l-1+\delta_{\pg,\pd} } \left(z_{1,1}^{\qg\rb\pg}\right)^{n+5/2} \\ 
+%	& {-1/2 \choose l-2-n+\delta_{\pg,\pd} } \left(1 -z_{1,1}^{\qg\rb\pg} \right)^{-1/2-n} {-1/2 \choose n}. \label{EquZetaBulk}
+%\end{align}
+
+%Powers of this arccosine lead to the 
+The expansion of the trigonometric functions appearing in the left boundary region is
+\begin{align} %	& \left[\arccos\left(\frac{2z^{\qg\rg\pg} -a-1}{1-a}\right) -\pi\delta_{\rg,\rl} \right]^q \sim \sum_{r=1}^\infty \zeta_{q,r}^{\qg\rg\pg} n^{-r} \todo{check for GJ also with $\mu(z)$} \\ 
+	\Xi^{\qg\rl\pg} & = \begin{pmatrix} \sin\left[ \mu(z) + \frac{1}{2} \arccos\left(\frac{2z -a-1}{1-a} \right) \right] &  \cos\left[ \mu(z) + \frac{1}{2} \arccos\left(\frac{2z -a-1}{1-a} \right) \right] \\ \sin\left[ \mu(z) - \frac{1}{2} \arccos\left(\frac{2z -a-1}{1-a} \right) \right] &  \cos\left[ \mu(z) - \frac{1}{2} \arccos\left(\frac{2z -a-1}{1-a} \right) \right] \end{pmatrix} \\ 
+	& \left.\frac{\partial^{(\delta_{\pg,\pd})} \Xi^{\qg\rl\pg} }{\partial z^{(\delta_{\pg,\pd})}}\right|_{z=z^{\qg\rl\pg}} \sim \sum_{j=1}^\infty \Xi_j^{\qg\rl\pg} n^{1+ \delta_{\pg,\pd} -j} \\
+	\Xi_j^{\qg\rl\pg} & = \sin\begin{pmatrix} \frac{\pi}{2} & \pi \\ \frac{-\pi}{2} & 0 \end{pmatrix} \delta_{j,1} + \sum_{q=1}^{j-1} \frac{1}{q!} \begin{pmatrix} \sin\left[\frac{\pi}{2}-\frac{q\pi}{2}\right]  &  \sin\left[ \pi-\frac{q\pi}{2}\right] \\ \sin\left[\frac{-\pi}{2} -\frac{q\pi}{2}\right] &  \sin\left[\frac{-q\pi}{2}\right] \end{pmatrix} \begin{pmatrix} \zeta_{1,q,j-1}^{\qg\rl\pg} \\ \zeta_{2,q,j-1}^{\qg\rl\pg} \end{pmatrix}, \quad \pg \neq \pd, \\ %\Xi_j^{\ql\rl\pg} & = \sin\begin{pmatrix} \frac{\pi}{2} & \pi \\ \frac{-\pi}{2} & 0 \end{pmatrix} \delta_{j,1} + \sum_{q=1}^{j-1} \begin{pmatrix} \left(\frac{-\alpha-1}{2}\right)^{q} \sin\left[\frac{\pi}{2}-\frac{q\pi}{2}\right]  &  \left(\frac{-\alpha-1}{2}\right)^{q}\sin\left[ \pi-\frac{q\pi}{2}\right] \\  \left(\frac{-\alpha+1}{2}\right)^{q}\sin\left[\frac{-\pi}{2} -\frac{q\pi}{2}\right] &  \left(\frac{-\alpha+1}{2}\right)^{q}\sin\left[\frac{-q\pi}{2}\right] \end{pmatrix} \frac{\zeta_{q,j-1}^{\ql\rl\pg}}{q!}, \quad \pg \neq \pd, \\
+	\Xi_i^{\qg\rl\pd} & = \sum_{j=1}^i \begin{pmatrix} \Xi_{j,1,2}^{\qg\rl\pd}  & \Xi_{j,1,1}^{\qg\rl\pd} \\  \Xi_{j,2,2}^{\qg\rl\pd}  &  \Xi_{j,2,1}^{\qg\rl\pd}  \end{pmatrix} \zeta_{1,i+1-j}^{\qg\rl\pd}, %	\zeta_{1,q,r}^{\qg\rg\pg} & = \sum_{b=1}^{r-1} \zeta_{1,1,r-b}^{\qg\rg\pg} \zeta_{1,q-1,b}^{\qg\rg\pg} \\%\Xi_i^{\lld} & = \sum_{j=1}^i \begin{pmatrix} \frac{\alpha+1}{2} \Xi_{j,1,2}^{\lln}  &  \frac{-\alpha-1}{2} \Xi_{j,1,1}^{\lln} \\  \frac{\alpha-1}{2} \Xi_{j,2,2}^{\lln}  &  \frac{1-\alpha}{2} \Xi_{j,2,1}^{\lln}  \end{pmatrix} \zeta_{1,i+1-j}^{\lld}   %\zeta_{q,r}^{\qg\rg\pg} & = \sum_{b=1}^{r-1} \zeta_{1,r-b}^{\qg\rg\pg} \zeta_{q-1,b}^{\qg\rg\pg} \\
+\end{align}
+
+The functions that determine the behaviour of the polynomial are according to \cite[\S 2.3]{jacobi} and \cite[\S 2.2]{quadr} a cosine in the lens and Bessel functions near finite endpoints: %polynomial are a cosine in the lens \cref{EpiInt} and Bessel functions near finite endpoints \cref{Epiboun,Epilboun}: 
+their arguments $A_b(z)$ are expanded in \cref{SexpGL,SexpGJ} as % \todo{add jac} as
+\begin{align}
+	& \left[ A_b(z^{\qg\rg\pg}) - \epsilon_{b,1,1}^{\qg\rg\pg} \left\{1 + \delta_{\rg,\rb}\left(n-1 + \frac{\epsilon_{b,1,2}^{\qg\rb\pg}}{\epsilon_{b,1,1}^{\qg\rb\pg}} \right) \right\} \right]^i \sim \sum_{k=2}^\infty \epsilon_{b,i,k}^{\qg\rg\pg} n^{1-k + \delta_{\rg,\rb} }, \\ %+ \delta_{\rb,\rb}
+	\epsilon_{b,i,k}^{\qg\rg\pg} & = \sum_{j=2+ \delta_{\rg,\rb} }^{k-1} \epsilon_{b,1,k+1-j+ \delta_{\rg,\rb} }^{\qg\rg\pg} \epsilon_{b,i-1,j}^{\qg\rg\pg}, %twice + \delta_{\rb,\rb}
+\end{align}
+where $\epsilon_{1,1,1}^{\qg\rg\pg}$ is the $k$th zero of the function determining the behaviour.
+
+
+In the case of finite endpoints, where the behaviour of the polynomial is given by Bessel functions, we define one vector $J$ where the arguments of the Bessel function are shifted with both negative and positive integers. The maximal order we need is $T$, we evaluate at the zero of the unshifted Bessel function $j_{\alpha,k}$ for Laguerre or $j_{\beta,k}$ for Jacobi, and we have \cite[(10.6.1)]{DLMF}
+\begin{align} 
+	J_{\nu -1}(z) + J_{\nu+1}(z) & = \frac{2\nu}{z}J_\nu(z), \\
+	J_T & = 0, \quad J_{T-1} = J_{\alpha-1}(j_{\alpha,k}), \quad J_{T+1} = -J_{T-1}, \\
+	J_{T \pm j} & = \frac{2(\alpha \pm j \mp 1)}{j_{\alpha,k}} J_{T \pm j \mp 1} -J_{T \pm j \mp 2}. 
+\end{align}
+
+The derivatives of the Bessel function are \cite[(10.6.7)]{DLMF}
+\begin{align}
+	J_\alpha^{(k)}(z) & = \frac{1}{2^k} \sum_{n=0}^k (-1)^n {k \choose n} J_{\alpha-k+2n}(z), \\
+	J_\alpha^{(k)}(y) & \sim \sum_{l=0}^\infty \frac{S_{l+k} }{l!} (y-j_{\alpha,k})^{l}, \\ 
+	S_{i} & = \frac{1}{2^i} \sum_{n=0}^i (-1)^n {i \choose n} J_{T-i+2n}.
+\end{align}
+This also appeared in \cite[(2.16-19)]{BogaertIterationFree}: all of the $J_t$ are $J_{\alpha-1}(j_{\alpha,k})$ times a rational function in $\alpha$ and $j_{\alpha,k}$, so all of the $S_k$ are as well. We only need zeroth, first and second derivatives, so $k \in \{0,1,2\}$. Using this notation, we expand the Bessel function with the argument $A[z]$ as
+\begin{align}
+	\left.\frac{\partial^{(\delta_{\pg,\pd})} J_\alpha^{(k)} \left(A[z] \right) }{\partial z^{(\delta_{\pg,\pd})}} \right|_{z=z^{\qg\rg\pg}}  & \sim \sum_{j=1}^\infty \iota_{k+1,j}^{\qg\rg\pg} n^{1-j + 2\delta_{\pg,\pd}}, \\ 
+	\iota_{k+1,j}^{\qg\rg\pg} & = S_k \delta_{1,j} + \sum_{i=1}^{j-1} \frac{S_{k+i-1} }{i!} \epsilon_{i,j}^{\qg\rg\pg}, \quad \pg \neq \pd, \\ %\iota_{k+1,j}^{\qg\rg\pg} & = \sum_{i=1}^{j-1} \frac{S_{k+i-1} }{i!} \epsilon_{i,j}^{\qg\rg\pg}, \quad \pg \neq \pd, \\
+	\iota_{k, q}^{\lld} & = \sum_{j=1}^{q} \iota_{k+1,j}^{\lln} \epsilon_{1,1,q+1-j}^{\lld}.
+\end{align}
+
+One might be interested in an infinite endpoint, for which we did not consider arbitrary order expansions here. Then, the behaviour of the polynomial is given by an Airy function, which can be written as a (modified) Bessel function as well %is in \cref{Sboun} mentioned to be related to Bessel functions as \cite[\S 9.6]{DLMF}%is related to Bessel functions as 
+\cite[\S 9.6]{DLMF}
+\begin{align}
+	Ai(-z) & = \frac{\sqrt{z}}{3} \left(J_{1/3} \left[\frac{2z^{3/2}}{3} \right] + J_{-1/3} \left[\frac{2z^{3/2}}{3} \right] \right) \label{EAiBes}\\
+	Ai(z) & = \frac{1}{\pi} \sqrt{\frac{z}{3}} K_{\pm 1/3}\left(\frac{2 z^{3/2}}{3}\right) \label{EAiK}\\
+	Ai'(z) & = \frac{-z}{\pi\sqrt{3} } K_{\pm 2/3}\left(\frac{2 z^{3/2}}{3}\right). \label{EAiderK}
+\end{align}
+This seems to prevent writing derivatives of the Airy function evaluated at zeros $a_k$ of $Ai(z)$ as the first derivative $Ai'(a_k)$ times a rational function in $a_k$. On one hand, \cref{EAiBes} suggests that $a_k$ is not a zero of a Bessel function of the first kind. On the other hand, taking derivatives of \cref{EAiK} gives modified Bessel functions $K_{-2/3}$ and $K_{4/3}$ or $K_{-4/3}$ and $K_{2/3}$, while neither $K_{4/3}$ nor $K_{-4/3}$ appear in \cref{EAiderK}. However, using the ordinary differential equation $Ai^{\prime\prime}(z) = zAi(z)$%[Stefan] $Ai"(z) = zAi(z)$
+, one can deduce by induction that
+\begin{equation}
+	Ai^{(m)}(a_k) = (m-2)Ai^{(m-3)}(a_k) + a_k Ai^{(m-2)}(a_k), \quad m \geq 3.
+\end{equation}
+This recursion can be started with $Ai(a_k) = 0$, $Ai^{(1)}(a_k) = Ai'(a_k)$ and $Ai^{(2)}(a_k) = 0$. As a result, $Ai^{(m)}(a_k)/Ai'(a_k)$ is a polynomial in $a_k$ of degree $\leq \lfloor m/2 \rfloor$ with coefficients as in \cite[A004747]{oeis}: 
+\begin{align}
+	\frac{Ai^{(m)}(a_k)}{Ai'(a_k)} & = \sum_{i=1}^{\lfloor \left(\lceil m/2 \rceil +m +1 - 3\lfloor m/3 \rceil \right) /3 \rfloor } b_{\lfloor m/3 \rceil +i, 3i-m -1 + 3\lfloor m/3 \rceil} a_k^{3i-m -2 + 3\lfloor m/3 \rceil}, \\ 
+	b_{n,j} & = \frac{(n-1)!}{(j-1)! 3^{n-j} } \sum_{k=0}^{n-j} {k \choose n-j-k} 3^k (-1)^{n-j-k} {n+k-1 \choose n-1}, \\
+	b_{n+1,j} & = (3n-j) b_{n,j} + b_{n,j-1}, \qquad b_{1,j} = \delta_{j,1}. \\ 
+\end{align}
+
+
+
+\subsection{Oscillatory part}
+%\subsection{Part that can become zero}
+
+For expansions in the lens, the $U$ matrices are used in the expansion of the $R(z)$
+\begin{align}
+	& \left(z^{\qg\rb\pg} -\frac{1+a \pm 1}{2+a}\right)^{-p}  \sim \sum_{l=1}^\infty H_{3/2 \mp 1/2,p,l}^{\qg\rb\pg} n^{1-l}, \\
+	& H_{3/2 \mp 1/2,p,l}^{\qg\rb\pg} = \left(z_{1,1}^{\qg\rb\pg} -\frac{1+a \pm 1}{2+a}\right)^{-p} \delta_{l,1} + \sum_{j=1}^{l-1} \left(z_{1,1}^{\qg\rb\pg}\right)^{j} \chi_{j,l-1}^{\qg\rb\pg} \left(z_{1,1}^{\qg\rb\pg} -\frac{1+a \pm 1}{2+a}\right)^{-j-p} {-p \choose j}, \\
+	& \begin{pmatrix} 1 & 0 \end{pmatrix} \frac{\partial^{\delta_{\pg,\pd}} R^{\O}\left(z^{\qg\rb\pg} \right) }{\partial z^{\delta_{\pg,\pd}} } \sim \sum_{q=1}^\infty \begin{pmatrix} \eta_{1,q}^{\qg\rb\pg} & \eta_{2,q}^{\qg\rb\pg} \end{pmatrix} n^{1-q + \delta_{\pg,\pd} }, \\ % n^{1-q}, \\
+	& \eta_{j,m}^{\qg\rb\pg} = \delta_{1,j}\delta_{1,m} + \sum_{k=1}^{m-1} \sum_{p=1}^{\lceil 3/2 k \rceil } \sum_{l=1+\delta_{\pg,\pn}\left(m-k-1\right)}^{m-k} (-1)^{m-k-l}  {-k \choose m-k-l} \left[ U_{k,p,1,j}^{\R} H_{1,p,l}^{\qg\rb\pg}  + U_{k,p,1,j}^{\L} H_{2,p,l}^{\qg\rb\pg} \right] \qquad \pg \neq \pd, \\ %& \eta_{j,q}^{\qg\rb\pg} = \delta_{1,j}\delta_{1,q} + \sum_{k=1}^{q-1} \sum_{p=1}^{\lceil 3/2 k \rceil } \sum_{l=1+\delta_{\pg,\pn}\left(q-k-1\right)}^{q-k} {-k \choose q-k-l} \left[ U_{k,p,1,j}^{\R} H_{1,p,l}^{\qg\rb\pg}  + U_{k,p,1,j}^{\L} H_{2,p,l}^{\qg\rb\pg} \right] \qquad \pg \neq \pd, \\  %l=1+\delta_{\pg,\ps}\left(q-k-1\right)}^{q-k}
+	& \eta_{j,m}^{\qg\rb\pd} = - \sum_{k=1}^{m} \sum_{p=1}^{\lceil 3/2 k \rceil } p U_{k,p,1,j}^{\R} H_{1,p+1,1+m-k}^{\qg\rb\pn}  + p U_{k,p,1,j}^{\L} H_{2,p+1,1+m-k}^{\qg\rb\pn}. % & \eta_{j,q}^{\qg\rb\pd} = - \sum_{k=1}^{q-1} \sum_{p=1}^{\lceil 3/2 k \rceil }p U_{k,p,1,j}^{\R} H_{1,p+1,1+q-k}^{\qg\rb\pn}  + U_{k,p,1,j}^{\L} H_{2,p+1,1+q-k}^{\qg\rb\pd}. 
+\end{align}
+%etab[n][q] = kronecker_delta(n,1)*kronecker_delta(q,1) + sum(sum(sum( (-1)^(q -k -l)*binomial(-k,q-k-l)*(UR[k-1][p-1][0][n-1]*Hb[1][p][l] + UL[k-1][p-1][0][n-1]*Hb[2][p][l]) for l in range(1,q-k +1)) for p in range(1,ceil(3/2*k)+1)) for k in range(1,q-1+1));
+Here, we do not provide all formulae by which higher order terms of the orthogonal polynomials can be computed, as equations for these $U$- and $Q$-matrices are available in \cite{jacobi,laguerre}. These are all implemented in Sage worksheets available at \cite{ninesJac,ninesLag}. %Toegevoegd
+Note that for $m > \lceil k/2 \rceil$, we have $U_{k,m}^{\R/\L} \equiv 0$ for the Jacobi case and $U_{k,m}^{\L} \equiv 0$ for the Laguerre case. For the expansions near the left endpoint (\rg = \rl), the $Q$ matrices are used %near endpoints (\rg=\rl or \rr), the $Q$ matrices are used
+\begin{align}
+	& \begin{pmatrix} 1 & 0 \end{pmatrix} R^{\R/\L}(z^{\qg\rg\pg}) \sim \begin{pmatrix} 1 & 0 \end{pmatrix}  \left( I+ \sum_{k=1}^\infty \sum_{p=0}^\infty \frac{\left[ z^{\qg\rg\pg} -a \right]^p}{\left(n -\delta_{\pg,\ps} \right)^k} Q_{k,p}^{\R/\L} \right), \\   %\left[ z^{\qg\rg\pg} \right]^p
+	& \left.\frac{\partial^{(\delta_{\pg,\pd})} \begin{pmatrix} 1 & 0 \end{pmatrix} R^{\R/\L}(z) }{\partial z^{(\delta_{\pg,\pd})} } \right|_{z = z^{\qg\rg\pg}}  \sim \sum_{q=1}^\infty n^{1-q -\delta_{\pg,\pd} } \begin{pmatrix} \eta_{1,q}^{\qg\rg\pg} & \eta_{2,q}^{\qg\rg\pg} \end{pmatrix},  \\
+	\eta_{n,q}^{\qg\rg\pg} & = \delta_{1,n}\delta_{1,q} \left(1-\delta_{\pg,\pd}\right) + Q_{q,1,1,n}^{\R/\L} \delta_{\pg,\pd} +  \sum_{k=1}^{q-1 -\delta_{\pg,\pd} } \left\{ \left[\delta_{\pg,\pn} \delta_{k,q-1} + \delta_{\pg,\ps} {-k \choose q-1-k} (-1)^{q-1-k} \right] Q_{k,0, 1,n}^{\R/\L} + \right. \\ % Q_{q,1,1,n}^{\L} \delta_{\pg,\pd} +  \sum_{k=1}^{q-1 -\delta_{\pg,\pd} } \left\{ \left[\delta_{\pg,\pn} \delta_{k,q-1} + \delta_{\pg,\ps} {-k \choose q-1-k} (-1)^{q-1-k} \right] Q_{k,0, 1,n}^{\L} + \right. \\
+	& \left. \sum_{i=0}^{\delta_{\pg,\ps}(q-k-1)} {-k \choose i} (-1)^i \sum_{p=1+\delta_{\pg,\pd} }^{\lfloor (q-k-i-1+3\delta_{\pg,\pd})/2 \rfloor} \left[1 + (p-1)\delta_{\pg,\pd} \right] z_{p-\delta_{\pg,\pd},q-k-i-2+ (5-2p)\delta_{\pg,\pd}}^{\qg\rg\pg} Q_{k,p,1,n}^{\R/\L} \right\}. %z_{p-\delta_{\pg,\pd},q-k-i-2+ \delta_{\pg,\pd}}^{\qg\rg\pg} Q_{k,p,1,n}^{\R/\L} \right\}.
+\end{align}
+The oscillatory part %The part that can become zero 
+$\varepsilon(z)$ in the expansions in \cite[\S 2.3]{jacobi}, \cite[\S 4]{laguerre} and \cite[\S 2.2]{quadr} %\cref{EpiInt,Epiboun,Epilboun} 
+is $\begin{pmatrix} 1 & 0 \end{pmatrix} R(z)$ times a column vector and the latter can be expanded as
+\begin{align}
+	 & (-1)^{k\delta_{\rg,\rb} } \sum_{r=1}^\infty n^{-r + \delta_{\rg,\rb}+ 3\delta_{\pg,\pd} } \begin{pmatrix} D_\infty \kappa_{1,r}^{\qg\rg\pg} \\ \frac{-i}{D_\infty} \kappa_{2,r}^{\qg\rg\pg} \end{pmatrix},  \\ % n^{-r + \delta_{\rg,\rb}(1+\delta_{\pg,\pd}) + 2\delta_{\pg,\pd} } %\begin{pmatrix} \kappa_{1,r}^{\qg\rg\pg} \\ \kappa_{2,r}^{\qg\rg\pg} \end{pmatrix},  \\
+	\kappa_{n,r}^{\qg\rg\pg} & = \sum_{j=1}^{r+1} \Xi_{r+2-j,n,1}^{\qg\rg\pg} \iota_{1,j}^{\qg\rg\pg} + \Xi_{r+2-j,n,2}^{\qg\rg\pg} \iota_{2,j}^{\qg\rg\pg} \qquad \rg \neq \rb \text{ } \& \text{ } \pg \neq \pd, \\ %\rb \& \pg
+	\kappa_{n,r}^{\qg\rl\pd} & = \left[\sum_{i=1}^{r-1} \Xi_{i,n,1}^{\qg\rl\pd} \iota_{1,r-i}^{\qg\rl\pn} + \Xi_{i,n,2}^{\qg\rl\pd} \iota_{2,r-i}^{\qg\rl\pn} \right]  + \sum_{k =1}^r \Xi_{k,n,1}^{\qg\rl\pn} \iota_{1,1-k+r}^{\qg\rl\pd} + \Xi_{k,n,2}^{\qg\rl\pn} \iota_{2,1-k+r}^{\qg\rl\pd}.%\kappa_{n,r}^{\lld} & 
+\end{align}
+
+Note that our shortened notation avoids specifying formulae separately for each $\qg,\rg$ and $\pg$ as well as for some indices. For the bulk, this is so technical that we do not try to unify the following into fewer functions, except when the first index is one: there we join the Jacobi and Laguerre cases% \Pc{except when the first index is one where we join the Jacobi and Laguerre cases}
+\begin{align}
+	\kappa_{1,r}^{\qg\rb\pn} & = 0 + \sum_{j=1}^{r-1} \frac{\cos\left(\frac{\pi}{2} +\frac{\pi}{2} j \right)}{j!} \epsilon_{1, j, 1+r}, \\ 
+	\kappa_{2,r}^{\ql\rb\pn} & = 2\sqrt{z_{1,1}^{\ql\rb\pn}}\sqrt{1-z_{1,1}^{\ql\rb\pn}} \delta_{r,1} + 2\sqrt{z_{1,1}^{\ql\rb\pg}}\sqrt{1-z_{1,1}^{\ql\rb\pn} }\left(\sum_{n=1}^{\lfloor (r-1)/2 \rfloor} \frac{(-1)^n }{(2n)!} \epsilon_{2, 2n, 1+r}^{\ql\rb\pn} \right) \\ %\kappa_{2,r}^{\qg\rb\pn} &
+	& + \left(2z_{1,1}^{\ql\rb\pn}-1\right) \sum_{n=1}^{\lfloor r/2 \rfloor} \frac{(-1)^{n} }{(2n-1)!} \epsilon_{2, 2n-1, 1+r}^{\ql\rb\pn}, \\ % \quad \pn \neq \pd, \\ 
+	\kappa_{2,r}^{\qj\rb\pn} & = \sqrt{1 -\left(z_{1,1}^{\qj\rb\pn}\right)^2} \delta_{r,1} + \sqrt{1-\left(z_{1,1}^{\qj\rb\pn}\right)^2 }\left(\sum_{n=1}^{\lfloor (r-1)/2 \rfloor} \frac{(-1)^n }{(2n)!} \epsilon_{2, 2n, 1+r}^{\qj\rb\pn} \right) \\ 
+	& + z_{1,1}^{\qj\rb\pn} \sum_{n=1}^{\lfloor r/2 \rfloor} \frac{(-1)^{n} }{(2n-1)!} \epsilon_{2, 2n-1, 1+r}^{\qj\rb\pn}, \\ %added 
+	\kappa_{1, r}^{\qg\rb\pd} & = - \tilde{\epsilon}_{1, 1, r}^{\qg\rb\pd}  - \sum_{q=2}^{r} \tilde{\epsilon}_{1, 1, r+1-q}^{\qg\rb\pd}  \sum_{j=1}^{q-1} \frac{\sin\left[\frac{\pi}{2} +\frac{\pi}{2} j \right] }{j!} \epsilon_{1, j, 1+q}^{\qg\rb\pn}, \\
+	\kappa_{2, r}^{\ql\rb\pd} & = \tilde{\epsilon}_{2, 1, r}^{\ql\rb\pd}  \left(1-2z_{1,1}^{\ql\rb\pn}\right) +  \sum_{q=2}^{r} \tilde{\epsilon}_{2, 1, r+1-q}^{\ql\rb\pd} \left(  - \left(2z_{1,1}^{\ql\rb\pn} -1\right) \left[\sum_{n=1}^{\lfloor (q-1)/2 \rfloor} \frac{(-1)^n}{(2n)!} \epsilon_{2, 2n, 1+q}^{\ql\rb\pn} \right] \right. \\ %\kappa_{2, r}^{\qg\rb\pd} & = %= -\tilde{\epsilon}_{2, 1, r}^{\qg\rb\pd}  \left(1-2z_{1,1}^{\qg\rb\pn}\right) -  \sum_{q=2}^{r} %\sum_{n=1}^{\lfloor (q-1)/2 \rceil}
+	& \left. - 2\sqrt{z_{1,1}^{\ql\rb\pn} }\sqrt{1-z_{1,1}^{\ql\rb\pn} } \sum_{n=1}^{\lfloor q/2 \rfloor} \frac{(-1)^{n+1}}{(2n-1)!} \epsilon_{2, 2n-1, 1+q}^{\ql\rb\pn} \right), \\ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\kappa_{2, r}^{\qj\rb\pd} & = \sum_{q=1}^r \epsilon_{2,r+1-q}^{\qj\rb\pd} \bigg[-t\delta_{1,q} -t\left(\sum_{n=1}^{\lfloor (q-1)/2 \rfloor} \frac{(-1)^n}{(2n)!} \epsilon_{2,2n,q+1}^{\qj\rb\pn} \right) \\
+	&  +\sqrt{1-t^2}\sum_{n=1}^{\lfloor q/2 \rfloor} \frac{(-1)^(n)}{(2n-1)!} \epsilon_{2,2n-1,q+1} \bigg] \\ %%%%%%%%%%%%%%%
+	\kappa_{1,r}^{\qg\rb\ps} & = \kappa_{2,r}^{\qg\rb\pn} \\ %\kappa_{1,r}^{\qg\rb\ps} & = 2\sqrt{z_{1,1}^{\qg\rb\ps}}\sqrt{1-z_{1,1}^{\qg\rb\ps}} \delta_{r,1} + 2\sqrt{z_{1,1}^{\qg\rb\ps}}\sqrt{1-z_{1,1}^{\qg\rb\ps} }\left(\sum_{n=1}^{\lfloor (r-1)/2 \rfloor} \frac{(-1)^n }{(2n)!} \epsilon_{1, 2n, 1+r}^{\qg\rb\ps} \right) \\ 	& + \left(2z_{1,1}^{\qg\rb\ps}-1\right) \sum_{n=1}^{\lfloor r/2 \rfloor} \frac{(-1)^{n} }{(2n-1)!} \epsilon_{1, 2n-1, 1+r}^{\qg\rb\ps} \\
+	\kappa_{2,r}^{\ql\rb\ps} & = 4\sqrt{z_{1,1}^{\ql\rb\ps}}\sqrt{1-z_{1,1}^{\ql\rb\ps}} \left(2z_{1,1}^{\ql\rb\ps} -1\right) \delta_{r,1} + 4\sqrt{z_{1,1}^{\ql\rb\ps}}\sqrt{1-z_{1,1}^{\ql\rb\ps} } \left(2z_{1,1}^{\ql\rb\ps} -1\right) \left(\sum_{n=1}^{\lfloor (r-1)/2 \rfloor} \frac{(-1)^n }{(2n)!} \epsilon_{2, 2n, 1+r}^{\ql\rb\ps} \right) \\ 
+	& + \left(\left[8z_{1,1}^{\ql\rb\ps}\right]^2 -8z_{1,1}^{\ql\rb\ps} +1\right) \sum_{n=1}^{\lfloor r/2 \rfloor} \frac{(-1)^{n} }{(2n-1)!} \epsilon_{2, 2n-1, 1+r}^{\ql\rb\ps}, \\ %%%%%%%%%%%%%%%%
+	\kappa_{2,r}^{\qj\rb\ps} & = 2 z_{1,1}^{\qj\rb\ps} \sqrt{1 -\left(z_{1,1}^{\qg\rb\ps}\right)^2 } \left( \delta_{r,1} + \sum_{n=1}^{\lfloor (r-1)/2 \rfloor} \frac{(-1)^n }{(2n)!} \epsilon_{2, 2n, 1+r}^{\qj\rb\ps} \right) \\ 
+	& + \left(2\left[z_{1,1}^{\qj\rb\ps}\right]^2 -1\right) \sum_{n=1}^{\lfloor r/2 \rfloor} \frac{(-1)^{n} }{(2n-1)!} \epsilon_{2, 2n-1, 1+r}^{\qj\rb\ps}.
+\end{align}
+
+Combined together,
+\begin{align}
+	& \left. \frac{\partial^{(\delta_{\pg,\pd})} \varepsilon^{\qg\rg\pg}\left(z\right) }{\partial z^{(\delta_{\pg,\pd})}} \right|_{z =z^{\ql\rl\pg}} \sim (-1)^{k\delta_{\rg,\rb} } \sum_{l=0}^\infty 0_l^{\qg\rg\pg} n^{-l + \delta_{\rg,\rb}\left(1 -2\delta_{\pg,\pd}\right) + 3\delta_{\pg,\pd} }, \\
+	0_l^{\qg\rg\pg} & = \sum_{q=1}^{l} D_\infty \eta_{1,q}^{\qg\rg\pg} \kappa_{1,l+1-q}^{\qg\rg\pg} - \frac{i}{D_\infty} \eta_{2,q}^{\qg\rg\pg} \kappa_{2,l+1-q}^{\qg\rg\pg} \qquad \pg \neq \pd, \\ 
+	0_l^{\qg\rg\pd} & = \left(\sum_{q=1}^{l-4 +2\delta_{\rg,\rb} } D_\infty \eta_{1,q}^{\qg\rg\pd} \kappa_{1,l-3-q+2\delta_{\rg,\rb}}^{\qg\rg\pn} -\frac{i}{D_\infty} \eta_{2,q}^{\qg\rg\pd} \kappa_{2,l-3-q+2\delta_{\rg,\rb}}^{\qg\rg\pn} \right) \\
+	& + \sum_{q=1}^{l} D_\infty \eta_{1,q}^{\qg\rg\pn} \kappa_{1,l+1-q}^{\qg\rg\pd} -\frac{i}{D_\infty} \eta_{2,q}^{\qg\rg\pn} \kappa_{2,l+1-q}^{\qg\rg\pd}.
+\end{align}
+
+
+
+
+For the left Laguerre nodes, we had $j_{\alpha,k}= 4\sqrt{z_{1,1}^{\lln}}$ in \cref{SexpGL}, from which we obtain the leading order behaviour of the node $x_k$ in \cite[(5.1)]{quadr}. %\cref{EnodeLagLeft}.
+Similarly, $n\sqrt{2+2z_{1,1}^{\qj\rl\pn}} = j_{\beta,k}$ in \cref{SexpGJ} for the Jacobi case, giving the leading order behaviour of the node in \cite[(6.1)]{quadr}. %\cref{EexkStdJacBes}. 
+Higher order coefficients can be obtained recursively by setting $0_l^{\ql\rl\pn}=0$. We extract the coefficient $z_{1,j}$ with the highest $j$ from this by only considering those coefficients where it can appear in the coefficients defined before
+\begin{align}
+	z_{1,l+1}^{\qg\rl\pn} & = \frac{ (-1)^{\delta_{\qg,\qj}} \sqrt{ (1-a) z_{1,1}^{\qg\rl\pn}} }{D_\infty  f_{\delta_{\qg,\qj}}^{\qg\rl} S_1 } \left[ D_\infty \left\{ S_1 \left( (-1)^{\delta_{\qg,\ql}} 2^{1/(1-a)} f_{\delta_{\qg,\qj}}^{\qg\rl} \sqrt{z_{1,1}^{\qg\rl\pn}} \left\{ \delta_{l+1,1} +  \sum_{u=2}^{l} {1/2 \choose u} \chi_{u,l+1-u}^{\qg\rl\pn} \right\} \right. \right. \right. \\ %{2^{\alpha} \sqrt{z_{1,1}^{\ql\rl\pn}} }{f_0^{\ql\rl} S_1 } \left[  2^{-\alpha} 
+	& \left. +(-1)^{\delta_{\qg,\ql}} 2^{1/(1-a)}\sum_{j=1}^{\lfloor l/2 \rfloor} f_{j+ \delta_{\qg,\qj}}^{\qg\rl} \sum_{i=2j-1}^{l-1} \omega_{l-i}^{\qg\rl\pn} z_{j,i}^{\qg\rl\pn} \right)   + \left( \sum_{i=2}^{l} \frac{S_{i-\delta_{\qg,\ql} } }{i!}  \epsilon_{i,l+1}^{\qg\rl\pn} \right) \label{EexpNodelln} \\
+	& \left. \left. +  \sum_{j=1}^{l} \Xi_{l+2-j,1,1}^{\qg\rl\pn} \iota_{1,j}^{\qg\rl\pn} + \Xi_{l+2-j,1,2}^{\qg\rl\pn} \iota_{2,j}^{\qg\rl\pn} \right\}  +  \sum_{q=2}^l D_\infty \eta_{1,q}^{\qg\rl\pn} \kappa_{1,l+1-q}^{\qg\rl\pn} -i D_\infty^{-1} \eta_{2,q}^{\qg\rl\pn} \kappa_{2,l+1-q}^{\qg\rl\pn} \right].% 2^{-\alpha} \eta_{1,q}^{\ql\rl\pn} \kappa_{1,l+1-q}^{\ql\rl\pn} -i 2^\alpha 
+\end{align}
+
+
+
+
+\subsection{Expansion of $p_n'(x_k)$ and $p_{n-1}(x_k)$}
+In the case $\pg \neq \pn$, also the factor that multiplies $\varepsilon(z)$ should be expanded. It does not need to be differentiated for $\pg = \pd$ as it gets multiplied with $\varepsilon(z)$ in the derivative of their product and the latter is zero up to the order $T$ up to which the expansion of the node $x_k$ has been calculated. The factor always contains the quartic roots
+\begin{align}
+	\left[z^{\qg\rg\pg} -a\right]^{-1/4} & \sim \sum_{k=1}^\infty o_k^{\qg\rg\pg} n^{3/2 - \delta_{\rg,\rb}/2 -k}, \\ %\left[z^{\qg\rg\pg}\right]^{-1/4} &
+	o_k^{\qg\rg\pg} & = \left( z_{1,1}^{\qg\rg\pn} -a\right)^{-1/4}\left[\delta_{k,1}+ \sum_{u=1}^{k-1} {-1/4 \choose u} \chi_{u,k-1}^{\qg\rg\pg} \right], \\ 
+	\left(1 - z^{\qg\rg\pg} \right)^{-1/4} & \sim \sum_{l=1}^\infty O_l^{\qg\rg\pg} n^{1-l}, \\
+	O_m^{\qg\rg\pg} & = \left\{1-z_{1,1}^{\qg\rg\pg}\right\}^{-1/4} \left(\delta_{m,1} + \sum_{u=1}^{m-1} {-1/4 \choose u} \Chi_{u,m-1}^{\qg\rg\pg} \right), \\
+	\left(z^{\qg\rg\pg} -a \right)^{-1/4} \left(1 - z^{\qg\rg\pg} \right)^{-1/4}  & \sim \sum_{m=1}^\infty Q_m^{\qg\rg\pg} n^{3/2 - \delta_{\rg,\rb}/2 -m}, \\ %\left(z^{\qg\rg\pg} \right)^{-1/4} \left(1 - z^{\qg\rg\pg} \right)^{-1/4} 
+	Q_m^{\qg\rg\pg} & = \sum_{k=1}^m o_k^{\qg\rg\pg} O_{m-k+1}^{\qg\rg\pg}.
+\end{align}
+
+There may be an %The expressions in the boundary regions have an 
+additional factor depending on $z$ for which the expansion is in terms of $B_l$. %is given in \cref{SexpGL} \todo{add jac}, and in the bulk $B_l = \delta_{l,1}$. 
+For the expansion in the bulk, the additional factor is just $1$, so $B_k^{\qg\rb\pg} = \delta_{k,1}$. In both expansions in the left boundary region, there is an additional square root 
+\begin{align}
+	\sqrt{i\pi[n-\delta_{\pg,\ps}]\bar{\phi}_{n-\delta_{\pg,\ps}}\left[z^{\ql\rl\pg}\right]} & \sim \sum_{k=1}^\infty B_k^{\ql\rl\pg} n^{1-k}, \\
+	\sqrt{\arccos(-z^{\qj\rl\pg}) } & \sim \sum_{k=1}^\infty B_k^{\qj\rl\pg} n^{1/2-k}, \\
+	B_k^{\qg\rl\pg} & = \sqrt{ \left(\frac{\pi}{2}\right)^{\delta_{\qg,\ql}} \epsilon_{1,1,1}^{\qg\rl\pg}} \left( \delta_{1,k} + \sum_{u=1}^{k-1} {1/2 \choose u} \frac{ \epsilon_{u,k}^{\qg\rl\pg} }{ \left[\epsilon_{1,1,1}^{\qg\rl\pg}\right]^u } \right).% \left[\epsilon_{1,1,1}^{\lln}\right]^u } \right).
+\end{align}
+
+Multiplying it with $\varepsilon(z)$ yields 
+\begin{align}
+	\sum_{j=1}^\infty P_j^{\qg\rg\pg} n^{2\delta_{\pg,\pd} -j} \quad \text{  with  } \quad P_j^{\qg\rg\pg} & = \sum_{l=1}^j 0_l^{\qg\rg\pg} B_{j-l+1}^{\qg\rg\pg}.
+\end{align}
+
+The expansion of $p_{n-1}(x_k)$ or $p_{n}'(x_k)$ then is
+\begin{align}
+	p_{n-\delta_{\pg,\ps} }^{(\delta_{\pg,\pd})} \left[x_k^{\qg\rg}\right] & \sim Y^{\qg\rg\pg} w\left[x_k^{\qg\rg}\right]^{-1/2} \sum_{k=1}^\infty \Delta_k^{\qg\rg\pg} n^{1/2-k +\delta_{\rg,\rb}\left(1/2 - 2\delta_{\pg,\pd} \right) +3\delta_{\pg,\pd} }, \\ 
+	\Delta_k^{\qg\rg\pg} & = \sum_{m=1}^k Q_m^{\qg\rg\pg} P_{1+k-m}^{\qg\rg\pg}.
+\end{align}
+The expansion of the weights is given in \cref{SderxkwkGL,SderxkwkGJ} because of the difference between the Laguerre and Jacobi cases. %and $Y^{\qg\rg\pg}$ is defined in \cref{SexpGL} \todo{add Jacobi} as well because the expansion %and $Y^{\qg\rg\pg}$ is in \cref{SexpGL} as well as the expansion%of the weights because of the large expected difference with respect to the Jacobi case.
+
+
+
+
+
+%\section{Additional quantities for generalised Gauss-Laguerre} \label{SexpGL}
+%\subsection{Phase function}
+\subsection{Arguments in Gauss-Laguerre} \label{SexpGL}
+
+The superscripts \ql\rg\ps, where only the region is unspecified, are the only cases in \cref{Eexpzgen} where $\tfrac{\beta_n}{\beta_{n-\delta_{p,s}}}$ is not identically one. For general functions $Q(x)$, this ratio is calculated as a numerical solution of %\cref{EbetaInt}. %numerically as explained in \cref{SmrsNonpoly}. 
+\begin{equation}
+% \label{Erms}
+ 2\pi n = \int_0^{\beta_n} Q'(x) \sqrt{ \frac{x}{\beta_n - x} } \, {\rm d} x.\label{EbetaInt}
+\end{equation}
+For a general polynomial, fractional powers $n^{-1/m}$ can be avoided by numerically evaluating the expansion described in \cite[\S 3.2]{laguerre}, %evaluating \cref{EbetaExpa}, 
+inserting $z=x_k/\beta_n$ into $R^{\O}(z)$ and using the procedure for general functions $Q(x)$ as well. For monomial $Q(x)$, 
+\begin{align}	
+	\frac{\beta_n}{\beta_{n-1}} & = (1-1/n)^{-1/m} \sim \sum_{j=1}^\infty {-1/m \choose j-1} (-1/n)^{j-1}, \\ 
+	z_{1,i}^{\ql\rg\ps} & = \sum_{q=1}^{i+\delta_{\rg,\rb} } (-1)^{i-q+\delta_{\rg,\rb}} {-1/m \choose i-q+\delta_{\rg,\rb}} z_{1,q}^{\ql\rg\pn}.
+\end{align}
+
+
+The arccosine in the shifted polynomial expands to 
+\begin{align}
+	& \left.\frac{\partial^{(\delta_{\pg,\pd})} \arccos\left(\frac{2z -a-1}{1-a}\right) }{\partial z^{(\delta_{\pg,\pd})}}\right|_{z=z^{\qg\rg\pg}}  \sim \arccos\left(\frac{2\left.z^{\qg\rg\pg}\right|_{n=\infty} -a-1}{1-a}\right) \left(1-\delta_{\pg,\pd}\right) + \sum_{r=1}^\infty \zeta_{1,r}^{\qg\rg\pg} n^{1-\delta_{\rg,\rl}\left(1-2\delta_{\pg,\pd}\right) -r}.
+\end{align}
+
+The coefficients in this series expansion, respectively for the left boundary region and the bulk, equal
+\begin{align}
+	\frac{2 \zeta_{2/3 \mp 1/2, 1,r}^{\qg\rl\pg}}{-\alpha \mp 1} & = \left[-2^{1+a/2 -\delta_{\pg,\pd}} \frac{ (1/2)_{(r-1)/2} }{[(r-1)/2!]\{r + \delta_{\pg,\pd} (1-r) \}} \left(z_{1,1}^{\qg\rl\pg} \right)^{r/2 -\delta_{\pg,\pd}} \right]_{r \text{ odd}} \\
+	&  -  2^{1+a/2 -\delta_{\pg,\pd}}  \sum_{u=1}^{r-1} \sum_{l=0}^{(r-1-u)/2} \frac{ (1/2)_{l} \left(z_{1,1}^{\qg\rl\pg} \right)^{l+1/2- \delta_{\pg,\pd}} }{(l!)(1+2l -\delta_{\pg,\pd} 2l )} {l +1/2 -\delta_{\pg,\pd} \choose u} \chi_{u,r-1-2l}^{\qg\rl\pg}, \\ 
+	\frac{2 \zeta_{3/2 \pm 1/2, 1,r}^{\qg\rb\pg}}{-\alpha \mp 1} & = \arccos\left(\frac{2z_{1,1}^{\qg\rb\pg} -a-1}{1-a}\right) \delta_{1,k}(1-\delta_{\pg,\pd}) - \delta_{1,k}\delta_{\pg,\pd} \left(z_{1,1}^{\qg\rb\pg}\right)^{5/2}  \left(1 -z_{1,1}^{\qg\rb\pg} \right)^{-1/2} \\
+	& - \sum_{l=2}^{k} \left(1 + \delta_{\pg,\pd}[l-1]\right) \chi_{l-1,k}^{\qg\rb\pg} \sum_{n=0}^{l-2+\delta_{\pg,\pd} } \frac{(-1)^n}{l-1+\delta_{\pg,\pd} } \left(z_{1,1}^{\qg\rb\pg}\right)^{n+5/2} \\ 
+	& {-1/2 \choose l-2-n+\delta_{\pg,\pd} } \left(1 -z_{1,1}^{\qg\rb\pg} \right)^{-1/2-n} {-1/2 \choose n}. \label{EquZetaBulk}
+\end{align}
+Powers of this arccosine appearing in the left boundary region are
+\begin{equation} 
+	\left[\arccos\left(\frac{2z^{\qg\rg\pg} -a-1}{1-a}\right) -\pi\delta_{\rg,\rl} \right]^q \sim \sum_{r=1}^\infty \zeta_{q,r}^{\qg\rg\pg} n^{-r}.  
+\end{equation}
+
+The phase function is expanded in the following cases
+\begin{align}
+	\lambda_n(z^{\ql\rb\pg}) & \pm  \frac{1}{2} \arccos\left(\frac{2z -a-1}{1-a}\right)  =  \left[n + \frac{\mu + \nu +1 \pm 1}{2}\right]\arccos\left(\frac{2z -a-1}{1-a}\right)   -\frac{\pi}{4} -\frac{\nu\pi}{2} \\ %\right)  \sim  \left[  ...  -\pi/4
+	&  -\frac{n}{2} \sqrt{1-z}\sqrt{z-a} \frac{2}{mA_m}\sum_{k=0}^{m-1} A_{m-1-k}z^k,
+\end{align}
+in the bulk for monomial $Q(x)$, 
+\begin{align}
+	\bar{\phi}_{n-1}(z^{\ql\rl\pg}) & \sim  i \theta(z^{\ql\rl\pg}) \sum_{j=0}^\infty f_j^{\ql\rl\pg} \left(z^{\ql\rl\pg}\right)^{j+1/2}, \\
+	f_j^{\ql\rl\pg} & = -\frac{(1/2)_j }{j!(1+2j)} - \frac{1}{2 m A_m}\sum_{k=0}^{\min(m-1,j)} (-1)^{j-k} {1/2 \choose j-k} A_{m-k-1} 
+\end{align}
+in the left disk for monomial $Q(x)$, while for general functions $Q(x)$ and with (functional) dependences on $n-1$%functions $Q(x)$
+\begin{align}
+	f_j^{\ql\rl\pg}(n-1) & = \frac{+1}{2(2j+1)} \sum_{l=0}^j (-1)^l { 1/2 \choose l } d_{j-l}^{\ql\rl\pg}(n-1).
+\end{align}
+
+
+%\subsection{Argument of the Bessel function}
+
+The argument of the Bessel functions $A(z^{\ql\rl\pg})$ is expanded as follows 
+\begin{align}
+	& \left. \frac{\partial^{(\delta_{\pg,\pd})} 2 i \left(n-\delta_{\pg,\ps} \right) \bar{\phi}_{n-\delta_{\pg,\ps} }(z) }{\partial z^{(\delta_{\pg,\pd})}} \right|_{z =z^{\ql\rl\pg}}  \sim \epsilon_{1,1,1}^{\ql\rl\pg}  + \sum_{k=2}^\infty \epsilon_{1,1,k}^{\ql\rl\pg} n^{1-k}, \\ %\left(n-\delta{\pg,\ps} \right)
+	\epsilon_{1,1,k}^{\ql\rl\pg} & = 2f_0^{\ql\rl\pg} \left[\omega_{k-1}^{\ql\rl\pg}\delta_{\pg,\ps}\left(1-\delta_{k,1}\right)  - \omega_{k}^{\ql\rl\pg}\right] - 2\left[\sum_{j=1}^{\lfloor (k-1)/2 \rfloor} f_j^{\ql\rl\pg} \sum_{i=2j-1}^{k-2} \omega_{k-1-i}^{\ql\rl\pg}  z_{j,i}^{\ql\rl\pg} \right] \\  
+	& + \delta_{\pg,\ps} \left\{2\sum_{j=1}^{\lfloor k/2 \rfloor -1} f_j^{\ql\rl\pg} \sum_{i=2j-1}^{k-3} \omega_{k-i-2}^{\ql\rl\pg}  z_{j,i}^{\ql\rl\pg} \right\} \qquad  \pg \neq \pd, \\
+	\epsilon_{1,1,k}^{\lld} & = \left\{-k f_{(k-1)/2} [z_{1,1}^{\lln}]^{k/2-1} \right\}_{k \text{ odd}}  \\
+	& -2 \sum_{j=0}^{k/2-1} f_j (j+1/2) [z_{1,1}^{\lln}]^{j-1/2} \sum_{u=1}^{k-2j-1} {j-1/2 \choose u} \chi_{u,k-2j-u}^{\lln}. 
+\end{align}
+In the last expression for the derivative of the polynomial at its zero, the term with the subscript ``$k \text{ odd}$'' is only added when $k$ is odd such that $f_{(k-1)/2}$ has an integer index. Here, $\epsilon_{1,1,1}^{\ql\rl\pg} = j_{\alpha,k}= \sqrt{4n z_{1,1}^{\lln}}$, %$\epsilon_{1,1,1}^{\ql\rl\pg} = j_{\alpha,k}= 4\sqrt{z_{1,1}^{\lln}}$,
+which means that the leading order term of the asymptotic expansion in the left boundary region is zero when $A(z^{\ql\rl\pg})$ equals a zero of the Bessel up to first order. %order, from which we obtain the leading order behaviour of the node $x_k$ in \cref{EnodeLagLeft}. Higher order coefficients can be obtained recursively by setting $0_l^{\ql\rl\pn}=0$. We extract the coefficient $z_{1,j}$ with the highest $j$ from this by only considering those coefficients where it can appear in the coefficients defined before
+%\begin{align}
+%	z_{1,l+1}^{\ql\rl\pn} & = \frac{D_\infty^{-1} \sqrt{z_{1,1}^{\ql\rl\pn}} }{f_0^{\ql\rl} S_1 } \left[ D_\infty \left\{ S_1 \left(-2f_0^{\ql\rl} \sqrt{z_{1,1}^{\ql\rl\pn}} \left\{ \delta_{l+1,1} +  \sum_{u=2}^{l} {1/2 \choose u} \chi_{u,l+1-u}^{\ql\rl\pn} \right\} \right. \right. \right. \\ %2^{\alpha} \sqrt{z_{1,1}^{\ql\rl\pn}} }{f_0^{\ql\rl} S_1 } \left[  2^{-\alpha} 
+%	& \left. - 2\sum_{j=1}^{\lfloor l/2 \rfloor} f_j^{\ql\rl} \sum_{i=2j-1}^{l-1} \omega_{l-i}^{\ql\rl\pn} z_{j,i}^{\ql\rl\pn} \right)   + \left( \sum_{i=2}^{l} \frac{S_{i-1} }{i!}  \epsilon_{i,l+1}^{\ql\rl\pn} \right) \label{EexpNodelln} \\
+%	& \left. \left. +  \sum_{j=1}^{l} \Xi_{l+2-j,1,1}^{\ql\rl\pn} \iota_{1,j}^{\ql\rl\pn} + \Xi_{l+2-j,1,2}^{\ql\rl\pn} \iota_{2,j}^{\ql\rl\pn} \right\}  +  \sum_{q=2}^l D_\infty \eta_{1,q}^{\ql\rl\pn} \kappa_{1,l+1-q}^{\ql\rl\pn} -i D_\infty^{-1} \eta_{2,q}^{\ql\rl\pn} \kappa_{2,l+1-q}^{\ql\rl\pn} \right].% 2^{-\alpha} \eta_{1,q}^{\ql\rl\pn} \kappa_{1,l+1-q}^{\ql\rl\pn} -i 2^\alpha 
+%\end{align}
+
+
+%\subsection{Argument of the cosine}
+
+In the bulk, a similar reasoning gives $\epsilon_{1,1,1}^{\ql\rb\pg} = t = z_{1,1}^{\ql\rb\pg}$ as leading order. The expansion of the argument of the cosine can be derived for monomial $Q(x)$ as 
+\begin{align} 
+	& \left. \frac{\partial^{(\delta_{\pg,\pd})} H_n(z) }{\partial z^{(\delta_{\pg,\pd})} } \right|_{z=z^{\ql\rb\pg}}  \sim \sum_{l=1}^\infty F_l^{\ql\rb\pg} n^{1-l}, \\ %	F_l^{\ql\rb\pg} & = \frac{2}{mA_m}\sum_{k=1}^{m-1} \left(1 + \delta_{\pg,\pd}[k-1]\right) A_{m-1-k} z_{k-\delta_{\pg,\pd},l}^{\ql\rb\pg}, \\
+	F_l^{\ql\rb\pg} & = \frac{2}{mA_m}\sum_{k=0}^{m-1} A_{m-1-k} \big( \left(z_{1,1}^{\ql\rb\pg}\right)^{k-\delta_{\pg,\pd}} \delta_{l,1} + \sum_{j=1+\delta_{\pg,\pd}}^{\min(l-1+\delta_{\pg,\pd},k)} (1 + (j-1)\delta_{\pg,\pd} ) {k \choose j} z_{j-\delta_{\pg,\pd},l+1}^{\ql\rb\pg} \left(z_{1,1}^{\ql\rb\pg}\right)^{k-j} \big), \\ % \todo{longer than prev but in Sage...} \\ %F = [ 2/mDeg/A[mDeg]*sum(A[mDeg-1-k]*(z1_1^k*kronecker_delta(1,l) + sum(binomial(k,j)*zji[j][l+1]*z1_1^(k-j) for j in range(1,min(l-1,k)+1)) ) for k in range(0,mDeg-1+1)) for l in range(0,maxOrder+1+1)] % Ft = [2/mDeg/A[mDeg]*sum(A[mDeg-1-k]*(z1_1^(k-1)*kronecker_delta(1,l) + sum(j*binomial(k,j)*zji[j-1][l+1]*z1_1^(k-j) for j in range(2,min(l,k)+1)) ) for k in range(1,mDeg-1+1)) for l in range(0,maxOrder+1+1)]  %Fb = [2/mDeg/A[mDeg]*sum(A[mDeg-1-k]*(z1_1^k*kronecker_delta(1,l) + sum(binomial(k,j)*zjib[j][l+1]*z1_1^(k-j) for j in range(1,min(l-1,k)+1)) ) for k in range(0,mDeg-1+1)) for l in range(0,maxOrder+1+1)]
+	\epsilon_{3/2 \mp 1/2, 1, k}^{\ql\rb\pg} & = \left(\frac{\alpha \pm 1}{2} -\delta_{\pg,\ps} \right) \zeta_{k-1}^{\ql\rb\pg} -\frac{\pi}{4}\delta_{k,2}\left(1-\delta_{\pg, \pd}\right)  +\zeta_{k}^{\ql\rb\pg} \\ %-\zeta_{k-1}^{\ql\rb\pg}\delta_{\pg,\ps}  \\ 
+	& - \sum_{l=1}^{k} \frac{F_l^{\ql\rb\pg}}{2} \sum_{m=1}^{1+k-l} \omega_{2+k-l-m}^{\ql\rb\pg} \Omega_m^{\ql\rb\pg} \left[1-\delta_{\pg,\pd}\right] + \omega_{2+k-l-m}^{\ql\rb\pn} \Omega_m^{\ql\rb\pn} \delta_{\pg,\pd}   \\
+	& + \left( \sum_{l=1}^{k-1} \frac{F_l^{\ql\rb\pg}}{2} \sum_{m=1}^{k-l} \omega_{1+k-l-m}^{\ql\rb\pg} \Omega_m^{\ql\rb\pg} \right)\delta_{\pg,\ps} \\
+	& - \delta_{\pg,\pd} \sum_{l=1}^{k} \frac{F_l^{\ql\rb\pn} }{2} \sum_{m=1}^{1+k-l} \left[ \omega_{2+k-l-m}^{\ql\rb\pd} \Omega_m^{\ql\rb\pn} + \omega_{2+k-l-m}^{\ql\rb\pn} \Omega_m^{\ql\rb\pd} \right].
+\end{align}
+
+
+
+\subsection{Nodes and weights in Gauss-Laguerre} \label{SderxkwkGL}
+
+%\Pc{only for standard weight or monomial $Q(x)$: adjust or not?}
+
+
+For the nodes in the bulk, we %We 
+can choose $n\epsilon_{1,1,1} +\epsilon_{1,1,2}$ to be $\pi/2 + \mathcal{O}(n^{-1})$ plus any multiple of $\pi$ to obtain the leading order behaviour, which will affect the value of $z_{1,2}$. The following choice corresponds to \cite[(57)]{tricBulk} with $t = z_{1,1}^{\ql\rb\pn}$, see \cite[\S 3.2 \& 4.3]{quadr}, such that the expressions for standard associated Laguerre nodes become shorter:
+\begin{align}
+	\frac{4 n -4 k+3}{4 n +2 \alpha +2}\pi & = 2 \arccos(\sqrt{t}) - \sqrt{t-t^2}\sum_{k=0}^{m-1}\frac{A_{m-1-k}}{mA_m} t^k, \label{EtranscMon} \\ % 4 times z_{1,1}^{\ql\rb\pn}}  (or \left(z_{1,1}^{\ql\rb\pn}}\right) -> t
+	z_{1,2}^{\ql\rb\pn} & =  \frac{[\alpha +1]\left\{t - t^2\right\}\left\{\sum_{k=0}^{m-1}\frac{A_{m-1-k}}{mA_m} t^k \right\} }{2 + \sum_{k=0}^{m-1}\left(1 + k -(2+k)t \right)\frac{A_{m-1-k}}{mA_m} t^k }, \\ % 5 times z_{1,1}^{\ql\rb\pn}} -> t %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	z_{l+2}^{\ql\rb\pn} & = \left( \left[\sum_{j=2}^{l} \frac{\cos\left(\frac{\pi}{2} +\frac{\pi}{2}j\right) }{j!} \epsilon_{1, j, 2+l}^{\ql\rb\pn} \right] + D_\infty^{-1} \left\{\sum_{q=2}^{l+1} D_\infty \eta_{1,q}^{\ql\rb\pn}  \kappa_{1,2+l-q}^{\ql\rb\pn}  -i D_\infty^{-1} \eta_{2,q}^{\ql\rb\pn} \kappa_{2,2+l-q}^{\ql\rb\pn} \right\} \right. \label{EquaExpNodeBulk} \\ %+2^{\alpha}\left\{\sum_{q=2}^{l+1} 2^{-\alpha} \eta_{1,q}^{\ql\rb\pn}  \kappa_{1,2+l-q}^{\ql\rb\pn}  -i2^{\alpha}
+	&  - \left\{\sum_{q=3}^{l+2} \chi_{q-1,l+2}^{\ql\rb\pg} \sum_{n=0}^{q-2} \frac{(-1)^n}{q-1} t^{n+5/2} {-1/2 \choose q-2-n} \left(1 -t \right)^{-1/2-n} {-1/2 \choose n} \right\} \\ % 2 times z_{1,1}^{\ql\rb\pn}} -> t
+	&  + \frac{\omega_1^{\ql\rb\pn}\Omega_1^{\ql\rb\pn}}{mA_m}\left[ \sum_{k=0}^{m-1} A_{m-1-k}  \left( t^k \delta_{l,-1} + \sum_{j=2}^{\min(l+1,k)} {k \choose j} t^{k-j} z_{j,l+2}^{\ql\rb\pg} \right)  \right] -[\alpha+1]\xi_{l+1}^{\ql\rb\pn}/2 \\ % &  + \frac{\omega_1^{\ql\rb\pn}\Omega_1^{\ql\rb\pn}}{mA_m}\left[ \sum_{k=0}^{m-1} A_{m-1-k}  \left( z_{k,l+2}^{\ql\rb\pg} - t^k \delta_{l,-1} - k z_{1,l+2}^{\ql\rb\pg} t^{k-1} \right)  \right] -[\alpha+1]\xi_{l+1}^{\ql\rb\pn}/2 \\ %2 times z_{1,1}^{\ql\rb\pn}} -> t
+	& +\frac{F_1^{\ql\rb\pn}}{2} \sqrt{t}\sqrt{1-t} \left\{ 2\delta_{l,-1} + \sum_{u=2}^{l+1} {1/2 \choose u} \left( \chi_{u,l+1}^{\ql\rb\pn} + \Chi_{u,l+1}^{\ql\rb\pn}\right) \right\} \\ %& +\frac{F_1^{\ql\rb\pn}}{2} \sqrt{t}\sqrt{1-t} \left\{ \sum_{u=2}^{l+1} {1/2 \choose u} \left( \chi_{u,l+1}^{\ql\rb\pn} + \Chi_{u,l+1}^{\ql\rb\pn}\right) \right\} \\ % 2 times z_{1,1}^{\ql\rb\pn}} -> t
+	& \left. \vphantom{\frac{\cos\left(\frac{\pi}{2} +\frac{\pi}{2}j\right) }{j!}} + \frac{F_1^{\ql\rb\pn}}{2}\left\{ \sum_{m=2}^{l+1} \omega_{l+3-m}^{\ql\rb\pn} \Omega_m^{\ql\rb\pn} \right\}  + \frac{1}{2} \sum_{q=2}^{l+1} F_q^{\ql\rb\pn} \sum_{m=1}^{l+3-q} \omega_{l+4-q-m}^{\ql\rb\pn} \Omega_m^{\ql\rb\pn} \right) \\
+	& \left( \frac{-1 }{\sqrt{t}\sqrt{1-t } }  - \frac{\omega_1^{\ql\rb\pn}\Omega_1^{\ql\rb\pn}}{mA_m}\left[\sum_{k=0}^{m-1} A_{m-1-k} k t^k \right]  + \frac{-F_1^{\ql\rb\pn} (1-2 t) }{4\sqrt{t}\sqrt{1-t } } \right)^{-1}. % 6 times z_{1,1}^{\ql\rb\pn}} -> t
+\end{align}
+
+%z1Sol[2+l] = ((sum(cos(pi/2+pi/2*j)/factorial(j)*epsilon[1][j][2+l] for j in range(2,l+1))   +   2^(alpha-1)*sum(eta[1][q]*2^(1-alpha)*kappa[1][2+l-q] -I*2^(1+alpha)*eta[2][q]*kappa[2][2+l-q] for q in range(2,l+1+1))   -(alpha+1)*xi[l+1]/2  -  sum(zeta[q]*zji[q-1][l+2] for q in range(3,l+2+1))    + omega[1]*Omega[1]/mDeg/A[mDeg]*sum(A[mDeg-1-k]*(z1_1^k*kronecker_delta(l,-1) +sum(binomial(k,j)*z1_1^(k-j)*zji[j][l+2] for j in range(2,min(l+1,k)+1)) ) for k in range(0,mDeg-1+1))   +   F[1]/2*sqrt(z1_1)*sqrt(1-z1_1)*(2*kronecker_delta(l,-1)+ sum(binomial(1/2,u)*(chi[u][l+2-u] +Chi[u][l+2-u]) for u in range(2,l+1+1)) )   +   F[1]/2*sum(omega[l+3-m]*Omega[m] for m in range(2,l+1+1))   +   1/2*sum(F[q]*sum(omega[l+4-q-m]*Omega[m] for m in range(1,l+3-q+1)) for q in range(2,l+1+1)) ) / (zeta[2] - omega[1]*Omega[1]/mDeg/A[mDeg]*sum(A[mDeg-1-k]*k*z1_1^k for k in range(0,mDeg-1+1)) -  F[1]*(1-2*z1_1)/4/sqrt(z1_1)/sqrt(1-z1_1) ) ).subs({var("z1_" + str(k)): z1Sol[k] for k in range(2,l+1 +1) } ).canonicalize_radical().simplify_full()
+
+%\subsection{Expansion of the weights} \label{SquExplLagWei}
+
+For the expansion in the bulk, the additional factor is just $1$, so $B_k^{\ql\rb\pg} = \delta_{k,1}$. In the expansion in the left boundary region, there is an additional square root 
+\begin{align}
+	\sqrt{i\pi[n-\delta_{\pg,\ps}]\bar{\phi}_{n-\delta_{\pg,\ps}}\left[z^{\ql\rl\pg}\right]} & \sim \sum_{k=1}^\infty B_k^{\ql\rl\pg} n^{1-k}, \\
+	B_k^{\ql\rl\pg} & = \sqrt{ \frac{\pi\epsilon_{1,1,1}^{\ql\rl\pg}}{2}} \left( \delta_{1,k} + \sum_{u=1}^{k-1} {1/2 \choose u} \frac{ \epsilon_{u,k}^{\ql\rl\pg} }{ \left[\epsilon_{1,1,1}^{\ql\rl\pg}\right]^u } \right).% \left[\epsilon_{1,1,1}^{\lln}\right]^u } \right).
+\end{align}
+
+For the expansion of the weights, note that $\beta_n^{-\alpha/2} z_k^{-\alpha/2} = x_k^{-\alpha/2}$ and for the shifted polynomial \\$\beta_{n-1}^{-\alpha/2} \left(\bar{z} = z_k \beta_{n}/\beta_{n-1}\right)^{-\alpha/2} = x_k^{-\alpha/2}$. %$\beta_{n-1}^{-\alpha/2} [\bar{z} = z_k \beta_{n}/\beta_{n-1}]^{-\alpha/2} = x_k^{-\alpha/2}$. 
+Filling the results into \cref{Eweights} yields%\cref{EweightsRep} yields%[Dave 107]\cref{Eweights} yields
+\begin{equation}
+	w_k^{\ql\rg} \sim \frac{ 1-i4^{\alpha+1}\sum_{k=1}^\infty (n-1)^{-k}(U_{k,1}^{\R} + U_{k,1}^{\L})|_{1,2} }{X^{\ql\rg} \frac{2}{\pi} 4^{\alpha} \ee^{Q(x_k)} x_k^{-\alpha} \left[ - \sum_{k=1}^\infty \Delta_k^{\ql\rg\ps} n^{1/2-k} \right] \left\{ \sum_{k=1}^\infty \Delta_k^{\ql\rg\ps} n^{7/2 -k} \right\} }. \label{EwkDelta}%ha}  e^{Q(x_k)} 
+\end{equation}
+
+The factor $X^{\ql\rg}$ is %The factors $Y^{\ql\rg\pg}$ and $X^{\ql\rg}$ are 
+independent of the region $\rg$ in the Laguerre case and equals %in this case and equal
+\begin{align}%	Y^{\ql\rg\ps} & = \gamma_{n-1} \beta_{n-1}^{n-1+\alpha/2} (-1)^{n-1} \ee^{ (n-1) l_{n-1}/2}, \\ %{n-1} e^{ ( %%	Y^{\ql\rg\pd} & = \gamma_n \beta_n^{n-1+\alpha/2} (-1)^n z^{-\alpha/2} \ee^{n l_n/2}, \\ % Y^{\ql\rg\pd} & = \gamma_n \beta_n^{n-1+\alpha/2} (-1)^n z^{-\alpha/2} e^{Q(x_k)/2 +n l_n/2}, \\
+	X^{\ql\rg} & = \beta_n^{n-1 + \alpha/2}\beta_{n-1}^{n-1+\alpha/2 +2-2n-\alpha-1 }\exp\left\{ (n-1) l_{n-1}/2+ n l_n/2 -(n-1) l_{n-1} \right\}.
+\end{align}
+
+One should evaluate this last equation directly in the case of general functions $Q(x)$ as a numerical value is then computed for $\beta_n$. We proceed by expanding $\beta_n$ and other functions in the case of monomial $Q(x)$:
+\begin{align}
+	X^{\ql\rg} & = \frac{\left[mq_mA_m/2\right]^{1/m} }{ 4n \ee^{1/m} } [1-1/n]^{-\alpha/2/m} \exp\left(-n/m\log[1-1/n]\right), \\ %4n e^{1/
+	\exp\left(-n/m\log[1-1/n]\right) & \sim \ee^{1/m} \sum_{j=1}^\infty v_{j+1,j} n^{1-j}, \\ %\sim e^{1/m} 
+	v_{2,j} & = \frac{(2m)^{-j}}{j!}, \label{Eu2lag} \\
+	v_{K,j} & = \sum_{i=0}^{\lfloor j/(K-1) \rfloor} \frac{v_{K-1,j-(K-1)i} }{ (Km)^{i} i!} \label{EuKlag}, \\
+	X^{\ql\rg} & \sim \sum_{l=1}^\infty t_l n^{-l},  \\ 
+	t_l & = [mq_mA_m/2]^{1/m} 2^{-2} \sum_{i=0}^{l-1} {\tfrac{-\alpha}{2m} \choose i} (-1)^i v_{l-i}.
+\end{align}
+
+As the $v_{K,j}$ do not change in \cref{EuKlag} for $j < K-1$, it can be defined as the vector \cref{Eu2lag} and applying \cref{EuKlag} $T-2$ times, the number of terms in the final expression. 
+In \cite[GaussLaguerreLensStd6.sws]{ninesLag}, we thus define a vector \texttt{p[l]} as $v_{2,j}$ and then do steps over $K$ to obtain the $v_{K,j}$ in that vector. %PO toegevoegd
+We combine the $\Delta^{\lls}$ with the $\Delta^{\lld}$:
+\begin{align}
+	E_j^{\ql\rg}  = -\sum_{k=1}^j \Delta_k^{\ql\rg\ps} \Delta_{1+j-k}^{\ql\rg\pd} & \Rightarrow & \text{\foreignlanguage{russian}{ь}}_q^{\ql\rg} = \sum_{l=1}^q t_{l} E_{1-l+q}^{\ql\rg} % & = -\sum.. \pd} \Rightarrow \text .. \rg} & = \sum
+\end{align}
+then gives the expansion in the denominator of \cref{EwkDelta}, which we divide the numerator by to obtain the final asymptotic expansion of the weights
+\begin{align}
+	\text{\foreignlanguage{russian}{б}}_l^{\ql\rg} & = \frac{1}{\text{\foreignlanguage{russian}{ь}}_1^{\ql\rg}} \left(\delta_{l,1} - \sum_{j=1}^{l-1} \text{\foreignlanguage{russian}{б}}_j^{\ql\rg} \text{\foreignlanguage{russian}{ь}}_{l+1-j}^{\ql\rg} \right), \\ 
+	w_k^{\ql\rg} & \sim n^{-1 + \delta_{\rg,\rb} } \ee^{-Q(x_k)} x_k^{\alpha}\sum_{j=1}^\infty W_j^{\ql\rg} n^{1-j}, \label{EasyWeiLagen} \\ %b} } e^{-Q(x_
+	W_j^{\ql\rg} & = \pi 2^{-1-2\alpha} \left[\text{\foreignlanguage{russian}{б}}_j^{\ql\rg} -i4^{\alpha+1} \sum_{k=1}^{j-1}  (U_{k,1}^{\R} + U_{k,1}^{\L})|_{1,2}  \sum_{i=0}^{j-1-k} {-k \choose i} (-1)^{i} \text{\foreignlanguage{russian}{б}}_{j-i-k}^{\ql\rg} \right].
+\end{align}
+
+
+
+
+\subsection{Arguments in Gauss-Jacobi} \label{SexpGJ}
+
+As in the Laguerre case, we can reuse coefficients from the computation of the $U$ and $Q$ matrices \cite[(40)]{jacobi}:
+\begin{equation}%\label{logphi}
+	\arccos(-z) \sim (-2v)^{1/2}\sum_{n=0}^{\infty} f_n v^n, \qquad f_n=\frac{(\frac 12)_n }{(+ 2)^{n}n!(1+2n)}. %\log(\pm\varphi(z)) \sim
+\end{equation}
+The argument of the Bessel functions is then expanded as
+\begin{align}
+	\left. \frac{\partial^{\delta_{\pg,\pd} } n \arccos(-z) }{ \partial z^{\delta_{\pg,\pd} } } \right|_{ z=z^{\qj\rl\pg} } & \sim \epsilon_{1,1,1}^{\qj\rl\pg} + \sum_{k=2}^\infty \epsilon_{1,1,k}^{\qj\rl\pg} n^{1-k}, \\ 
+	\epsilon_{1,1,k}^{\qj\rl\pn} & = \frac{f_1 \omega_k}{\sqrt{2}} + \frac{1}{\sqrt{2}} \sum_{j=1}{\lfloor (k-1)/2 \rfloor} f_{j+1} \sum_{i=1}^{k-2j} \omega_{k+1-2j-i} z_{j,i-2+2j}, \\
+	\epsilon_{1,1,l}^{\qj\rl\pd} & = \sum_{j=1}^l \omega_j^{\qj\rl\pd} \Omega_{l-j+1}^{\qj\rl\pd}, \\
+	\epsilon_{1,1,k}^{\qj\rl\ps} & = \epsilon_{1,1,k}^{\qj\rl\pn} - \epsilon_{1,1,k-1}^{\qj\rl\pn}, k > 1, \quad \epsilon_{1,1,1}^{\qj\rl\ps} = \epsilon_{1,1,1}^{\qj\rl\pn}.
+\end{align} %epsilon[1][k] = (-sqrt(1/2)*(-2*fl[1]*omega[k] - 2*sum(fl[j+1]*sum(omega[k+1-2*j-i]*zji[j][i-2+2*j] for i in range(1,k-2*j+1)) for j in range(1,floor((k-1)/2)+1)) ) ); # indices of zji because power n^(-1-l) iso n^(-2j-l+1)
+Here, $\epsilon_{1,1,1}^{\qj\rl\pg} =  f_1\omega_1/\sqrt{2} = n\sqrt{2+2z_{1,1}^{\qj\rl\pn}} = j_{\beta,k}$, which means that the leading order term of the asymptotic expansion in the left boundary region is zero when $n\arccos(z^{\qj\rl\pg})$ equals a zero of the Bessel up to first order. 
+
+
+However, the argument of the trigonometric functions is more involved for the left disk with respect to the Laguerre case:
+\begin{align}
+	\zeta_{3/2 \mp 1/2, 1, j}^{\qj\rl\pg} & = \sum_{m=1}^j \frac{-\alpha-\beta \mp 1}{\sqrt{2}}\omega_m^{\qj\rl\pg} F_{j+1-m}^{\qj\rl\pg} + \frac{q_m^{\qj\rl\pg} D_{j+1-m}^{\qj\rl\pg} }{2}, \quad \pg \neq \pd \\
+	\zeta_{3/2 \mp 1/2, 1, j}^{\qj\rl\pd} & = - \frac{-\alpha-\beta \mp 1}{2} \epsilon_{1,1,j}^{\qj\rl\pd} + \left(\sum_{m=1}^j \frac{q_m^{\qj\rl\pd} D_{j+1-m}^{\qj\rl\pn} }{2}\right) + \sum_{m=1}^{j-2} \frac{q_m^{\qj\rl\pn} D_{j+1-m}^{\qj\rl\pd} }{2}, \\
+	\frac{\arccos(z_k)-\pi}{-\sqrt{2+2z_k} } & \sim \sum_{j=1}^\infty F_j^{\qj\rl\pg} n^{1-j}, \\
+	F_j^{\qj\rl\pg} & = f_1^{\qj\rl\pg} \delta_{m,1} + \sum_{n=1}^{\lfloor (m-1)/2 \rfloor} f_{n+1}^{\qj\rl\pg} z{n,m-2}^{\qj\rl\pg}, \\
+	\left(-z_k^{\qj\rg\pg}\right)^{\delta_{\pg,\pd}} \left[1 -\left(z_k^{\qj\rg\pg}\right)^2\right]^{1/2-\delta_{\pg,\pd}} & \sim \sum_{m=1}^\infty q_m^{\qj\rg\pg} n^{\delta_{\rg,\rb} -m}, \\ %\sqrt{1 -\left(z_k^{\qj\rg\pg}\right)^2} & \sim \sum_{m=1}^\infty q_m^{\qj\rg\pg} n^{\delta_{\rg,\rb} -m}, \\
+	q_m^{\qj\rg\pg} & = \sum_{n=1}^m \omega_n^{\qj\rg\pg} \Omega_{m-n+1}^{\qj\rg\pg}, \quad \pg \neq \pd \\
+	q_l^{\qj\rl\pd} & = \epsilon_{1,1,l}^{\qj\rl\pd} - \sum_{j=1}^{l-2} \epsilon_{1,1,j}^{\qj\rl\pd} z_{1,l-j-1}^{\qj\rl\pd}, \\ 
+	q_m^{\qj\rb\pd} & = -\sum_{n=1}^m z_{1,m-n+1}^{\qj\rb\pn} \sum_{j=1}^n \omega_{j}^{\qj\rb\pd} \Omega_{n-j+1}^{\qj\rb\pd}, \\
+	\left. \frac{\partial^{\delta_{\pg,\pd}} \sum_{m=0}^\infty d_{m+1}^{\qj\rl\pg} (z+1)^m }{\partial z^{\delta_{\pg,\pd}}} \right|_{z=z_k^{\qj\rl\pn} }& \sim \sum_{m=1}^\infty D_m^{\qj\rl\pg} n^{1-m}, \\
+	D_m^{\qj\rl\pg} & = d_{1+\delta_{\pg,\pd} }^{\qj\rl\pg} \delta_{m,1} + \sum_{n=1}^{m-2} d_{n+1+\delta_{\pg,\pd} }^{\qj\rl\pg} z_{n,m-2}^{\qj\rl\pg}.
+\end{align}
+%Z[1][j] = sum(-sqrt(2)*gamma*omega[m]*F[j+1-m] + qom[m]/2*D[j+1-m] for m in range(1,j +1));
+
+For the bulk, $\epsilon_{3/2 \mp 1/2,1,1}^{\qj\rb\pg} = \xi_{1}^{\qj\rb\pg}$ and
+\begin{align}
+	\epsilon_{3/2 \mp 1/2,1,r}^{\qj\rb\pg} & = \frac{\alpha +\beta \pm 1 -\delta_{\pg,\ps} }{2}\xi_{r-1}^{\qj\rb\pg} -\frac{2\alpha +1}{4} \pi \delta_{r,2} (1-\delta_{\pg,\pd}) + \xi_r^{\qj\rb\pg} \\
+	& +\frac{1}{2} \sum_{l=1}^{r-1} q_l^{\qj\rb\pg} C_{r-l}^{\qj\rb\pn} + \delta_{\pg,\pd} q_l^{\qj\rb\pn} C_{r-l}^{\qj\rb\pd} \\ %(\alpha/2 +\beta/2 \pm 1/2)\xi_{r-1} -(\alpha\pi/2 + \pi/4)*\delta_{r,2} + \xi_r^{\qj\rb\pg} +\frac{1}{2} \sum_{l=1}^{r-1} q_l^{\qj\rb\pg} C_{r-l}^{\qj\rb\pg} \\
+	\left. \frac{\partial^{\delta_{\pg,\pd}} \arccos(x) }{\partial x^{\delta_{\pg,\pd}}} \right|_{x=x_k^{\qj\rb} } & \sim \sum_{k=1}^\infty \xi_k^{\qj\rb\pg} n^{1-k}, \\ %\arccos(x_k^{\qj\rb}) & \sim \sum_{k=1}^\infty \xi_k^{\qj\rb\pg} n^{1-k}, \\
+	\xi_k^{\qj\rb\pg} & = \arccos(t) \delta_{k,1} + \sum_{l=2}^k \zeta_l^{\qj\rb\pg} z_{l-1,k}^{\qj\rb\pg}, \quad \pg \neq \pd \\
+	\xi_k^{\qj\rb\pd} & = \zeta_2^{\qj\rb\pn} \delta_{k,1} + \sum_{l=2}^k l \zeta_{l+1}^{\qj\rb\pg} z_{l-1,k}^{\qj\rb\pg}, \\
+	\zeta_l^{\qj\rb\pg} & = \arccos(t) \delta_{l,1} + (t+1)^{3/2-l}(1-t)^{3/2-l}\sum_{n=0}^{l-2} \frac{-1}{l-1} (1+t)^n \\
+	& {-1/2 \choose l-2-n} (-1)^n (1-t)^{l-2-n} {-1/2 \choose n}, \\
+	\left.\frac{\partial^{\delta_{\pg,\pd}} \sum_{n=0}^\infty h_{n+1} (x -t)^n }{\partial x^{\delta_{\pg,\pd}} } \right|_{x=x_k^{\qj\rb} } & \sim \sum_{m=1}^\infty C_m^{\qj\rb\pg} n^{1-m}, \\
+	C_m^{\qj\rb\pg} & = h_{1+\delta_{\pg,\pd}} \delta_{m,1} + \sum_{i=2}^m (1+\delta_{\pg,\pd}[i-1] ) h_{i+\delta_{\pg,\pd}} z_{i-1,m}.
+\end{align}
+
+
+
+%\todo{write this} 
+
+
+\subsection{Nodes and weights in Gauss-Jacobi}  \label{SderxkwkGJ} %%\label{SexpGJ}
+%\todo{write this} 
+
+%For the expansion in the bulk, the additional factor is just $1$, so $B_k^{\qj\rb\pg} = \delta_{k,1}$. In the expansion in the left boundary region, there is an additional square root 
+%\begin{align}
+%	\sqrt{\acos(-z^{\qj\rl\pg}) } & \sim \sum_{k=1}^\infty B_k^{\qj\rl\pg} n^{1/2-k}, \\
+%	B_k^{\qj\rl\pg} & = \sqrt{ \epsilon_{1,1,1}^{\qj\rl\pg} } \left( \delta_{1,k} + \sum_{u=1}^{k-1} {1/2 \choose u} \frac{ \epsilon_{u,k}^{\qj\rl\pg} }{ \left[\epsilon_{1,1,1}^{\qj\rl\pg}\right]^u } \right).% \left[\epsilon_{1,1,1}^{\lln}\right]^u } \right).
+%\end{align}
+
+
+
+For the nodes in the bulk, we can choose $n\epsilon_{1,1,1} +\epsilon_{1,1,2}$ to be $\pi/2 + \mathcal{O}(n^{-1})$ plus any multiple of $\pi$ to obtain the leading order behaviour, which will affect the value of $z_{1,2}$. The following choice corresponds to \cite[Th. 2.1]{gatteschi1985zeros} with $t = z_{1,1}^{\ql\rb\pn}$, see \cite[\S 3.2 \& 6.5]{quadr}: %: \todo{refer to definition $t$ in std and gen Jac case sections} %, such that the expressions for standard associated Laguerre nodes become shorter:
+\begin{align}%	t & = \cos\left(\frac{\pi(4k+2\alpha-1)}{4n +2(\alpha+\beta+1)} \right), \\ % 4 times z_{1,1}^{\ql\rb\pn}}  (or \left(z_{1,1}^{\ql\rb\pn}}\right) -> t
+	z_{1,l+1}^{\qj\rb\pn} & = -\sqrt{1-t^2} \bigg[\left(\sum_{q=2}^{l+1} \eta_{1,q}^{\qj\rb\pn} \kappa_{1,l+1-q}^{\qj\rb\pn} - \frac{i}{D_\infty^2}\eta_{2,q}^{\qj\rb\pn}\kappa_{2,l+1-q}^{\qj\rb\pn} \right) + \left(\sum_{j=2}^{l-1} \frac{\cos(\pi/2+j\pi/2)}{j!} \epsilon_{1,j,l+1}^{\qj\rb\pn} \right) \\
+	&  -\left(\sum_{i=3}^{l+1} \zeta_i z_{i-1,l+1}^{\qj\rb\pn} \right) - \frac{\xi_l^{\qj\rb\pn}}{2} (\alpha + \beta + 1) + (2\alpha + 1)\frac{\pi}{4}\delta_{l,1} -\frac{1}{2} \sum_{i=1}^l q_i^{\qj\rb\pn} C_{l+1-i}^{\qj\rb\pn}  \bigg].
+\end{align}
+
+%\todo{Add discussion $Y^{\qj\rg\pg}$ and $X^{\qj\rg}$ }
+
+Filling the results into \cref{Eweights} yields
+\begin{align}
+	\frac{w(x_k^{\qj\rl})}{w_k^{\qj\rl}} & \sim - \left(  2^{-1} D_\infty^{-2} +i \sum_{k = 1}^\infty \frac{U_{k,1,2,1}^{\R} + U_{k,1,2,1}^{\L} }{(n)^k} \right) \sqrt{ n (n-1)}  \left[ \sum_{k=1}^\infty \Delta_k^{\qj\rl\ps} n^{-k} \right] \left\{ \sum_{l=1}^\infty \Delta_l^{\qj\rl\pd} n^{3-l} \right\}, \\
+	\frac{w(x_k^{\qj\rb})}{w_k^{\qj\rb}} & \sim \left(  D_\infty^{-2} +2i \sum_{k = 1}^\infty \left.\frac{U_{k,1}^{\R} + U_{k,1}^{\L} }{(n-1+1)^k}\right|_{2,1} \right) \pi^{-1} \left[ \sum_{k=1}^\infty \Delta_k^{\qj\rb\ps} n^{1-k} \right] \left\{ \sum_{l=1}^\infty \Delta_l^{\qj\rb\pd} n^{2-l} \right\}, \\  % & \sim - \left(
+	E_j^{\qj\rg} & = \sum_{k=1}^j \Delta_k^{\qj\rg\ps} \Delta_{1+j-k}^{\qj\rg\pd}, \\ %E_j^{\qj} 
+	t_l^{\qj\rl} & = \frac{ {1/2 \choose l-1} (-1)^{l-1} }{2 D_\infty^2} + i \sum_{k=1}^{l-1} {1/2 \choose l-1-k} (-1)^{l-1-k} \left(U_{k,1,2,1}^{\R} + U_{k,1,2,1}^{\L} \right), \\ %t_l^{\qj} & 
+	\text{\foreignlanguage{russian}{б}}_q^{\qj\rl} & = \sum_{l=1}^q t_l^{\qj\rl} E_{1-l+q}^{\qj\rl}, \\
+	\text{\foreignlanguage{russian}{б}}_q^{\qj\rb} & = \frac{E_q^{\qj\rb}}{D_\infty^2} + 2i\sum_{k=1}^{q -1} E_{q-k}^{\qj\rb} \left(U_{k,1,2,1}^{\R} +U_{k,1,2,1}^{\L} \right).
+\end{align}
+
+We can then obtain the asymptotic expansion of the weight
+\begin{align}
+	\frac{w_k^{\qj\rg} }{w(x_k^{\qj\rg}) } & \sim \sum_{l=1}^\infty W_l^{\qj\rg} n^{-l-\delta_{\rb,\rl} }, \\ % W_l^{\qj\rl} n^{-l-1}, \\
+	W_l^{\qj\rg} & = \frac{1}{\text{\foreignlanguage{russian}{б}}_1^{\qj\rg} } \left( [\pi - (\pi +1)\delta_{\rg,\rl}] \delta_{l,1} - \sum_{j=1}^{l-1} W_j^{\qj\rg} \text{\foreignlanguage{russian}{б}}_{1+l-j}^{\qj\rg} \right). %frac{-1}{\text{\foreignlanguage{russian}{б}}_1^{\qj\rl} } \left( \delta_{l,1} + \sum
+\end{align} 
+%\todo{compare all with two laguerre sections}
+
+%\end{appendix}
+
+
+\bibliographystyle{abbrv}
+\bibliography{../paper/lib5}
+
+\end{document}

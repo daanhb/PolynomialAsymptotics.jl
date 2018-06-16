@@ -1,0 +1,30 @@
+This code is based on the article by Alfredo Deano, Daan Huybrechs and Peter Opsomer. 
+Construction and implementation of asymptotic expansions for Jacobi–type orthogonal polynomials.
+In preparation. It uses the Riemann-Hilbert analysis from A. B. J. Kuijlaars, 
+K. T.-R. McLaughlin, W. Van Assche, and M. Vanlessen. The Riemann-Hilbert approach to strong 
+asymptotics of orthogonal polynomials on [−1, 1]. Adv. Math., 188:337–398, 2004.
+
+-------------------------------------------------------------------------------------
+Main script is computePlotsFromArticle.m, which computes the plots in the 
+article through plotConv.m. The script illustrateFunctionality contains a test suite, 
+heuristics and Gaussian quadrature. Both call plotConv.m.
+
+Most functions require the (maximum) number of terms in the asymptotic expansions.
+
+asy_lens, asy_outer, asy_right and asy_left evaluate the asymptotic expansion
+of the orthogonal polynomials and optionally their derivatives, with a chosen
+normalisation. It needs the U-matrices from UQ.m and results Dinf and psi 
+from contour_integrals.m, which calls for trap_rule if no exact results are 
+known yet.
+
+alphan, betan and gamman evaluate the asymptotic expansion of the recurrence coefficients 
+and the leading order coefficients of the orthonormal polynomials using the U-matrices.
+
+UExplicit.m contains the explicit results from the appendix and some additional terms.
+Has possible CPU overload when editing. UQ.m calculates the U- and optionally the Q-matrices 
+as explained in the paper using Dinf, c and d from contour_integrals.m, using in its turn trap_rule
+which employs successive doubling from [F. Bornemann 2011]. UQ.m calls for WV.m, 
+which carries out the convolutions.
+
+exactPolys computes the exact polynomials we compare against. The OPQ-routines from 
+[W. Gautschi, 2010] that are used in it (gauss and r_jacobi), are included.

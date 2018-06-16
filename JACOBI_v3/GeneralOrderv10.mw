@@ -1,0 +1,1811 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Worksheet>
+<Version major="17" minor="2"/>
+<Label-Scheme value="2" prefix=""/>
+<View-Properties presentation="false" autoexpanding_sections="true">
+</View-Properties>
+<MapleNet-Properties elisiondigitsbefore="100" labelling="true" indentamount="4" elisiontermsthreshold="10000" ansi="false" errorbreak="1" useclientjvm="true" echo="1" imaginaryunit="I" labelwidth="20" contextmenusize="automatic" plotdriver="opengl" elisiondigitsafter="100" plotoutput="terminal" helpbrowser="standard" rtablesize="10" elisiontermsbefore="100" elisiondigitsthreshold="10000" typesetting="standard" plotdevice="inline" verboseproc="1" showassumed="1" errorcursor="false" longdelim="true" plotoptions="" quiet="false" elisiontermsafter="100" screenwidth="79" preplot="" prettyprint="3" displayprecision="10" screenpixelheight="1080" warnlevel="3" screenheight="25" latexwidth="8.0" postplot="" prompt="&gt; " ShowLabels="false"/>
+<Styles>
+<Font name="Ordered List 1" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Annotation Text" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Ordered List 2" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Ordered List 3" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Ordered List 4" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Ordered List 5" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Author" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Annotation Title" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="18" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Warning" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[0,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Caption Reference" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Maple Input Placeholder" background="[255,255,255]" bold="true" executable="true" family="Courier New" foreground="[200,0,200]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="true"/>
+<Font name="Maple Plot" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Code" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[255,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Line Printed Output" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[0,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Text Output" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[0,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Diagnostic" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[40,120,40]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="2D Inert Output" background="[255,255,255]" bold="false" executable="true" family="Times New Roman" foreground="[144,144,144]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Normal" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Hyperlink" background="[255,255,255]" bold="false" executable="false" family="Times New Roma" foreground="[0,128,128]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="true" placeholder="false"/>
+<Font name="Maple Output" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Dash Item" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="2D Math" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Maple Input" background="[255,255,255]" bold="true" executable="true" family="Courier New" foreground="[255,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="2D Output" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="2D Input" background="[255,255,255]" bold="false" executable="true" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="HyperlinkError" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[255,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="true" placeholder="false"/>
+<Font name="Header and Footer" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="10" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Error" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[255,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Title" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="18" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Heading 1" background="[255,255,255]" bold="true" executable="false" family="Times New Roma" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="18" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Text" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Bullet Item" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Heading 4" background="[255,255,255]" bold="false" executable="false" family="Times New Roma" foreground="[0,0,0]" italic="true" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Equation Label" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Heading 3" background="[255,255,255]" bold="true" executable="false" family="Times New Roma" foreground="[0,0,0]" italic="true" opaque="false" readonly="false" size="14" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Heading 2" background="[255,255,255]" bold="true" executable="false" family="Times New Roma" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="16" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="HyperlinkWarning" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[0,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="true" placeholder="false"/>
+<Font name="Dictionary Hyperlink" background="[255,255,255]" bold="false" executable="false" family="Times New Roma" foreground="[147,0,15]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="true" placeholder="false"/>
+<Font name="Atomic Variable" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[175,0,175]" italic="true" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Caption Text" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="List Item" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Layout name="Ordered List 1" alignment="left" bullet="numeric" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="-1" bulletsuffix=""/>
+<Layout name="Ordered List 2" alignment="left" bullet="alphabetic" firstindent="0" leftmargin="36" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="-1" bulletsuffix=""/>
+<Layout name="Ordered List 3" alignment="left" bullet="roman" firstindent="0" leftmargin="72" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="-1" bulletsuffix=""/>
+<Layout name="Ordered List 4" alignment="left" bullet="ALPHABETIC" firstindent="0" leftmargin="108" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="-1" bulletsuffix=""/>
+<Layout name="Ordered List 5" alignment="left" bullet="ROMAN" firstindent="0" leftmargin="144" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="-1" bulletsuffix=""/>
+<Layout name="Author" alignment="centred" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="8" spacebelow="8" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Warning" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Annotation Title" alignment="centred" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="12" spacebelow="12" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Maple Plot" alignment="centred" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Line Printed Output" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="any" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Text Output" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="newline" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Diagnostic" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="any" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Normal" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Maple Output" alignment="centred" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.3" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Dash Item" alignment="left" bullet="dash" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="HyperlinkError" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Error" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Title" alignment="centred" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="12" spacebelow="12" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Heading 1" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="8" spacebelow="4" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Bullet Item" alignment="left" bullet="dot" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Heading 4" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Heading 3" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Heading 2" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="8" spacebelow="2" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="HyperlinkWarning" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="List Item" alignment="left" bullet="indent" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Pencil-style name="Pencil 5" pen-color="[255,0,0]" pen-height="5.0" pen-width="5.0" pen-opacity="1.0"/>
+<Pencil-style name="Pencil 4" pen-color="[0,0,255]" pen-height="3.0" pen-width="3.0" pen-opacity="1.0"/>
+<Pencil-style name="Pencil 3" pen-color="[0,0,0]" pen-height="3.0" pen-width="3.0" pen-opacity="1.0"/>
+<Pencil-style name="Pencil 2" pen-color="[0,0,255]" pen-height="1.0" pen-width="1.0" pen-opacity="1.0"/>
+<Pencil-style name="Pencil 1" pen-color="[0,0,0]" pen-height="1.0" pen-width="1.0" pen-opacity="1.0"/>
+<Highlighter-style name="Highlighter 2" pen-color="[255,204,0]" pen-height="14.0" pen-width="14.0" pen-opacity="0.8"/>
+<Highlighter-style name="Highlighter 1" pen-color="[255,153,255]" pen-height="12.0" pen-width="8.0" pen-opacity="0.8"/>
+<Highlighter-style name="Highlighter 4" pen-color="[0,255,255]" pen-height="32.0" pen-width="32.0" pen-opacity="0.8"/>
+<Highlighter-style name="Highlighter 3" pen-color="[51,255,0]" pen-height="24.0" pen-width="24.0" pen-opacity="0.8"/>
+<Highlighter-style name="Highlighter 5" pen-color="[255,255,0]" pen-height="48.0" pen-width="48.0" pen-opacity="0.8"/>
+</Styles>
+<Metadata-table>
+    <Metadata-category name="&lt;default&gt;"/>
+    <Metadata-tag id="0" category="&lt;default&gt;" name="Document Properties">
+        <Metadata-attribute name="Subject" value="&lt;default&gt;"/>
+        <Metadata-attribute name="Author" value="&lt;default&gt;"/>
+        <Metadata-attribute name="Item List" value="true"/>
+        <Metadata-attribute name="Title" value="&lt;default&gt;"/>
+        <Metadata-attribute name="Keywords" value="&lt;default&gt;"/>
+    </Metadata-tag>
+</Metadata-table>
+<Task-table>
+    <Task-category name="&lt;default&gt;"/>
+</Task-table>
+<Task/>
+<Group labelreference="L19276" drawlabel="true">
+<Input>
+<Text-field style="Text" layout="Normal"><Font encoding="UTF-8">This Maple sheet belongs to the article &quot;Construction and implementation of asymptotic expansions for Jacobi\342\200\223type orthogonal polynomials&quot; by Alfredo. Dea\303\261o , Daan Huybrechs and Peter Opsomer</Font></Text-field>
+</Input>
+</Group>
+<Group labelreference="L1" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Section collapsed="false" MultipleChoiceAnswerIndex="-1" MultipleChoiceRandomizeChoices="false" TrueFalseAnswerIndex="-1" EssayAnswerRows="5" EssayAnswerColumns="60"><Title>
+<Text-field style="Heading 1" layout="Heading 1">Initialising </Text-field></Title>
+<Group labelreference="L4853" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">restart;</Text-field>
+</Input>
+</Group>
+<Group labelreference="L16404" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">with(LinearAlgebra):</Text-field>
+</Input>
+</Group>
+<Group labelreference="L16396" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L3609" drawlabel="true">
+<Input>
+<Text-field style="Text" layout="Normal">Comment assignment of alpha, beta and/or h(x) if you want the symbolical results.</Text-field>
+<Text-field style="Text" layout="Normal">Taking h not equal to one is OK for computing the asymptotic expansions, but computing the exact polynomials will require much time.</Text-field>
+</Input>
+</Group><Presentation-Block>
+<Group view="code" labelreference="L18816" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">#alpha := -0.3;   beta := 1/sqrt(2);   h:= unapply(1,x);</Text-field>
+</Input>
+</Group>
+<Group view="code" labelreference="L16334" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group></Presentation-Block>
+<Group labelreference="L19275" drawlabel="true">
+<Input>
+<Text-field style="Text" layout="Normal">Need enough Digits: if Digits := 40; then there is suddenly a relative error of about 1 for n &gt; 50</Text-field>
+</Input>
+</Group>
+<Group labelreference="L8552" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">Digits := 100: interface(displayprecision=10):</Text-field>
+</Input>
+</Group>
+<Group labelreference="L8553" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">w := x -&gt; (1-x)^alpha*(1+x)^beta*h(x):</Text-field>
+</Input>
+</Group>
+<Group labelreference="L5771" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L8229" drawlabel="true">
+<Input>
+<Text-field style="Text" layout="Normal">maxOrder is the maximum order of error we will see, defined here because it determines the number of c_n/d_n.</Text-field>
+</Input>
+</Group>
+<Group labelreference="L8230" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">maxOrder := 7:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L8556" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">s3 := arg -&gt; Matrix([[arg,0],[0,arg^(-1)]]):</Text-field>
+</Input>
+</Group>
+<Group labelreference="L6299" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+</Section>
+<Group labelreference="L5770" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Section collapsed="false" MultipleChoiceAnswerIndex="-1" MultipleChoiceRandomizeChoices="false" TrueFalseAnswerIndex="-1" EssayAnswerRows="5" EssayAnswerColumns="60"><Title>
+<Text-field style="Heading 1" layout="Heading 1">5.1 Square roots and other algebraic singularities</Text-field></Title>
+<Group labelreference="L8198" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">phi := z -&gt; z + sqrt(z-1)*sqrt(z+1):</Text-field>
+</Input>
+</Group>
+<Group labelreference="L8569" drawlabel="true">
+<Input>
+<Text-field style="Text" layout="Normal">To avoid the wrong branch cuts of sqrt(z^2-1) along the imaginary axis (which would give a wrong phitilde for Re(z) positive), we define phitilde as phitilde(z) = phi(-z) = -phi(z):</Text-field>
+</Input>
+</Group>
+<Group labelreference="L8196" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">phitilde := z -&gt; -phi(z):</Text-field>
+</Input>
+</Group>
+<Group labelreference="L8564" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+</Section>
+<Group labelreference="L8197" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Section collapsed="false" MultipleChoiceAnswerIndex="-1" MultipleChoiceRandomizeChoices="false" TrueFalseAnswerIndex="-1" EssayAnswerRows="5" EssayAnswerColumns="60"><Title>
+<Text-field style="Heading 1" layout="Heading 1">5.2 Computation of contour integrals</Text-field></Title>
+<Group labelreference="L11859" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L18567" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">rho := 1.25:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L18568" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">zeta := theta -&gt; rho/2*exp(I*theta) + 1/rho/2*exp(-I*theta):</Text-field>
+</Input>
+</Group>
+<Group labelreference="L8205" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T := 400:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L8212" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L16264" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">integrandCD := unapply(ln(h(zeta) )/(sqrt(zeta+1)*sqrt(zeta-1)*( zeta +(-1)^isC)^(n+1) ), isC, zeta,n):</Text-field>
+</Input>
+</Group>
+<Group labelreference="L8223" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">nrcd := ceil(maxOrder/2):</Text-field>
+</Input>
+</Group>
+<Group labelreference="L8211" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">for nn from 0 to nrcd do
+   ct(nn) := evalf(1/(2*Pi*I)*2*Pi/T*sum(integrandCD(1, zeta(2*Pi*t/T),nn)*(D(zeta)(2*Pi*t/T) ), t = 0..(T-1) ) );
+   dt(nn) := evalf(1/(2*Pi*I)*2*Pi/T*sum(integrandCD(0, zeta(2*Pi*t/T),nn)*(D(zeta)(2*Pi*t/T) ), t = 0..(T-1) ) );
+end do:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L8247" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L16267" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">integrandPsi := unapply(log(h(zeta) )/sqrt(zeta-1)/sqrt(zeta+1)/(zeta - x), zeta,x):</Text-field>
+</Input>
+</Group>
+<Group labelreference="L8245" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">psit := x -&gt; evalf(1/2*(alpha*(arccos(x)-Pi) + beta*arccos(x) ) + sqrt(1-x)*sqrt(1+x)/(2*I*T)*sum(integrandPsi(zeta(2*Pi*t/T),x)*(D(zeta)(2*Pi*t/T) ), t = 0..(T-1) ) ):</Text-field>
+</Input>
+</Group>
+<Group labelreference="L8244" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L16283" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">integrandDinf := unapply(ln(h(zeta) ) /(sqrt(zeta-1)*sqrt(zeta+1) ), zeta):</Text-field>
+</Input>
+</Group>
+<Group labelreference="L16292" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">Dinft := evalf(2^(-alpha/2-beta/2)*exp(sum(integrandDinf(zeta(2*Pi*t/T) )*(D(zeta)(2*Pi*t/T) ), t = 0..(T-1) )/(4*Pi*I)*2*Pi/T) ):</Text-field>
+</Input>
+</Group>
+<Group labelreference="L16290" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L8226" drawlabel="true">
+<Input>
+<Text-field style="Text" layout="Normal">Exact results for h = 1 and from residue calculus, filled in for h = exp(-x^2) as mentioned in Section 6.1</Text-field>
+</Input>
+</Group>
+<Group labelreference="L8209" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">if int(abs(h(x) - 1), x = -1.0..1.0,numeric) = 0 then
+   for nn from 0 to nrcd do
+      c(nn) := 0:
+      d(nn) := 0:
+   od:
+   psi := x -&gt; evalf(1/2*(alpha*(arccos(x)-Pi) + beta*arccos(x) ) ):
+   Dinf := evalf(2^(-alpha/2-beta/2) ):
+
+elif int(abs(h(x) - exp(-x^2) ), x = -1.0..1.0,numeric) = 0 then
+   c(0) := -1:   c(1) := -1:
+   d(0) := 1: d(1) := -1:
+   for nn from 2 to nrcd do
+      c(nn) := 0:
+      d(nn) := 0:
+   od:
+   psi := x -&gt; evalf(1/2*(alpha*(arccos(x)-Pi) + beta*arccos(x) ) -x*sqrt(1-x)*sqrt(1+x)/2):
+   Dinf := evalf(2^(-alpha/2-beta/2)*exp(-1/4) ):
+
+elif assigned(alpha) then
+   for nn from 0 to nrcd do
+      serc := series(1/t^2*integrandCD(1,1/t,nn), t=0) assuming t::real:
+      c(nn) := evalf(coeff(serc,t^(-1) ) ):
+      serd := series(1/t^2*integrandCD(0,1/t,nn), t=0) assuming t::real:
+      d(nn) := evalf(coeff(serd,t^(-1) ) ):
+   od:   
+   serp := unapply(series(1/t^2*integrandPsi(1/t,x), t=0), x) assuming t::real:
+   psi := unapply(evalf(1/2*(alpha*(arccos(x)-Pi) + beta*arccos(x) ) + sqrt(1-x)*sqrt(1+x)/2*coeff(serp(x), t^(-1) ) ),x):
+   serD := series(1/t^2*integrandDinf(1/t), t=0) assuming t::real:
+   Dinf := evalf(2^(-alpha/2-beta/2)*exp(1/2*coeff(serD, t^(-1) ) ) ):
+end if:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L16278" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L8239" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">nn := 'nn':</Text-field>
+</Input>
+</Group>
+<Group labelreference="L8234" drawlabel="true">
+<Input>
+<Text-field style="Text" layout="Normal">Checking correctness of trapezoidal rules, comparing with exact results from residue calculus:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L8220" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">if assigned(alpha) then
+   c(0) -ct(0);
+   d(0) -dt(0);
+   psi(0.6) -psit(0.6);
+   Dinf -Dinft;
+   if abs((Dinf-Dinft)/Dinf)&gt; 2^(100-T) then
+      print(&quot;Trapezoidal rule and residue calculus don't agree, check whether h(x) is analytic.&quot;):
+   end if:
+end if;</Text-field>
+</Input>
+</Group>
+<Group labelreference="L16295" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L8227" drawlabel="true">
+<Input>
+<Text-field style="Text" layout="Normal">Using 'exact' result afterwards unless de-commenting to get the result from the trapezoidal rules:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L8228" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">#c := ct: d := dt: psi := x -&gt; psit(x): Dinf := Dinft:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L8202" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+</Section>
+<Group labelreference="L8203" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Section collapsed="false" MultipleChoiceAnswerIndex="-1" MultipleChoiceRandomizeChoices="false" TrueFalseAnswerIndex="-1" EssayAnswerRows="5" EssayAnswerColumns="60"><Title>
+<Text-field style="Heading 1" layout="Heading 1">3 Computation of higher order terms
+using 4 Simplifications and explicit formulas</Text-field></Title>
+<Group labelreference="L8166" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Section collapsed="false" MultipleChoiceAnswerIndex="-1" MultipleChoiceRandomizeChoices="false" TrueFalseAnswerIndex="-1" EssayAnswerRows="5" EssayAnswerColumns="60"><Title>
+<Text-field style="Heading 2" layout="Heading 2">3.2 The definition of Delta_k(z)</Text-field></Title>
+<Group labelreference="L11404" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">FrightExact := unapply(exp(signum(0,argument(x-1),-1)*I*(psi(x)+alpha*Pi/2) ),x):</Text-field>
+</Input>
+</Group>
+<Group labelreference="L13663" drawlabel="true">
+<Input>
+<Text-field style="Text" layout="Normal"><Font encoding="UTF-8">\134theta(z) = </Font>signum(0,argument(z-1),-1): For the right disk, (1-delta,1] belongs to the upper half plane so by symmetry around the origin, [-1,delta-1) belongs to lower half plane and (-infty,-1] belongs to upper half plane, also for Fleft (because else bpiL[1] gives about same error curve on the interval as bpiL[2]).</Text-field>
+</Input>
+</Group>
+<Group labelreference="L15620" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">FleftExact := unapply(exp(signum(0,argument(x-1),-1)*I*(psi(x)-beta*Pi/2) ), x):</Text-field>
+</Input>
+</Group>
+<Group labelreference="L11406" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L8383" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">brac := proc(ab,k::integer) if k = 0 then return 1; else return product( (4*ab^2-(2*ii-1)^2 ), ii=1..k )/(2^(2*k)*(k!)); end if; end proc:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L8385" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">M := unapply(Matrix([[sqrt(phi(z) ), I/sqrt(phi(z) )], [-I/sqrt(phi(z) ), sqrt(phi(z) )]])/(sqrt(2)*(z-1)^(1/4)*(z+1)^(1/4) ),z):</Text-field>
+</Input>
+</Group>
+<Group labelreference="L8376" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L8540" drawlabel="true">
+<Input>
+<Text-field style="Text" layout="Normal">Below the exact Delta_m (without series expansions) for the expansion of the polynomial in the boundary regions:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L8390" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">DeltaRightExact := (k::integer,z) -&gt; brac(alpha,k-1)/2^k/(ln(phi(z) ) )^k*s3(Dinf).M(z).s3(FrightExact(z) ).Matrix([[ ((-1)^k)/k*(alpha^2+k/2-1/4),-I*(k-1/2)],[(-1)^k*I*(k-1/2),(alpha^2+k/2-1/4)/k]]).s3( (FrightExact(z) )^(-1) ).Transpose(M(z) ).s3(Dinf^(-1) ):</Text-field>
+</Input>
+</Group>
+<Group labelreference="L11410" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">DeltaLeftExact := (k::integer,z) -&gt; brac(beta,k-1)/2^k/(ln(phitilde(z) ) )^k*s3(Dinf).M(z).s3(FleftExact(z) ).Matrix([[ ((-1)^k)/k*(beta^2+k/2-1/4),I*(k-1/2)],[(-1)^(k+1)*I*(k-1/2),(beta^2+k/2-1/4)/k]]).s3( (FleftExact(z) )^(-1) ).Transpose(M(z) ).s3(Dinf^(-1) ):</Text-field>
+</Input>
+</Group>
+<Group labelreference="L8404" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+</Section>
+<Group labelreference="L14627" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Section collapsed="false" MultipleChoiceAnswerIndex="-1" MultipleChoiceRandomizeChoices="false" TrueFalseAnswerIndex="-1" EssayAnswerRows="5" EssayAnswerColumns="60"><Title>
+<Text-field style="Heading 2" layout="Heading 2">B Proof of Proposition 4.2</Text-field></Title>
+<Group labelreference="L18316" drawlabel="true">
+<Input>
+<Text-field style="Text" layout="Normal">This illustrates the proof of the simplifications of Appendix B, with a change of m to m+1 and using general alpha -&gt; aalpha.</Text-field>
+<Text-field style="Text" layout="Normal">DeltaRcanc is Delta without the matrices that will cancel in the end, for ease of notation. </Text-field>
+</Input>
+</Group>
+<Group labelreference="L8487" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">DeltaRcanc := (k,z) -&gt; product( (4*aalpha^2-(2*ii-1)^2 ), ii=1..k-1 )/(2^(2*k-2)*( (k-1)!))/2^k/(ln(phi(z) ) )^k*Matrix([[ ((-1)^k)/k*(aalpha^2+k/2-1/4),-I*(k-1/2)],[(-1)^k*I*(k-1/2),(aalpha^2+k/2-1/4)/k]]):</Text-field>
+</Input>
+</Group>
+<Group labelreference="L16551" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">extraMatrix := (i,z) -&gt; -(4*aalpha^2+2*i-1)/ln(phi(z) )^i*product( (4*aalpha^2-(2*ii-1)^2 ), ii=1..i-1 )/(2^(2*i-2)*( (i-1)!))/2^(i+1)/i*Matrix(2,2,shape=identity):</Text-field>
+</Input>
+</Group>
+<Group labelreference="L17627" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">m := 'm': j := 'j':</Text-field>
+</Input>
+</Group>
+<Group labelreference="L16562" drawlabel="true">
+<Input>
+<Text-field style="Text" layout="Normal">Proof (general case: no specific j) that s_j D_{m+1-j} +s_{m+1-j} D_j = 0 for <Font bold="true">m even</Font> and j odd and even:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L16561" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">map(fnormal,simplify(DeltaRcanc(j,z).DeltaRcanc(m+1-j,z)+(DeltaRcanc(m+1-j,z) +extraMatrix(m+1-j,z) ).DeltaRcanc(j,z) ) ) assuming j::odd,m::even;</Text-field>
+</Input>
+</Group>
+<Group labelreference="L16554" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">map(fnormal,simplify( (DeltaRcanc(j,z) +extraMatrix(j,z) ).DeltaRcanc(m+1-j,z)+DeltaRcanc(m+1-j,z).DeltaRcanc(j,z) ) ) assuming j::even, m::even;</Text-field>
+</Input>
+</Group>
+<Group labelreference="L16567" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L16568" drawlabel="true">
+<Input>
+<Text-field style="Text" layout="Normal"><Font bold="true">m odd</Font>, j odd and even: </Text-field>
+</Input>
+</Group>
+<Group labelreference="L17864" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">jodd := simplify( DeltaRcanc(j,z).DeltaRcanc(m+1-j,z)+DeltaRcanc(m+1-j,z).DeltaRcanc(j,z) ) assuming j::odd, m::odd:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L16583" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">jeven := simplify( (DeltaRcanc(j,z)+extraMatrix(j,z) ).DeltaRcanc(m+1-j,z)+(DeltaRcanc(m+1-j,z) +extraMatrix(m+1-j,z) ).DeltaRcanc(j,z) ) assuming j::even, m::odd:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L17858" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">map(fnormal,simplify(jodd+jeven) );</Text-field>
+</Input>
+</Group>
+<Group labelreference="L17859" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L16555" drawlabel="true">
+<Input>
+<Text-field style="Text" layout="Normal"><Font bold="true">Sum up</Font> previous results for odd m from j=1 to m/2=n taking the s_n D_n term out of the sum. This is an illustration of the proof of the simplifications with the telescopic sum, with a slight adjustment to notation outputted by Maple.</Text-field>
+</Input>
+</Group>
+<Group labelreference="L17228" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">res := (-1)^n*subs(j=n,(1-cos((1/2)*Pi*(2*aalpha+1))^2)*4^(-j)*ln(phi(z))^(-2*j)*(-2*j+2*aalpha+1)*(4*aalpha^2+4*j^2-1)*(2*j+2*aalpha-1)*GAMMA(j+aalpha-1/2)^2*GAMMA(j-aalpha-1/2)^2/(16*Pi^2*GAMMA(j+1)^2) )   +   sum( (-1)^j*subs(m=2*n-1,(1/16)*ln(phi(z))^(-1-m)*GAMMA(m+1/2-j+aalpha)*GAMMA(m+1/2-j-aalpha)*GAMMA(j+aalpha-1/2)*GAMMA(j-aalpha-1/2)*(1-cos((1/2)*Pi*(2*aalpha+1))^2)*2^(-m)*(16*aalpha^4-16*j^4+32*j^3*m-16*j^2*m^2+8*aalpha^2*m+32*j^3-40*j^2*m+8*j*m^2-24*j^2+16*j*m+8*j-2*m-1)/(Pi^2*GAMMA(j+1)*GAMMA(m+2-j)) ),j=1..n-1):</Text-field>
+</Input>
+</Group>
+<Group labelreference="L19368" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">simplify( (res-extraMatrix(2*n,z)(1))/extraMatrix(2*n,z)(1) ) assuming n::integer;</Text-field>
+</Input>
+</Group>
+<Group labelreference="L17244" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+</Section>
+<Group labelreference="L18036" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Section collapsed="false" MultipleChoiceAnswerIndex="-1" MultipleChoiceRandomizeChoices="false" TrueFalseAnswerIndex="-1" EssayAnswerRows="5" EssayAnswerColumns="60"><Title>
+<Text-field style="Heading 2" layout="Heading 2">4.1 Simplifications</Text-field></Title>
+<Group labelreference="L16305" drawlabel="true">
+<Input>
+<Text-field style="Text" layout="Normal">Extra matrices in s_k^{right/left}(z) for the expansions of the polynomial in the boundary regions later, implicitly present in the computation of the W's.</Text-field>
+</Input>
+</Group>
+<Group labelreference="L16306" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">for i from 1 to (maxOrder-1) do
+   if i mod 2 = 0 then
+      sR[i] := -(4*alpha^2+2*i-1)/ln(phi(z) )^i*brac(alpha,i-1)/2^(i+1)/i*Matrix(2,2,shape=identity):
+      sL[i] := -(4*beta^2+2*i-1)/ln(phitilde(z) )^i*brac(beta,i-1)/2^(i+1)/i*Matrix(2,2,shape=identity):
+   else
+      sR[i] := Matrix(2,2):
+      sL[i] := Matrix(2,2):
+   end if:
+   sR[i] := unapply(sR[i],z):
+   sL[i] := unapply(sL[i],z):
+od:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L16447" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+</Section>
+<Group labelreference="L14465" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Section collapsed="false" MultipleChoiceAnswerIndex="-1" MultipleChoiceRandomizeChoices="false" TrueFalseAnswerIndex="-1" EssayAnswerRows="5" EssayAnswerColumns="60"><Title>
+<Text-field style="Heading 2" layout="Heading 2">4.2 Precomputing a series expansion for s_k^{right}(z)</Text-field></Title>
+<Group labelreference="L18338" drawlabel="true">
+<Input>
+<Text-field style="Text" layout="Normal">Computing series expansion of (ln(phi(v+1) ) )^(-k)</Text-field>
+</Input>
+</Group>
+<Group labelreference="L18511" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">f := n -&gt; pochhammer(1/2,n)/(-2)^n/(n!)/(1+2*n):</Text-field>
+</Input>
+</Group>
+<Group labelreference="L19126" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L18512" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">g[1,0] := 1:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L18509" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">for n from 1 to round( (maxOrder-2)/2) do
+   g[1,n] := -add(g[1,jj]*f(n-jj),jj=0..n-1):
+od:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L18510" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">for k from 2 to (maxOrder-1) do
+   for n from 0 to round( (maxOrder-2)/2) do
+      g[k,n] := add(g[k-1,l]*g[1,n-l],l=0..n):
+   end do:
+end do:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L18845" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L18339" drawlabel="true">
+<Input>
+<Text-field style="Text" layout="Normal">Computing series expansion of entries of s_k without constants, constant functions and constant matrices</Text-field>
+</Input>
+</Group>
+<Group labelreference="L19283" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">for n from 0 to round( (maxOrder-2)/2) do
+   UpsOdd[n] := binomial(-1/2,n)/2^(n+1/2)*(2*n+1)/(2*n-1):
+   UpsEven[n] := 0:
+od:
+UpsEven[0] := 1:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L19284" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L18355" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">for n from 0 to round( (maxOrder-2)/2) do
+   tmp := sum(binomial(1/2,jj)*(1/2)^jj*c(n-jj), jj=0..n);
+   rho0[1,n] := f(n)*(alpha+beta) +tmp; # = rho_{1,n,alpha+beta}
+   rhop[1,n] := f(n)*(alpha+beta+1) +tmp; # = rho_{1,n,alpha+beta+1}
+   rhom[1,n] := f(n)*(alpha+beta-1) +tmp; # = rho_{1,n,alpha+beta-1}
+od:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L18346" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L18824" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">for k from 2 to (maxOrder-1) do
+   for n from 0 to round( (maxOrder-2)/2) do
+      rho0[k,n] := add(rho0[k-1,jj]*rho0[1,n-jj], jj=0..n): # = rho_{k,n,alpha+beta}
+      rhop[k,n] := add(rhop[k-1,jj]*rhop[1,n-jj], jj=0..n): # = rho_{k,n,alpha+beta+1}
+      rhom[k,n] := add(rhom[k-1,jj]*rhom[1,n-jj], jj=0..n): # = rho_{k,n,alpha+beta-1}
+   od:
+od:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L18823" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L18342" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">for n from 0 to round( (maxOrder-2)/2) do
+   H0Odd[n] := 2*add(2^jj*rho0[2*jj,n-jj]/( (2*jj) !), jj=1..n): # = H_{n,alpha+beta}^{odd}
+   HpOdd[n] := 2*add(2^jj*rhop[2*jj,n-jj]/( (2*jj) !), jj=1..n): # = H_{n,alpha+beta+1}^{odd}
+   HmOdd[n] := 2*add(2^jj*rhom[2*jj,n-jj]/( (2*jj) !), jj=1..n): # = H_{n,alpha+beta-1}^{odd}
+   if (type(maxOrder,even) or not (n = round( (maxOrder-2)/2 ) ) ) then
+      H0Even[n] := 2^(3/2)*add(2^jj*rho0[2*jj+1,n-jj]/( (2*jj+1) !), jj=0..n): # = H_{n,alpha+beta}^{even}
+      HpEven[n] := 2^(3/2)*add(2^jj*rhop[2*jj+1,n-jj]/( (2*jj+1) !), jj=0..n): # = H_{n,alpha+beta+1}^{even}
+      HmEven[n] := 2^(3/2)*add(2^jj*rhom[2*jj+1,n-jj]/( (2*jj+1) !), jj=0..n): # = H_{n,alpha+beta-1}^{even}
+   end if:
+od:
+H0Odd[0] := 2:
+HpOdd[0] := 2:
+HmOdd[0] := 2:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L18831" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L18817" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">for n from 0 to round( (maxOrder-2)/2) do 
+   X0Odd[n] := add(binomial(-1/2,jj)*2^(-jj-3/2)*H0Odd[n-jj], jj=0..n): # = X_{n,alpha+beta}^{odd}
+   XpOdd[n] := add(binomial(-1/2,jj)*2^(-jj-3/2)*HpOdd[n-jj], jj=0..n): # = X_{n,alpha+beta+1}^{odd}
+   XmOdd[n] := add(binomial(-1/2,jj)*2^(-jj-3/2)*HmOdd[n-jj], jj=0..n): # = X_{n,alpha+beta-1}^{odd}
+   if (type(maxOrder,even) or not (n = round( (maxOrder-2)/2 ) ) ) then
+      X0Even[n] := add(binomial(-1/2,jj)*2^(-jj-3/2)*H0Even[n-jj], jj=0..n): # = H_{n,alpha+beta}^{even}
+      XpEven[n] := add(binomial(-1/2,jj)*2^(-jj-3/2)*HpEven[n-jj], jj=0..n): # = X_{n,alpha+beta+1}^{even}
+      XmEven[n] := add(binomial(-1/2,jj)*2^(-jj-3/2)*HmEven[n-jj], jj=0..n): # = X_{n,alpha+beta-1}^{even}
+   end if:
+od:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L18336" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L18350" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">for k from 1 to (maxOrder-1) do
+   mo := round( (maxOrder-1-k)/2)-1+round(k/2):
+   if(k::odd) then
+      for n from 0 to mo do 
+         T[n] := Matrix([[(alpha^2+k/2-1/4)/k*UpsOdd[n] + (k-1/2)*X0Odd[n]   ,   Dinf^2*(2*I*(alpha^2+k/2-1/4)/k*binomial(-1/2,n)*2^(-n-3/2) -I*(k-1/2)*XpOdd[n]) ]   ,   [(2*I*(alpha^2+k/2-1/4)/k*binomial(-1/2,n)*2^(-n-3/2) -I*(k-1/2)*XmOdd[n])/Dinf^2        ,       -(alpha^2+k/2-1/4)/k*UpsOdd[n] - (k-1/2)*X0Odd[n] ]]): # = T_{k,n}^{odd}
+         Wr[k,n-(k+1)/2] := brac(alpha,k-1)/2^(3*k/2)*add(g[k,jj]*T[n-jj], jj=0..n): # = W_{k, m = n-(k+1)/2}^{right}
+      od:
+   else
+      for n from 0 to mo do
+         T[n] := Matrix([[(alpha^2+k/2-1/4)/k*UpsEven[n] + (k-1/2)*X0Even[n]   ,    -I*Dinf^2*(k-1/2)*XpEven[n] ]   ,   [-I*(k-1/2)*XmEven[n]/Dinf^2   ,   (alpha^2+k/2-1/4)/k*UpsEven[n] - (k-1/2)*X0Even[n] ]]): # = T_{k,n}^{even}
+         Wr[k,n-k/2] := brac(alpha,k-1)/2^(3*k/2)*(-(4*alpha^2+2*k-1)/2/k*g[k,n]*Matrix([[1,0],[0,1]]) + add(g[k,jj]*T[n-jj], jj=0..n) ): # = W_{k, m = n-k/2}^{right}
+      od:
+   end if:
+od:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L19367" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L18349" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+</Section>
+<Group labelreference="L18066" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Section collapsed="false" MultipleChoiceAnswerIndex="-1" MultipleChoiceRandomizeChoices="false" TrueFalseAnswerIndex="-1" EssayAnswerRows="5" EssayAnswerColumns="60"><Title>
+<Text-field style="Heading 2" layout="Heading 2">4.2 Precomputing a series expansion for s_k^{left}(z)</Text-field></Title>
+<Group labelreference="L19280" drawlabel="true">
+<Input>
+<Text-field style="Text" layout="Normal">Unassign to avoid bugs due to a conflict with previous computations for right W's</Text-field>
+</Input>
+</Group>
+<Group labelreference="L18562" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">f := 'f': g := 'g': UpsOdd := 'UpsOdd': UpsEven := 'UpsEven': tmp := 'tmp': rho0 := 'rho0': rhop := 'rhop': rhom := 'rhom': H0Odd := 'H0Odd': HpOdd := 'HpOdd': HmOdd := 'HmOdd': H0Even := 'H0Even': HpEven := 'HpEven': HmEven := 'HmEven': X0Odd := 'X0Odd': XpOdd := 'XpOdd': XmOdd := 'XmOdd': X0Even := 'X0Even': XpEven := 'XpEven': XmEven := 'XmEven': T := 'T':</Text-field>
+</Input>
+</Group>
+<Group labelreference="L18561" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">f := n -&gt; pochhammer(1/2,n)/2^n/(n!)/(1+2*n):</Text-field>
+</Input>
+</Group>
+<Group labelreference="L19121" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L18557" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">g[1,0] := 1:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L18555" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">for n from 1 to round( (maxOrder-2)/2) do
+   g[1,n] := -add(g[1,jj]*f(n-jj),jj=0..n-1):
+od:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L18556" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">for k from 2 to (maxOrder-1) do
+   for n from 0 to round( (maxOrder-2)/2) do
+      g[k,n] := add(g[k-1,l]*g[1,n-l],l=0..n):
+   end do:
+end do:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L18559" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L19285" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">for n from 0 to round( (maxOrder-2)/2) do
+   UpsOdd[n] := sqrt(-1/2)/(-2)^n*binomial(-1/2, n)*(2*n+1)/(2*n-1):
+   UpsEven[n] := 0:
+od:
+UpsEven[0] := 1:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L19286" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L18560" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">for n from 0 to round( (maxOrder-2)/2) do
+   tmp := -add(binomial(1/2,jj)*(-1/2)^jj*d(n-jj), jj=0..n);
+   rho0[1,n] := f(n)*(alpha+beta) +tmp; # = rho_{1,n,alpha+beta}
+   rhop[1,n] := f(n)*(alpha+beta+1) +tmp; # = rho_{1,n,alpha+beta+1}
+   rhom[1,n] := f(n)*(alpha+beta-1) +tmp; # = rho_{1,n,alpha+beta-1}
+od:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L18565" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L18827" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">for k from 2 to (maxOrder-1) do
+   for n from 0 to round( (maxOrder-2)/2) do
+      rho0[k,n] := sum(rho0[k-1,jj]*rho0[1,n-jj], jj=0..n): # = rho_{k,n,alpha+beta}
+      rhop[k,n] := sum(rhop[k-1,jj]*rhop[1,n-jj], jj=0..n): # = rho_{k,n,alpha+beta+1}
+      rhom[k,n] := sum(rhom[k-1,jj]*rhom[1,n-jj], jj=0..n): # = rho_{k,n,alpha+beta-1}
+   od:
+od:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L18825" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L18820" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">for n from 0 to round( (maxOrder-2)/2) do
+   H0Odd[n] := 2*sum((-2)^jj*rho0[2*jj,n-jj]/( (2*jj) !), jj=1..n): # = H_{n,alpha+beta}^{odd}
+   HpOdd[n] := 2*sum((-2)^jj*rhop[2*jj,n-jj]/( (2*jj) !), jj=1..n): # = H_{n,alpha+beta+1}^{odd}
+   HmOdd[n] := 2*sum((-2)^jj*rhom[2*jj,n-jj]/( (2*jj) !), jj=1..n): # = H_{n,alpha+beta-1}^{odd}
+   if (type(maxOrder,even) or not (n = round( (maxOrder-2)/2 ) ) ) then
+      H0Even[n] := (-2)^(3/2)*sum((-2)^jj*rho0[2*jj+1,n-jj]/( (2*jj+1) !), jj=0..n): # = H_{n,alpha+beta}^{even}
+      HpEven[n] := (-2)^(3/2)*sum((-2)^jj*rhop[2*jj+1,n-jj]/( (2*jj+1) !), jj=0..n): # = H_{n,alpha+beta+1}^{even}
+      HmEven[n] := (-2)^(3/2)*sum((-2)^jj*rhom[2*jj+1,n-jj]/( (2*jj+1) !), jj=0..n): # = H_{n,alpha+beta-1}^{even}
+   end if:
+od:
+H0Odd[0] := 2:
+HpOdd[0] := 2:
+HmOdd[0] := 2:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L18818" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L18819" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">for n from 0 to round( (maxOrder-2)/2) do 
+   X0Odd[n] := sum(binomial(-1/2,jj)*(-2)^(-jj)*H0Odd[n-jj], jj=0..n)/sqrt(-8):
+   XpOdd[n] := sum(binomial(-1/2,jj)*(-2)^(-jj)*HpOdd[n-jj], jj=0..n)/sqrt(-8):
+   XmOdd[n] := sum(binomial(-1/2,jj)*(-2)^(-jj)*HmOdd[n-jj], jj=0..n)/sqrt(-8):
+   if (type(maxOrder,even) or not (n = round( (maxOrder-2)/2 ) ) ) then  
+      X0Even[n] := sum(binomial(-1/2,jj)*(-2)^(-jj)*H0Even[n-jj], jj=0..n)/sqrt(-8):
+      XpEven[n] := sum(binomial(-1/2,jj)*(-2)^(-jj)*HpEven[n-jj], jj=0..n)/sqrt(-8):
+      XmEven[n] := sum(binomial(-1/2,jj)*(-2)^(-jj)*HmEven[n-jj], jj=0..n)/sqrt(-8):
+   end if:
+od:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L18564" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L18558" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">for k from 1 to (maxOrder-1) do
+   mo := round( (maxOrder-1-k)/2)-1+round(k/2):
+   if(k::odd) then
+      for n from 0 to mo do
+         T[n] := Matrix([[(beta^2+k/2-1/4)/k*UpsOdd[n] -(k-1/2)*X0Odd[n]   ,   Dinf^2*(2*I*(beta^2+k/2-1/4)/k*binomial(-1/2,n)*(-2)^(-n)/sqrt(-8) -I*(k-1/2)*XpOdd[n]) ]   ,   [(2*I*(beta^2+k/2-1/4)/k*binomial(-1/2,n)*(-2)^(-n)/sqrt(-8) -I*(k-1/2)*XmOdd[n])/Dinf^2   ,   -(beta^2+k/2-1/4)/k*UpsOdd[n] + (k-1/2)*X0Odd[n] ]]): # = T_{k,n}^{odd}
+         Wl[k,n-(k+1)/2] := brac(beta,k-1)/(-2)^(3*k/2)*add(g[k,jj]*T[n-jj], jj=0..n): # = W_{k,m=n-(k+1)/2}^{left}
+      od:
+   else
+      for n from 0 to mo do
+         T[n] := Matrix([[(beta^2+k/2-1/4)/k*UpsEven[n] -(k-1/2)*X0Even[n]   ,   -I*Dinf^2*(k-1/2)*XpEven[n] ]   ,   [-I*(k-1/2)*XmEven[n]/Dinf^2   ,   (beta^2+k/2-1/4)/k*UpsEven[n] + (k-1/2)*X0Even[n] ]]): # = T_{k,n}^{even}
+         Wl[k,n-k/2] := brac(beta,k-1)/(-2)^(3*k/2)*(-(4*beta^2+2*k-1)/2/k*g[k,n]*Matrix([[1,0],[0,1]]) +add(g[k,jj]*T[n-jj], jj=0..n)): # = W_{k,m=n-k/2}^{left}
+      od:
+   end if:
+od:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L18858" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+</Section>
+<Group labelreference="L18513" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Section collapsed="false" MultipleChoiceAnswerIndex="-1" MultipleChoiceRandomizeChoices="false" TrueFalseAnswerIndex="-1" EssayAnswerRows="5" EssayAnswerColumns="60"><Title>
+<Text-field style="Heading 2" layout="Heading 2">(4.8) U_{k,m}^{right/left} and 3.3 Recursive computation of R_k(z)</Text-field></Title>
+<Group labelreference="L19278" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">R[0] := Matrix(2,2,shape=identity):</Text-field>
+</Input>
+</Group>
+<Group labelreference="L19279" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">Rright[0] := Matrix(2,2,shape=identity):
+Rleft[0] := Matrix(2,2,shape=identity):</Text-field>
+</Input>
+</Group>
+<Group labelreference="L19277" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L8263" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">l := 'l': j := 'j': n := 'n': i := 'i':
+for k from 1 to (maxOrder-1) do
+   pp := round(k/2):
+   
+   for m from 1 to pp do
+      Uright[k,m] := Wr[k,-m] +add(add(Uright[k-j,l].Wr[j,l-m], l = max( (m-round(j/2) ),1)..round((k-j)/2) ), j=1..(k-1) ) +add(add(add(pochhammer(1-i-n,n)/2^(i+n)/(n!)*Uleft[k-j,i], i=1..round((k-j)/2) ).Wr[j,-n-m], n = 0..(round(j/2)-m) ), j=1..(k-1) ):
+      
+      Uleft[k,m] := Wl[k,-m] +add(add(Uleft[k-j,l].Wl[j,l-m], l = max( (m-round(j/2) ),1)..round((k-j)/2) ), j=1..(k-1) ) +add(add(add(pochhammer(1-i-n,n)/(-2)^(i+n)/(n!)*Uright[k-j,i], i=1..round((k-j)/2) ).Wl[j,-n-m], n = 0..(round(j/2)-m) ), j=1..(k-1) ):
+
+      if assigned(alpha) then
+         Uright[k,m] := evalf(Uright[k,m]):
+         Uleft[k,m] := evalf(Uleft[k,m]):
+      else   
+         Uright[k,m] := simplify(Uright[k,m]): 
+         Uleft[k,m] := simplify(Uleft[k,m]):
+      end if:
+   od:
+   
+   R[k] := add(Uright[k,mm]/(z-1)^mm + Uleft[k,mm]/(z+1)^mm, mm = 1..pp):
+   Rright[k] := R[k] - add(R[k-mm].(DeltaRightExact(mm,z) +sR[mm](z) ), mm = 1..k ):
+   Rleft[k] := R[k] - add(R[k-mm].(DeltaLeftExact(mm,z) +sL[mm](z) ), mm = 1..k ):
+od:
+k := 'k':</Text-field>
+</Input>
+</Group>
+<Group labelreference="L19290" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L19289" drawlabel="true">
+<Input>
+<Text-field style="Text" layout="Normal">You can use this to save the symbolical or numerical results for U to use them in Matlab (or CodeGeneration[Fortran] or ...)</Text-field>
+</Input>
+</Group>
+<Group labelreference="L19287" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">if false then
+   if FileTools[Exists](&quot;Utest.m&quot;) then 
+      FileTools[Remove](&quot;Utest.m&quot;): 
+   end if:
+   for k from 1 to maxOrder-1 do
+      for m from 1 to round(k/2) do
+         CodeGeneration[Matlab](Uright[k,m], output = &quot;Utest.m&quot;, resultname = cat(&quot;UrightQ&quot;,k,m) ):
+         CodeGeneration[Matlab](Uleft[k,m], output = &quot;Utest.m&quot;, resultname = cat(&quot;UleftQ&quot;,k,m) ):
+      od:
+   od:
+end if:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L19288" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+</Section>
+<Group labelreference="L18962" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Section collapsed="false" MultipleChoiceAnswerIndex="-1" MultipleChoiceRandomizeChoices="false" TrueFalseAnswerIndex="-1" EssayAnswerRows="5" EssayAnswerColumns="60"><Title>
+<Text-field style="Heading 2" layout="Heading 2">A Expressions for the first four higher order terms</Text-field></Title>
+<Group labelreference="L19133" drawlabel="true">
+<Input>
+<Text-field style="Text" layout="Normal">Check results with explicit results from the appendix for first three terms, mixed with other notation.</Text-field>
+</Input>
+</Group>
+<Group labelreference="L17655" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">A1 := (4*alpha^2-1)/16*s3(Dinf).Matrix([[-1,I],[I,1]]).s3(Dinf^(-1) ):</Text-field>
+</Input>
+</Group>
+<Group labelreference="L17672" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">simplify(A1-Uright[1,1]);</Text-field>
+</Input>
+</Group>
+<Group labelreference="L17658" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">B1 := (4*beta^2-1)/16*s3(Dinf).Matrix([[1,I],[I,-1]]).s3(Dinf^(-1) ):</Text-field>
+</Input>
+</Group>
+<Group labelreference="L17673" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">simplify(B1-Uleft[1,1]);</Text-field>
+</Input>
+</Group>
+<Group labelreference="L17653" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group><Presentation-Block>
+<Group view="code" labelreference="L17671" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">Ah2 := (al,be,c0) -&gt; 8*al+8*be+8*c0-4*be^2+1:</Text-field>
+</Input>
+</Group>
+<Group view="code" labelreference="L17667" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">Bh2 := (al,be,c0) -&gt; -8*al-8*be-8*c0+4*al^2+4*be^2-10:</Text-field>
+</Input>
+</Group>
+<Group view="code" labelreference="L17670" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">Ch2 := (al,be,c0) -&gt; -8*al-8*be-8*c0-4*al^2-4*be^2+10:</Text-field>
+</Input>
+</Group>
+<Group view="code" labelreference="L17669" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">Dh2 := (al,be,c0) -&gt; -8*al-8*be-8*c0-4*be^2+1:</Text-field>
+</Input>
+</Group>
+<Group view="code" labelreference="L17663" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">A2 := (4*alpha^2-1)/256*s3(Dinf).Matrix([[Ah2(alpha,beta,c(0) ),I*Bh2(alpha,beta,c(0) )],[I*Ch2(alpha,beta,c(0) ),Dh2(alpha,beta,c(0) )]]).s3(Dinf^(-1)):</Text-field>
+</Input>
+</Group></Presentation-Block>
+<Group labelreference="L17674" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">simplify(A2-Uright[2,1]);</Text-field>
+</Input>
+</Group>
+<Group labelreference="L17678" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">B2 := (4*beta^2-1)/256*s3(Dinf).Matrix([[-Ah2(beta,alpha,-d(0) ),I*Bh2(beta,alpha,-d(0) )],[I*Ch2(beta,alpha,-d(0) ),-Dh2(beta,alpha,-d(0) )]]).s3(Dinf^(-1)):</Text-field>
+</Input>
+</Group>
+<Group labelreference="L17680" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">simplify(B2-Uleft[2,1]);</Text-field>
+</Input>
+</Group>
+<Group labelreference="L17681" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group><Presentation-Block>
+<Group view="code" labelreference="L17661" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">Ah3 := (al,be,c0,d0) -&gt; 16*(4*be^2-1)*(c0+d0+2*al+2*be) -2*(4*be^2-1)*(2*al^2+2*be^2-1)-128*(al+be)^2 -128*c0*(c0+2*al+2*be):</Text-field>
+</Input>
+</Group>
+<Group view="code" labelreference="L17703" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">q3p := (al,be,c0,d0) -&gt; 128*(al+be)^2+128*c0*(c0+2*al+2*be)-388/3*al^2-84*be^2+64/3*al^4+16*be^4+48*al^2*be^2+176:</Text-field>
+</Input>
+</Group>
+<Group view="code" labelreference="L17708" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">r3p := (al,be,c0,d0) -&gt; -128*(al+be)*(al^2+be^2)+320*(al+be)-64*be^2*(c0+d0)-128*c0*al^2+304*c0+16*d0:</Text-field>
+</Input>
+</Group>
+<Group view="code" labelreference="L19396" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">Dh3 := (a,b,f,g) -&gt; 16*(4*b^2-1)*(f+g+2*a+2*b)+2*(4*b^2-1)*(2*a^2+2*b^2-1)+128*((a+b)^2+f*(f+2*a+2*b)):</Text-field>
+</Input>
+</Group></Presentation-Block><Presentation-Block>
+<Group view="code" labelreference="L17704" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">A3 := (4*alpha^2-1)/8192*s3(Dinf).Matrix([[Ah3(alpha,beta,c(0),-d(0) ),I*q3p(alpha,beta,c(0),-d(0) )+I*r3p(alpha,beta,c(0),-d(0) )],[I*q3p(alpha,beta,c(0),-d(0) ) -I*r3p(alpha,beta,c(0),-d(0) ),Dh3(alpha,beta,c(0),-d(0) )]]).s3(Dinf^(-1) ):</Text-field>
+</Input>
+</Group>
+<Group view="code" labelreference="L17705" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">simplify(A3-Uright[3,1]);</Text-field>
+</Input>
+</Group>
+<Group view="code" labelreference="L17689" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group></Presentation-Block><Presentation-Block>
+<Group view="code" labelreference="L17715" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">B3 := (4*beta^2-1)/8192*s3(Dinf).Matrix([[-Ah3(beta,alpha,-d(0),c(0) ),I*q3p(beta,alpha,-d(0),c(0) )+I*r3p(beta,alpha,-d(0),c(0) )],[I*q3p(beta,alpha,-d(0),c(0) ) -I*r3p(beta,alpha,-d(0),c(0) ),-Dh3(beta,alpha,-d(0),c(0) )]]).s3(Dinf^(-1) ):</Text-field>
+</Input>
+</Group>
+<Group view="code" labelreference="L17716" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">simplify(B3-Uleft[3,1]);</Text-field>
+</Input>
+</Group></Presentation-Block><Presentation-Block>
+<Group view="code" labelreference="L17687" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">C3 := ((4*alpha^2-1)*(4*alpha^2-9)*(4*alpha^2-25)/12288)*s3(Dinf).Matrix([[-1,I],[I,1]]).s3(Dinf^(-1) ):</Text-field>
+</Input>
+</Group></Presentation-Block>
+<Group labelreference="L17686" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">simplify(C3-Uright[3,2]);</Text-field>
+</Input>
+</Group>
+<Group labelreference="L17688" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">D3 := ((4*beta^2-1)*(4*beta^2-9)*(4*beta^2-25)/12288)*s3(Dinf).Matrix([[-1,-I],[-I,1]]).s3(Dinf^(-1) ):</Text-field>
+</Input>
+</Group>
+<Group labelreference="L17652" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">simplify(D3-Uleft[3,2]);</Text-field>
+</Input>
+</Group>
+<Group labelreference="L19370" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L19399" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">v4 := (a,b,f0,g0,f1) -&gt; (1-4*b^2)/6*(384*(f0^2+g0^2-f0*g0 +3*(a+b)*(f0-g0))  +16*((a^2+b^2)^2+a^2*b^2)+1196*(a+b)^2 -88*a*b-219):</Text-field>
+</Input>
+</Group>
+<Group labelreference="L19398" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">w4 := (a,b,f0,g0,f1) -&gt; -4*((4*b^2-1)*(8*b^2+4*a^2 -11)*g0 + 48*(4*a^2-9)*f1 -768*a*b*f0 -f0*(128*f0*(f0+3*(a+b)) +16*b^2*(b^2+2*a^2+25) + 312*a^2+139) -2*(a+b)*(b^2*(24*b^2+24*a^2+46)+58*a^2+128*a*b+3) ):</Text-field>
+</Input>
+</Group>
+<Group labelreference="L19401" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">x4 := (a,b,f0,g0,f1) -&gt; 4*((4*b^2-1)*(8*b^2+12*a^2-29)*g0+48*(4*a^2-9)*f1 -768*a*b*f0 -f0*(128*f0*(f0+3*(a+b))+16*b^2*(b^2+6*a^2+16)+8*a^2*(8*a^2-7)+643)-4*(a+b)*(b^2*(12*b^2+36*a^2-31)+a^2*(16*a^2-65)+64*a*b+132)):</Text-field>
+</Input>
+</Group>
+<Group labelreference="L19400" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">y4 := (a,b,f0,g0,f1) -&gt; 4/3*(48*(4*b^2-1)*g0*(g0-f0-3*(a+b)) +b^4*(48*a^2+542)+48*f0^2*(4*b^2+12*a^2-28) + 144*(a+b)*(4*b^2+8*a^2-19)*f0+a^4*(56*b^2+422)+a*b*(1152*(a^2+b^2)+988*a*b-2880)+16*a^6-1393*b^2-951*a^2-498+8*b^6):</Text-field>
+</Input>
+</Group>
+<Group labelreference="L19375" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">A4 := ((4*alpha^2-1)/65536)*s3(Dinf).Matrix([[v4(alpha,beta,c(0),d(0),c(1) )+w4(alpha,beta,c(0),d(0),c(1) )   ,   I*x4(alpha,beta,c(0),d(0),c(1) )+I*y4(alpha,beta,c(0),d(0),c(1) ) ] , [ I*x4(alpha,beta,c(0),d(0),c(1) )-I*y4(alpha,beta,c(0),d(0),c(1) )  ,  v4(alpha,beta,c(0),d(0),c(1) )-w4(alpha,beta,c(0),d(0),c(1) ) ]]).s3(Dinf^(-1) ):</Text-field>
+</Input>
+</Group>
+<Group labelreference="L19380" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">B4 := ((4*beta^2-1)/65536)*s3(Dinf).Matrix([[-v4(beta,alpha,-d(0),-c(0),d(1) )-w4(beta,alpha,-d(0),-c(0),d(1) )  ,  I*x4(beta,alpha,-d(0),-c(0),d(1) )+I*y4(beta,alpha,-d(0),-c(0),d(1) ) ]  ,  [ I*x4(beta,alpha,-d(0),-c(0),d(1) )-I*y4(beta,alpha,-d(0),-c(0),d(1) )  ,  -v4(beta,alpha,-d(0),-c(0),d(1) )+w4(beta,alpha,-d(0),-c(0),d(1) )]]).s3(Dinf^(-1) ):</Text-field>
+</Input>
+</Group>
+<Group labelreference="L19381" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">simplify(B4-Uleft[4,1]);</Text-field>
+</Input>
+</Group>
+<Group labelreference="L19382" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L19383" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">Eh4 := -4*alpha^2-8*beta^2+48*c(0)+48*alpha+48*beta+3:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L19384" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">Fh4 := +8*alpha^2+8*beta^2-48*c(0)-48*alpha-48*beta-52:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L19385" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">Gh4 := -8*alpha^2-8*beta^2-48*c(0)-48*alpha-48*beta+52:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L19386" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">Hh4 := -4*alpha^2-8*beta^2-48*c(0)-48*alpha-48*beta+3:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L19387" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">C4 := ((4*alpha^2-1)*(4*alpha^2-9)*(4*alpha^2-25)/(2^17*3) )*s3(Dinf).Matrix([[Eh4,I*Fh4],[I*Gh4,Hh4]]).s3(Dinf^(-1) ):</Text-field>
+</Input>
+</Group>
+<Group labelreference="L19388" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">simplify(C4-Uright[4,2]);</Text-field>
+</Input>
+</Group>
+<Group labelreference="L19389" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">Ih4 := -8*alpha^2-4*beta^2-48*d(0)+48*alpha+48*beta+3:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L19390" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">Jh4 := -8*alpha^2-8*beta^2-48*d(0)+48*alpha+48*beta+52:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L19391" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">Kh4 := +8*alpha^2+8*beta^2-48*d(0)+48*alpha+48*beta-52:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L19392" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">Lh4 := -8*alpha^2-4*beta^2+48*d(0)-48*alpha-48*beta+3:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L19393" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">D4 := ((4*beta^2-1)*(4*beta^2-9)*(4*beta^2-25)/(2^17*3) )*s3(Dinf).Matrix([[Ih4,I*Jh4],[I*Kh4,Lh4]]).s3(Dinf^(-1) ):</Text-field>
+</Input>
+</Group>
+<Group labelreference="L19394" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">simplify(D4-Uleft[4,2]);</Text-field>
+</Input>
+</Group>
+<Group labelreference="L19369" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+</Section>
+<Group labelreference="L8537" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+</Section>
+<Group labelreference="L6122" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Section collapsed="false" MultipleChoiceAnswerIndex="-1" MultipleChoiceRandomizeChoices="false" TrueFalseAnswerIndex="-1" EssayAnswerRows="5" EssayAnswerColumns="60"><Title>
+<Text-field style="Heading 1" layout="Heading 1">2 Asymptotic expansions</Text-field></Title>
+<Group labelreference="L18566" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">n := 'n':</Text-field>
+</Input>
+</Group>
+<Group labelreference="L8539" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">Gam[0] := 1:
+betaln[0] := 1/(2*I*Dinf^2):
+betarn[0] := -Dinf^2/(2*I):
+Alph[0] := 0:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L8538" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">for k from 1 to (maxOrder-1) do
+<Font encoding="UTF-8">   Gam[k] := 2*I*Dinf^2*(Uright[k,1](2,1) + Uleft[k,1](2,1) )/(n+1)^k; # Terms in asymptotic expansion of \134gamma_n^2
+</Font>   betaln[k] := (Uright[k,1](2,1) + Uleft[k,1](2,1) )/n^k; <Font encoding="UTF-8"># Terms in left factor of asymptotic expansion of \134beta_n</Font>
+   betarn[k] := (Uright[k,1](1,2) + Uleft[k,1](1,2) )/n^k; <Font encoding="UTF-8"># Terms in right factor of asymptotic expansion of \134beta_n</Font>
+   Alph[k] := (Uright[k,1](1,1) + Uleft[k,1](1,1) )/(n+1)^k +(Uright[k,1](2,2) + Uleft[k,1](2,2) )/n^k;<Font encoding="UTF-8"> # Terms in asymptotic expansion of \134alpha_n</Font>
+od:
+k := 'k':</Text-field>
+</Input>
+</Group>
+<Group labelreference="L6057" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L8570" drawlabel="true">
+<Input>
+<Text-field style="Text" layout="Normal">ipi = interior monic polynomial, opi = outer monic polynomial (two equivalent formulations but the one without phi(z) is expected to better avoid numerical roundoff), 
+gamman = leading order coeff of orthonormal, betan &amp; alphan = recurrence coefficients</Text-field>
+</Input>
+</Group>
+<Group labelreference="L5970" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">for i from 1 to maxOrder do
+   ipi[i] := unapply( (2^(1/2-n)/(sqrt(w(z) )*(1-z)^(1/4)*(1+z)^(1/4) )*Matrix([[1, 0]]).sum(R[k]/n^k, k = 0..(i-1) ).Matrix([[Dinf*cos((n+1/2)*arccos(z) +psi(z) -Pi/4) ], [-I/Dinf*cos((n-1/2)*arccos(z) +psi(z) -Pi/4)]]) )(1),n,z):
+
+   opi[i] := unapply( (2^(-1/2-n)/(sqrt(w(z) )*(1-z)^(1/4)*(1+z)^(1/4) )*Matrix([[1, 0]]).sum(R[k]/n^k, k = 0..(i-1) ).Matrix([[Dinf*exp(signum(0,argument(z-1),-1)*I*( (n+1/2)*arccos(z) +psi(z) -Pi/4) ) ], [-I/Dinf*exp(signum(0,argument(z-1),-1)*I*( (n-1/2)*arccos(z) +psi(z) -Pi/4) )]]) )(1),n,z):
+
+   #opi[i] := unapply( ( (phi(z) )^n*exp(signum(0,argument(z-1),-1)*I*psi(z) )/(2^n*sqrt(2*w(z) )*(z-1)^(1/4)*(z+1)^(1/4) )*Matrix([[1, 0]]).sum(R[k]/n^k, k = 0..(i-1) ).Matrix([[Dinf*sqrt(phi(z) )], [-I/(Dinf*sqrt(phi(z) ) )]]) )(1),n,z):
+   
+   gamman[i] := unapply(Re(sqrt(2^(2*n)/Pi/Dinf^2*sum(Gam[k], k = 0..(i-1) ) ) ), n):
+   betan[i] := unapply(Re(sum(betaln[k], k = 0..(i-1) )*sum(betarn[k], k = 0..(i-1) ) ), n);
+   alphan[i] := unapply(Re(-sum(Alph[k], k = 0..(i-1) ) ), n);
+od:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L19291" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L19294" drawlabel="true">
+<Input>
+<Text-field style="Text" layout="Normal">The maximum order to which to compute and check the expansions in the boundary regions, &lt;= maxOrder due to higher complexity in number of terms, take it lower to run the sheet faster.</Text-field>
+</Input>
+</Group>
+<Group labelreference="L19295" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">mob := min(maxOrder,7):</Text-field>
+</Input>
+</Group>
+<Group labelreference="L14426" drawlabel="true">
+<Input>
+<Text-field style="Text" bold="true" layout="Normal"><Font bold="false">bpiR = right boundary monic, bpiL = left boundary monic
+When evaluating only on the interval, one can take Re(ipi) &amp; Re(bpR) &amp; Re(bpL) to get rid of small imaginary parts.</Font></Text-field>
+</Input>
+</Group>
+<Group labelreference="L9086" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">for i from 1 to mob do
+   bpiR[i] := unapply( (sqrt(Pi*n*arccos(z))/(2^n*sqrt(w(z) )*(1-z)^(1/4)*(1+z)^(1/4) )*Matrix([[1, 0]]).add(Rright[k]/n^k, k = 0..(i-1) ).Matrix([[Dinf*(cos(psi(z) +alpha*Pi/2 + arccos(z)/2)*BesselJ(alpha,n*arccos(z) ) + sin(psi(z) +alpha*Pi/2 + arccos(z)/2)*(BesselJ(alpha-1,n*arccos(z) ) - BesselJ(alpha+1,n*arccos(z) ) )/2 )], [-I/Dinf*(cos(psi(z) +alpha*Pi/2 -arccos(z)/2)*BesselJ(alpha,n*arccos(z) ) + sin(psi(z) +alpha*Pi/2 -arccos(z)/2)*(BesselJ(alpha-1,n*arccos(z) ) - BesselJ(alpha+1,n*arccos(z) ) )/2 ) ]]) )(1),n,z):
+   bpiL[i] := unapply( (sqrt(Pi*n*arccos(-z))/( (-2)^n*sqrt(w(z) )*(1-z)^(1/4)*(1+z)^(1/4) )*Matrix([[1, 0]]).add(Rleft[k]/n^k, k = 0..(i-1) ).Matrix([[Dinf*(sin(psi(z) -beta*Pi/2 + arccos(z)/2)*BesselJ(beta,n*arccos(-z) ) + cos(psi(z) -beta*Pi/2 + arccos(z)/2)*(BesselJ(beta-1,n*arccos(-z) ) - BesselJ(beta+1,n*arccos(-z) ) )/2 )], [-I/Dinf*(sin(psi(z) -beta*Pi/2 -arccos(z)/2)*BesselJ(beta,n*arccos(-z) ) + cos(psi(z) -beta*Pi/2 -arccos(z)/2)*(BesselJ(beta-1,n*arccos(-z) ) - BesselJ(beta+1,n*arccos(-z) ) )/2 ) ]]) )(1),n,z):
+od:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L13711" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+</Section>
+<Group labelreference="L4537" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Section collapsed="false" MultipleChoiceAnswerIndex="-1" MultipleChoiceRandomizeChoices="false" TrueFalseAnswerIndex="-1" EssayAnswerRows="5" EssayAnswerColumns="60"><Title>
+<Text-field style="Heading 1" layout="Heading 1">6 Numerical results</Text-field></Title>
+<Group labelreference="L8163" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Section collapsed="false" MultipleChoiceAnswerIndex="-1" MultipleChoiceRandomizeChoices="false" TrueFalseAnswerIndex="-1" EssayAnswerRows="5" EssayAnswerColumns="60"><Title>
+<Text-field style="Heading 2" layout="Heading 2">Initialisation</Text-field></Title>
+<Group labelreference="L16400" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">with(plots): with(plottools):</Text-field>
+</Input>
+</Group>
+<Group labelreference="L16398" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L9304" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">hIs1 := convert(evalf(int(abs(h(x) - 1), x = -1.0..1.0)) = 0, truefalse):</Text-field>
+</Input>
+</Group>
+<Group labelreference="L9112" drawlabel="true">
+<Input>
+<Text-field style="Text" layout="Normal">The 2-logaritm of the maximum degree n to be used for the plots, has to be very low when we have to compute the exact polynomials to compare with ourselves when h is not identically one due to time requirements..</Text-field>
+</Input>
+</Group>
+<Group labelreference="L8164" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">if hIs1 then
+   maxP2 := 7:
+else
+   Digits := 20:
+   maxP2 := 4:
+end if:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L8217" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L9171" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">if(hIs1) then
+   p := (n::integer,x) -&gt; orthopoly[P](n,alpha,beta,x)*sqrt( (2*n+alpha+beta+1)*factorial(n)*GAMMA(n+alpha+beta+1)/(2^(alpha+beta+1)*GAMMA(n+alpha+1)*GAMMA(n+beta+1) ) ):
+   gammaP:= proc(k::integer) if k = 0 then return p(k,x); else return coeff(expand(p(k,x) ),x^k); end if; end proc:
+   pi:= (n::integer,x) -&gt; expand(p(n,x)/gammaP(n) ):
+else
+   p[0] := unapply(evalf(1/sqrt(int(w(t), t=-1.0..1.0,numeric) ) ),x):
+   v[1] := unapply(x*p[0](x) ,x):
+   betaR[1] := evalf(int(w(x)*v[1](x)*p[0](x), x=-1.0..1.0,numeric) ):
+   vv[1] := unapply(v[1](x) - betaR[1]*p[0](x),x):
+   gammaR[1] := evalf(sqrt(int(w(x)*vv[1](x)^2, x=-1.0..1.0,numeric) ) ):
+   p[1] := unapply(vv[1](x)/gammaR[1],x):
+   print(&quot;m = 1&quot;);
+   for m from 2 to 2^maxP2 do
+      v[m] := unapply(x*p[m-1](x)-gammaR[m-1]*p[m-2](x),x):
+      betaR[m] := evalf(int(w(x)*v[m](x)*p[m-1](x), x=-1.0..1.0,numeric) ):
+      vv[m] := unapply(v[m](x) - betaR[m]*p[m-1](x),x):
+      gammaR[m] := evalf(sqrt(int(w(x)*vv[m](x)^2, x=-1.0..1.0,numeric) ) ):
+      p[m] := unapply(vv[m](x)/gammaR[m],x):
+      print(&quot;m = &quot;, m);
+   od:
+   gammaP:= proc(k::integer) if k = 0 then return p[0](x); else return coeff(expand(p[k](x) ),x^k); end if; end proc:
+   pi := (n::integer,x) -&gt; expand(p[n](x)/gammaP(n) ):
+   print(&quot;Done&quot;);
+end if:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L15915" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L14428" drawlabel="true">
+<Input>
+<Text-field style="Text" layout="Normal">Sanity check:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L14086" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">evalf(pi(14,0.4));</Text-field>
+</Input>
+</Group>
+<Group labelreference="L14089" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">evalf(ipi[4](14,0.4) );</Text-field>
+</Input>
+</Group>
+<Group labelreference="L14087" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L9173" drawlabel="true">
+<Input>
+<Text-field style="Text" layout="Normal">Solve the three term recurrence relation in the least squares sense for different x to get the recurrence coefficients to compare with. 
+LinearSolve with nbr := 2 should also work but do Least squares to cancel roundoff errors.</Text-field>
+</Input>
+</Group>
+<Group labelreference="L9174" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">nbr := 4:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L9175" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">xs := [seq(1.9*xi/nbr-1, xi=1..nbr)]:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L9177" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">alphaP := proc(n::integer) return (LeastSquares(Matrix(nbr,2, (i,j)-&gt; pi(n+1-j, xs[i]) ), Vector(nbr, i -&gt; xs[i]*pi(n, xs[i]) -pi(n+1,xs[i]) ) ) )(1): end proc:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L9179" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">betaP := proc(n::integer) return (LeastSquares(Matrix(nbr,2, (i,j)-&gt; pi(n+1-j, xs[i]) ), Vector(nbr, i -&gt; xs[i]*pi(n, xs[i]) -pi(n+1,xs[i]) ) ) )(2): end proc:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L11090" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L9135" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">weights := [seq(1+tn/maxP2, tn=0..maxP2)]:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L5991" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">colors := [&quot;Black&quot;,&quot;Green&quot;, &quot;Blue&quot;,&quot;Orange&quot;,&quot;Cyan&quot;, &quot;Red&quot;, &quot;Gray&quot;, &quot;Purple&quot;, &quot;Brown&quot;, &quot;Pink&quot;, &quot;Gold&quot;, &quot;Violet&quot;, &quot;Khaki&quot;, seq(&quot;Turquoise&quot;, k=14..maxOrder)]:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L9359" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">for i from 15 to maxOrder do
+   colors[i] := colors[i-14]:
+od:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L6646" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+</Section>
+<Group labelreference="L9305" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Section collapsed="false" MultipleChoiceAnswerIndex="-1" MultipleChoiceRandomizeChoices="false" TrueFalseAnswerIndex="-1" EssayAnswerRows="5" EssayAnswerColumns="60"><Title>
+<Text-field style="Heading 2" layout="Heading 2">Interior region</Text-field></Title>
+<Group labelreference="L9649" drawlabel="true">
+<Input>
+<Text-field style="Text" layout="Normal">Convergence is guaranteed when choosing a zInt that could be considered to be in the lens, but the asymptotic expansion for the interior region also gives good approximations and convergence elsewhere.</Text-field>
+</Input>
+</Group>
+<Group labelreference="L12761" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">zInt := 0.2:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L18981" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">n := 'n': k := 'k':</Text-field>
+</Input>
+</Group>
+<Group labelreference="L18980" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L9101" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">for tn from 0 to maxP2 do
+   piEvi[tn] := evalf(pi(2^tn, zInt) ):
+od:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L18857" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L5990" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">for i from 1 to maxOrder do
+   datai[i] := [seq([2^tn,evalf(abs(piEvi[tn] -ipi[i](2^tn,zInt) )/abs(piEvi[tn] ) )], tn=0..maxP2)]:
+   ploti[i] := loglogplot(datai[i], style = point, color = colors[i], legend = cat(i, &quot; term(s)&quot;) ):
+   plotSi[i] := loglogplot(datai[i][maxP2+1][2]*(n/2^maxP2)^(-i), n = 1..2^maxP2, color = colors[i]):
+   ldi[i] := [seq(MTM[log2]~(datai[i][tn+1]), tn=0..maxP2 )]:
+   tn := 'tn':
+   fcti[i] := subs(tn = MTM[log2](n),CurveFitting[LeastSquares](ldi[i],tn,weight=weights) ):
+   plotLSi[i] := loglogplot(2^fcti[i],n= 1..2^maxP2, color = colors[i]):
+   slopei[i] := simplify((fcti[i] - subs(n = 1,fcti[i]))/MTM[log2](n) );
+od:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L8764" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">eval(slopei);</Text-field>
+</Input>
+</Group>
+<Group labelreference="L14430" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">display(seq(ploti[m], m=1..maxOrder), seq(plotSi[m], m=1..maxOrder) );</Text-field>
+</Input>
+</Group>
+<Group labelreference="L11569" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+</Section>
+<Group labelreference="L14440" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Section collapsed="false" MultipleChoiceAnswerIndex="-1" MultipleChoiceRandomizeChoices="false" TrueFalseAnswerIndex="-1" EssayAnswerRows="5" EssayAnswerColumns="60"><Title>
+<Text-field style="Heading 2" layout="Heading 2">Outer region </Text-field></Title>
+<Group labelreference="L14434" drawlabel="true">
+<Input>
+<Text-field style="Text" layout="Normal">Compare this with interior region with zOut close to interval -&gt; this one is much less accurate and sometimes we don't even see right order of convergence (which we would see if n would be larger)</Text-field>
+</Input>
+</Group>
+<Group labelreference="L14442" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">zOut := 0.2 -1*I:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L14438" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">for tn from 0 to maxP2 do
+   piEvo[tn] := evalf(pi(2^tn, zOut) ):
+od:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L14443" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">for i from 1 to maxOrder do
+   datao[i] := [seq([2^tn,evalf(abs(piEvo[tn] -opi[i](2^tn,zOut) )/abs(piEvo[tn] ) )], tn=0..maxP2)]:
+   ploto[i] := loglogplot(datao[i], style = point, color = colors[i], legend = cat(i, &quot; term(s)&quot;) ):
+   plotSo[i] := loglogplot(datao[i][maxP2+1][2]*(n/2^maxP2)^(-i), n = 1..2^maxP2, color = colors[i]):
+od:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L14439" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">display(seq(ploto[m], m=1..maxOrder), seq(plotSo[m], m=1..maxOrder) );</Text-field>
+</Input>
+</Group>
+<Group labelreference="L14433" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+</Section>
+<Group labelreference="L14436" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Section collapsed="false" MultipleChoiceAnswerIndex="-1" MultipleChoiceRandomizeChoices="false" TrueFalseAnswerIndex="-1" EssayAnswerRows="5" EssayAnswerColumns="60"><Title>
+<Text-field style="Heading 2" layout="Heading 2">Right Boundary region</Text-field></Title>
+<Group labelreference="L9651" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">zR := 0.9-0.05*I:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L9104" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">for tn from 0 to maxP2 do
+   piEvbR[tn] := evalf(pi(2^tn, zR) ):
+od:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L9108" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">for i from 1 to mob do
+   dataR[i] := [seq([2^tn,evalf(abs(piEvbR[tn] -bpiR[i](2^tn,zR) )/abs(piEvbR[tn] ) )], tn=0..maxP2)]:
+   plotR[i] := loglogplot(dataR[i], style = point, color = colors[i], legend = cat(i, &quot; term(s)&quot;) ):
+   plotSR[i] := loglogplot(dataR[i][maxP2+1][2]*(n/2^maxP2)^(-i), n = 1..2^maxP2, color = colors[i]):
+od:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L9110" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">display(seq(plotR[m], m=1..mob), seq(plotSR[m], m=1..mob) );</Text-field>
+</Input>
+</Group>
+<Group labelreference="L14596" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+</Section>
+<Group labelreference="L11139" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Section collapsed="false" MultipleChoiceAnswerIndex="-1" MultipleChoiceRandomizeChoices="false" TrueFalseAnswerIndex="-1" EssayAnswerRows="5" EssayAnswerColumns="60"><Title>
+<Text-field style="Heading 2" layout="Heading 2">Left Boundary region</Text-field></Title>
+<Group labelreference="L13890" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">zL := -1.1+0.2*I:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L13892" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">for tn from 0 to maxP2 do
+   piEvbL[tn] := evalf(pi(2^tn, zL) ):
+od:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L13883" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">for i from 1 to mob do
+   dataL[i] := [seq([2^tn,evalf(abs(piEvbL[tn] -bpiL[i](2^tn,zL) )/abs(piEvbL[tn] ) )], tn=0..maxP2)]:
+   plotL[i] := loglogplot(dataL[i], style = point, color = colors[i], legend = cat(i, &quot; term(s)&quot;) ):
+   plotSL[i] := loglogplot(dataL[i][maxP2+1][2]*(n/2^maxP2)^(-i), n = 1..2^maxP2, color = colors[i]):
+od:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L13884" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">display(seq(plotL[m], m=1..mob), seq(plotSL[m], m=1..mob) );</Text-field>
+</Input>
+</Group>
+<Group labelreference="L13886" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+</Section>
+<Group labelreference="L13889" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Section collapsed="false" MultipleChoiceAnswerIndex="-1" MultipleChoiceRandomizeChoices="false" TrueFalseAnswerIndex="-1" EssayAnswerRows="5" EssayAnswerColumns="60"><Title>
+<Text-field style="Heading 2" layout="Heading 2">Leading order coefficients</Text-field></Title>
+<Group labelreference="L9182" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">for tn from 0 to maxP2 do
+   gammaReal[tn] := evalf(gammaP(2^tn) ):
+od:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L9181" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">for i from 1 to maxOrder do
+   dataG[i] := [seq([2^tn,evalf(abs(gammaReal[tn] -gamman[i](2^tn) )/abs(gammaReal[tn] ) )], tn=0..maxP2)]:
+   plotG[i] := loglogplot(dataG[i], style = point, color = colors[i], legend = cat(i, &quot; term(s)&quot;) ):
+   plotSG[i] := loglogplot(dataG[i][maxP2+1][2]*(n/2^maxP2)^(-i), n = 1..2^maxP2, color = colors[i]):
+od:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L12212" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">display(seq(plotG[m], m=1..maxOrder), seq(plotSG[m], m=1..maxOrder) );</Text-field>
+</Input>
+</Group>
+<Group labelreference="L9184" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+</Section>
+<Group labelreference="L9192" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Section collapsed="false" MultipleChoiceAnswerIndex="-1" MultipleChoiceRandomizeChoices="false" TrueFalseAnswerIndex="-1" EssayAnswerRows="5" EssayAnswerColumns="60"><Title>
+<Text-field style="Heading 2" layout="Heading 2">Recurrence coefficients alpha</Text-field></Title>
+<Group labelreference="L9188" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">for tn from 0 to maxP2-1 do
+   alphaReal[tn] := evalf(alphaP(2^tn) ):
+od:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L9187" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">for i from 1 to maxOrder do
+   dataa[i] := [seq([2^tn,evalf(abs(alphaReal[tn] -alphan[i](2^tn) )/abs(alphaReal[tn] ) )], tn=0..maxP2-1)]:
+   plota[i] := loglogplot(dataa[i], style = point, color = colors[i], legend = cat(i, &quot; term(s)&quot;) ):
+   plotSa[i] := loglogplot(dataa[i][maxP2][2]*(n/2^(maxP2-1) )^(-i), n = 1..2^(maxP2-1), color = colors[i]):
+od:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L9189" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">display(seq(plota[m], m=1..maxOrder), seq(plotSa[m], m=1..maxOrder) );</Text-field>
+</Input>
+</Group>
+<Group labelreference="L12181" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+</Section>
+<Group labelreference="L9198" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Section collapsed="false" MultipleChoiceAnswerIndex="-1" MultipleChoiceRandomizeChoices="false" TrueFalseAnswerIndex="-1" EssayAnswerRows="5" EssayAnswerColumns="60"><Title>
+<Text-field style="Heading 2" layout="Heading 2">Recurrence coefficients beta</Text-field></Title>
+<Group labelreference="L9194" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">for tn from 0 to maxP2-1 do
+   betaReal[tn] := evalf(betaP(2^tn) ):
+od:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L9193" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">for i from 1 to maxOrder do
+   datab[i] := [seq([2^tn,evalf(abs(betaReal[tn] -betan[i](2^tn) )/abs(betaReal[tn] ) )], tn=0..maxP2-1)]:
+   plotb[i] := loglogplot(datab[i], style = point, color = colors[i], legend = cat(i, &quot; term(s)&quot;) ):
+   plotSb[i] := loglogplot(datab[i][maxP2][2]*(n/2^(maxP2-1) )^(-i), n = 1..2^(maxP2-1), color = colors[i]):
+od:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L9195" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">display(seq(plotb[m], m=1..maxOrder), seq(plotSb[m], m=1..maxOrder) );</Text-field>
+</Input>
+</Group>
+<Group labelreference="L9196" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+</Section>
+<Group labelreference="L9153" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+</Section>
+<Group labelreference="L4539" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+</Worksheet>

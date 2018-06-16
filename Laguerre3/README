@@ -1,0 +1,37 @@
+
+LAGUERRE is a collection of programmes for computing the asymptotic expansions of generalized Laguerre polynomials in the complex plane. 
+
+Author: Peter Opsomer (Peter.Opsomer@cs.kuleuven.be)
+History: Created July 2015, refactored in May 2016 and December 2016
+
+References: This code based on an article by Peter Opsomer and Daan Huybrechs, "Construction and implementation of asymptotic expansions for Laguerre--type orthogonal polynomials", in preparation at this point in time (December 2016). See also the included technical report TW676.pdf.
+            It is based on the Riemann-Hilbert analysis from M. Vanlessen, "Strong Asymptotics of Laguerre-Type Orthogonal Polynomials and Applications in Random Matrix Theory", Constr. Approx., 25:125--175, 2007, DOI 10.1007/s00365-005-0611-z.
+
+
+----------------Sage-----------------------------------------------------------------
+Two Sage worksheets (<wp:url>http://www.sagemath.org/</wp:url>) include a derivation of the formulas found in the reference article. PlotMonomialQ.sws contains code to make convergence plots of the standard Laguerre polynomial and SymbolicUQ.sws computes symbolic results for the higher order terms and prints source or LaTeX code of them. (Tested with SageMath Version 6.9.)
+
+
+----------------Matlab---------------------------------------------------------------
+
+The main script is ComputePlotsFromArticle.m: it checks the asymptotic expansions for correctness (using the results from compRecLagBF.jl) and makes plots using plotConv.m.
+The script GaussLaguerre.m contains a proof of concept that generalized Gauss-Laguerre quadrature rules can be constructed in this framework.
+The script WriteUQ.m automatically writes out higher order terms to a file and Heuristics.m enables a comparison between expansions in 
+different regions.
+
+s is a structure containing the asymptotic information: s.alpha and s.q are the inputs above, s.betan(n,T) is the expansion of the MRS number.
+s.pa(n,x,z) is the expansion of the orthonormal polynomial in the outer region, s.pb(n,x,z) the expansion in the inner region (0,\beta_n), 
+s.pc near the right disk and s.pd near the left disk: when appended with 'woq', e^(n V_n(z)/2 is not included. s.bnm1 and s.an are the 
+expansions of the recurrence coefficients, s.gamman is the expansion of the normalizing constants. When isnumeric(q), s.m is length(q)-1; 
+else, s.np is the input above. The other fields of s contain temporary variables.
+
+This variable is constructed by getAsy.m. It needs the U-matrices from UQ.m, which calls for WV.m, carrying out the convolutions. 
+These functions require the (maximum) number of terms in the asymptotic expansions. exactPolys computes the exact polynomials we 
+compare against. 
+We make a distinction between non-polynomial Q(x), general polynomial Q(x), 'Monomial' Q(x) = q_m x^m + q_0 and linear Q(x). (Tested with MATLAB R2016b.)
+
+
+----------------Julia----------------------------------------------------------------
+The Julia script compRecLagBF.jl computes the recurrence coefficients for the nonstandard weight functions considered in the paper to be used in the Matlab script. (Tested with Julia version 0.3.8.)
+
+
