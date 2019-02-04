@@ -4,11 +4,11 @@
 function polyAsyRHgen(np, y, alpha, T::Int64, qm, m::Int64, UQ)
     if (qm == 1) && (m == 1)
         z = y/4/np
-        mnxi = 2*np*( sqrt(z).*sqrt(1 - z) - acos(sqrt(z) ) ) # = -n*xin/i
+        mnxi = 2*np*( sqrt(z)*sqrt(1-z) - acos(sqrt(z) ) ) # = -n*xin/i
     else
         A = zeros(m+1)
         for k =0:m
-            A[k+1] = prod((2*(1:k)-1)/2./(1:k))
+            A[k+1] = prod((2*(1:k)-1)/2/(1:k))
         end
         z = y/(np*2/m/qm/A[m+1] )^(1/m)
         # Also correct but much slower: Hn = 4*m/(2*m-1)*double(hypergeom([1, 1-m], 3/2-m, z))/m
@@ -56,7 +56,7 @@ function asyBesselgen(np, z, alpha, T::Int64, qm, m::Int64, UQ, npb, useQ::Bool)
         phi = 2*z-1+2*sqrt(z)*sqrt(d)
         Rko = (1+0im)zeros(T-1,2)
         sL = (1+0im)zeros(2,2,T-1)
-	for m = 1:T-1
+		for m = 1:T-1
             for i = 1:ceil(Int64,3*m/2)
                 Rko[m,:] += UQ[1, :, m, i, 1]/d^i+UQ[1, :, m, i, 2]/z^i
             end
@@ -105,22 +105,20 @@ function asyAirygen(np, z, alpha, T::Int64, qm, m::Int64, UQ, fn, useQ::Bool, xi
 end
 
 # Additional short functions
-function poch(x,n) # pochhammer does not seem to exist yet in Julia
-    p = prod(x+(0:(n-1)) )
-end
+# pochhammer does not seem to exist yet in Julia
+poch(x,n) = prod(x .+ (0:(n-1)))
+
 function binom(x,n) # binomial only works for integer x
-    b = 1.0
+    b = one(x)
     for i = 1:n
         b *= (x-(n-i))/i
     end
     b
 end
-function nuk(n)
-    nu = -gamma(3*n-1/2)*2^n/27^n/2/n/sqrt(pi)/gamma(n*2)
-end
-function brac(n,alpha)
-    b = prod(4*alpha^2-(2*(1:n)-1).^2 )/(2^(2*n)*gamma(1.0+n))
-end
+
+nuk(n) = -gamma(3*n-1/2)*2^n/27^n/2/n/sqrt(pi)/gamma(n*2)
+brac(n,alpha) = prod(4*alpha^2 .- (2*(1:n) .- 1).^2 )/(2^(2*n)*gamma(1.0+n))
+
 
 # Compute the W or V-matrices to construct the asymptotic expansion of R.
 # Input
@@ -138,7 +136,7 @@ function getV(alpha,qm,m::Int64,maxOrder::Int64,r)
 
     A = zeros(m+1)
     for k =0:m
-        A[k+1] = prod((2*(1:k)-1.0)/2./(1:k))
+        A[k+1] = prod((2*(1:k) .- 1.0)/2/(1:k))
     end
     if (r == 1) # Right disk: near z=1
         f = NaN*zeros(mo+2)
@@ -153,8 +151,8 @@ function getV(alpha,qm,m::Int64,maxOrder::Int64,r)
         end
         for kt = 2:ns[mo+2]
             for n = ns
-                u[kt+1,n+1] = sum(u[kt,(0:n)+1].*u[2,n-(0:n)+1])
-                v[kt+1,n+1] = sum(v[kt,(0:n)+1].*v[2,n-(0:n)+1])
+                u[kt+1,n+1] = sum(u[kt,(0:n) .+ 1].*u[2,n .- (0:n) .+ 1])
+                v[kt+1,n+1] = sum(v[kt,(0:n) .+ 1].*v[2,n .- (0:n) .+ 1])
             end
         end
         q = zeros(ns[mo+2]+1)
@@ -251,32 +249,32 @@ function getV(alpha,qm,m::Int64,maxOrder::Int64,r)
             ThE[n+1] = ThE[n+1] + binom(-1/2,j)*(r)^j*ThEven[n-j+1]
         end
     end
-    Ts = (1+1im)*zeros(2,2,mo+1) # = G_{k,n}^{odd/even} depending on k, overwritten on each new k
-    WV = (1+1im)*zeros(2,2,maxOrder-1,mo+1)
+    Ts = zeros(ComplexF64, 2, 2, mo+1) # = G_{k,n}^{odd/even} depending on k, overwritten on each new k
+    WV = zeros(ComplexF64, 2, 2, maxOrder-1, mo+1)
     for k = 1:(maxOrder-1)
-        Ts[:,:,:] = 0
+        Ts[:,:,:] .= 0
         if r == 1
             if mod(k,2) == 1
                 for n = 0:mo
                     Ts[:,:,n+1] = nuk(k)*[-2*(2*binom(-1/2,n-1)*(n>0)+binom(-1/2,n))     2im*4^(-alpha)*binom(-1/2,n)    ;    2im*4^(alpha)*binom(-1/2,n)    (2*(2*binom(-1/2,n-1)*(n>0) +binom(-1/2,n)))] -6*k*nuk(k)*[-2*OmO[n+1]   4^(-alpha)*2im*XiO[n+1]  ;   4^(alpha)*2im*ThO[n+1]    2*OmO[n+1]]
-                    WV[:,:,k,n+1] = sum(repeat(reshape(g[k,1:(n+1) ], (1,1,n+1) ), outer=[2,2,1]).*Ts[:,:,(n+1):-1:1],3)/8
+                    WV[:,:,k,n+1] = sum(repeat(reshape(g[k,1:(n+1)], (1,1,n+1) ), outer=(2,2,1)) .* Ts[:,:,(n+1):-1:1], dims=3)/8
                 end
             else
                 for n = 0:mo
-                     Ts[:,:,n+1] = nuk(k)*4*(n==0)*eye(2) +6*k*nuk(k)*[-2im*OmE[n+1]    -2*4^(-alpha)*XiE[n+1]  ;   -2*4^alpha*ThE[n+1]   2im*OmE[n+1]]
-                     WV[:,:,k,n+1] = sum(repeat(reshape(g[k,1:(n+1) ], (1,1,n+1) ), outer=[2,2,1]).*Ts[:,:,(n+1):-1:1],3)/8
+                     Ts[:,:,n+1] = nuk(k)*4*(n==0)*I +6*k*nuk(k)*[-2im*OmE[n+1]    -2*4^(-alpha)*XiE[n+1]  ;   -2*4^alpha*ThE[n+1]   2im*OmE[n+1]]
+                     WV[:,:,k,n+1] = sum(repeat(reshape(g[k,1:(n+1) ], (1,1,n+1) ), outer=[2,2,1]).*Ts[:,:,(n+1):-1:1], dims=3)/8
                 end
             end
         else
             if mod(k,2) == 1
                 for n = 0:mo
                     Ts[:,:,n+1] = -(alpha^2+k/2-1/4)/k*[-(-1)^n*(2*binom(-1/2,n-1)*(n>0)+binom(-1/2,n))*2    -1im*4^(-alpha)*2*(-1)^n*binom(-1/2,n)  ;  -1im*4^(alpha)*2*(-1)^n*binom(-1/2,n)     ( (-1)^n*(2*binom(-1/2,n-1)*(n>0) +binom(-1/2,n))*2)] - (k-1/2)*[2*OmO[n+1]   4^(-alpha)*2im*XiO[n+1]  ;   4^(alpha)*2im*ThO[n+1]   -2*OmO[n+1]] # binom(-1/2,-1) should be zero
-                    WV[:,:,k,n+1] = -(-1)^(ceil(Int64, k/2)+1)*(1im*sqrt(2))^k*(-2+0im)^(-k/2)/4^(k+1)*brac(k-1,alpha)*sum(repeat(reshape(g[k,1:(n+1) ], (1,1,n+1) ), outer=[2,2,1]).*Ts[:,:,(n+1):-1:1],3)
+                    WV[:,:,k,n+1] = -(-1)^(ceil(Int64, k/2)+1)*(1im*sqrt(2))^k*(-2+0im)^(-k/2)/4^(k+1)*brac(k-1,alpha)*sum(repeat(reshape(g[k,1:(n+1) ], (1,1,n+1) ), outer=[2,2,1]).*Ts[:,:,(n+1):-1:1], dims=3)
                 end
             else
                 for n = 0:mo
-                    Ts[:,:,n+1] = (alpha^2+k/2-1/4)/k*4*(n==0)*eye(2)  -2*(k-1/2)*[ OmE[n+1]   4^(-alpha)*1im*XiE[n+1]  ;   4^alpha*1im*ThE[n+1]   -OmE[n+1] ]
-                    WV[:,:,k,n+1] = -(-1)^(ceil(Int64, k/2)+1)*(1im*sqrt(2))^k*(-2)^(-k/2)/4^(k+1)*brac(k-1,alpha)*sum(repeat(reshape(g[k,1:(n+1) ], (1,1,n+1) ), outer=[2,2,1]).*Ts[:,:,(n+1):-1:1],3)
+                    Ts[:,:,n+1] = (alpha^2+k/2-1/4)/k*4*(n==0)*I  -2*(k-1/2)*[ OmE[n+1]   4^(-alpha)*1im*XiE[n+1]  ;   4^alpha*1im*ThE[n+1]   -OmE[n+1] ]
+                    WV[:,:,k,n+1] = -(-1)^(ceil(Int64, k/2)+1)*(1im*sqrt(2))^k*(-2)^(-k/2)/4^(k+1)*brac(k-1,alpha)*sum(repeat(reshape(g[k,1:(n+1) ], (1,1,n+1) ), outer=[2,2,1]).*Ts[:,:,(n+1):-1:1],dims=3)
                 end
             end
         end

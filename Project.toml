@@ -1,0 +1,16 @@
+name = "PolynomialAsymptotics"
+uuid = "4f446356-63f4-513e-9bbb-c67f21be5f84"
+
+[deps]
+FastGaussQuadrature = "442a2c76-b920-505d-bb47-c5924d526838"
+SpecialFunctions = "276daf66-3868-5448-9aa4-cd146d93841b"
+PyPlot = "d330b81b-6aea-500a-939a-2ce795aea3ee"
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[compat]
+julia = "1.0"
+
+[extras]
+
+[targets]
+test = []

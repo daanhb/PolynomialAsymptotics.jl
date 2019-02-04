@@ -3,10 +3,11 @@ module PolynomialAsymptotics
 using FastGaussQuadrature
 using SpecialFunctions
 using Roots
+using LinearAlgebra
 
 import FastGaussQuadrature: besselroots
 
-include("laguerre.jl")
+include("asy_laguerre.jl")
 
 include("gauss/gausslaguerre.jl")
 include("gauss/gaussfreud.jl")

@@ -1,9 +1,12 @@
-#using PolynomialAsymptotics
-@static if VERSION < v"0.7.0-DEV.2005"
-    using Base.Test
-else
-    using Test
+using Test
+using SpecialFunctions
+using PyPlot
+using FastGaussQuadrature
+
+include("onTheFlyGH.jl")
+
+@testset "Gauss-Hermite on the fly" begin
+    compare()
 end
 
-include("onTheFlyGH.jl"); compare();
-include("GaussLaguerrePlots.jl"); 
+include("GaussLaguerrePlots.jl")

@@ -5,13 +5,13 @@
 # (x,w) = gausslaguerre(n,alpha,method) allows the user to select which method to use.
 # (x,w) = gausslaguerre(n,alpha,method,qm,m) allows the generalised weight function x^alpha*exp(-qm*x^m) where qm and m should be one when method = GW, rec(W) or exp(W)
 # METHOD = "GW" will use the traditional Golub-Welsch eigenvalue method, which is best for when N is small.
-# METHOD = "gen" can generate an arbitrary number of terms of the asymptotic expansion of Laguerre-type polynomials, orthogonal with respect to x^alpha*exp(-qm*x^m). "genW" does the same, but stops as the weights underflow: it is O(sqrt(n)) when m is one. gausslaguerre(round(Int64, (n/17)^2), alpha, "genW") returns about n nodes and weights above realmin(Float64) for large n.
-# METHOD = "exp" will use explicit expansions and METHOD = "expW" will only compute the weights above realmin.
+# METHOD = "gen" can generate an arbitrary number of terms of the asymptotic expansion of Laguerre-type polynomials, orthogonal with respect to x^alpha*exp(-qm*x^m). "genW" does the same, but stops as the weights underflow: it is O(sqrt(n)) when m is one. gausslaguerre(round(Int64, (n/17)^2), alpha, "genW") returns about n nodes and weights above floatmin(Float64) for large n.
+# METHOD = "exp" will use explicit expansions and METHOD = "expW" will only compute the weights above floatmin.
 # METHOD = "rec" uses forward recurrence and METHOD = "recW" stops when the weights underflow.
 # METHOD = "default" uses "gen" when m or qm are not one, explicit formulae when n <= 2, "rec" when 2 < n < 128 and else "exp".
 
 function gausslaguerreTest( n::Int64, alpha::Float64=0.0, method::AbstractString="default",  qm::Float64=1.0, m::Int64=1, T::Int64=ceil(Int64, 34/log(n) ) )
-    
+
     if ( imag(alpha) != 0 ) || ( alpha < -1 )
         error(string("alpha = ", alpha, " is not allowed.") )
     elseif ( (m != 1) || (qm != 1) ) && ( (method != "gen") && (method != "genW") && (method != "default") )
@@ -25,9 +25,9 @@ function gausslaguerreTest( n::Int64, alpha::Float64=0.0, method::AbstractString
     elseif (method == "default") && (n == 0)
         Float64[], Float64[]
     elseif (method == "default") && (n == 1)
-        [1.0+alpha], [1.0]
+        [1 + alpha], [1.0]
     elseif (method == "default") && (n == 2)
-        [alpha+2.-sqrt(alpha+2.),alpha+2.+sqrt(alpha+2.)], [((alpha-sqrt(alpha+2)+2)*gamma(alpha+2))/(2*(alpha+2)*(sqrt(alpha+2)-1)^2),((alpha+sqrt(alpha+2)+2)*gamma(alpha+2))/(2*(alpha+2)*(sqrt(alpha+2)+1)^2)]
+        [alpha+2 -sqrt(alpha+2); alpha+2+sqrt(alpha+2)], [((alpha-sqrt(alpha+2)+2)*gamma(alpha+2))/(2*(alpha+2)*(sqrt(alpha+2)-1)^2); ((alpha+sqrt(alpha+2)+2)*gamma(alpha+2))/(2*(alpha+2)*(sqrt(alpha+2)+1)^2)]
     elseif method == "GW"
         laguerreGW( n, alpha )         # Use Golub-Welsch
     elseif (method == "GLR")
@@ -62,12 +62,12 @@ end
 function laguerreRec( n::Int64, compRepr::Bool, alpha::Float64)
 
     if compRepr
-        # Get a heuristic for the indices where the weights are about above realmin.
+        # Get a heuristic for the indices where the weights are about above floatmin.
         mn = min(ceil(Int64, 17*sqrt(n)), n)
     else
         mn = n
     end
-    itric = min(mn, 7);
+    itric = min(mn, 7)
     bes = besselroots(alpha, itric).^2/(4*n + 2*alpha+2) # [DLMF 18.16.10] says this is lower than the zero, so we do not risk skipping a zero (if none of the results coincide)
 
     factorw = (n^2 +alpha*n)^(-1/2) # Ratio of leading order coefficients
@@ -80,7 +80,7 @@ function laguerreRec( n::Int64, compRepr::Bool, alpha::Float64)
         end
         step = x[k]
         l = 0 # Newton-Raphson iteration number
-        ov = realmax(Float64) # Previous/old value
+        ov = floatmax(Float64) # Previous/old value
         ox = x[k] # Old x
         while ( ( abs(step) > eps(Float64)*40*x[k] ) && ( l < 20) )
             l = l + 1
@@ -117,47 +117,47 @@ end
 
 # Orthonormal associated Laguerre polynomial with positive leading coefficient, allows BigFloats
 function lagpnRec(n,alpha,x)
-    pnprev = 0*alpha;
-    pn= 1/sqrt(gamma(alpha+1) );
+    pnprev = 0*alpha
+    pn= 1/sqrt(gamma(alpha+1) )
     for k=1:n
-        pnold = pn; 
-        pn = (x -2*k -alpha+1)/sqrt(k*(alpha+k))*pn-sqrt((k-1+alpha)*(k-1)/k/(k+alpha))*pnprev;
-        pnprev = pnold; 
-    end; 
-    return pn; 
-end;
+        pnold = pn
+        pn = (x -2*k -alpha+1)/sqrt(k*(alpha+k))*pn-sqrt((k-1+alpha)*(k-1)/k/(k+alpha))*pnprev
+        pnprev = pnold
+    end
+    return pn
+end
 
 # Derivative of the orthonormal associated Laguerre polynomial, allows BigFloats
 function lagpnRecDer(n,alpha,x)
-    pnprev = 0*alpha;
-    pn= 1/sqrt(gamma(alpha+1) );
-    pndprev = 0*alpha;
-    pnd = 0*alpha;
+    pnprev = 0*alpha
+    pn= 1/sqrt(gamma(alpha+1) )
+    pndprev = 0*alpha
+    pnd = 0*alpha
     for k=1:n
-        pnold = pn;
-        pn = (x -2*k -alpha+1)/sqrt(k*(alpha+k))*pnold-sqrt((k-1+alpha)*(k-1)/k/(k+alpha))*pnprev;
-        pnprev = pnold;
-        pndold = pnd;
-        pnd = (pnold+(x-2*k-alpha+1)*pndold)/sqrt(k*(alpha+k)) -sqrt((k-1+alpha)*(k-1)/k/(alpha+k))*pndprev;
-        pndprev = pndold;
-    end;
-    return pnd;
-end;
+        pnold = pn
+        pn = (x -2*k -alpha+1)/sqrt(k*(alpha+k))*pnold-sqrt((k-1+alpha)*(k-1)/k/(k+alpha))*pnprev
+        pnprev = pnold
+        pndold = pnd
+        pnd = (pnold+(x-2*k-alpha+1)*pndold)/sqrt(k*(alpha+k)) -sqrt((k-1+alpha)*(k-1)/k/(alpha+k))*pndprev
+        pndprev = pndold
+    end
+    return pnd
+end
 
 
 
 ########################## Routines for the GLR algorithm ##########################
 
 function laguerreGLR( n::Int64 )
-    
+
     x, ders = ScaledLaguerreGLR( n )  # Nodes and L_n'(x)
     w = exp(-x)./(x.*ders.^2)         # Quadrature weights
     x, w
 end
 
 function  ScaledLaguerreGLR( n::Int64 )
-    # Calculate the nodes and L_n'(x). 
-    
+    # Calculate the nodes and L_n'(x).
+
     ders = Array(Float64, n )
     x = Array(Float64,n)
     xs = 1/(2*n+1)
@@ -169,30 +169,30 @@ function  ScaledLaguerreGLR( n::Int64 )
         x[k] = xs
         xs *= 1.1
     end
-    x, ders = InteriorLaguerreGLR(n, x, ders, n1)   
+    x, ders = InteriorLaguerreGLR(n, x, ders, n1)
 end
 
 function InteriorLaguerreGLR(n::Int64, roots, ders, n1::Int64)
-    
+
     m = 30
-    hh1 = ones(m+1) 
-    zz = Array(Float64,m) 
-    u = Array(Float64,m+1) 
+    hh1 = ones(m+1)
+    zz = Array(Float64,m)
+    u = Array(Float64,m+1)
     up = Array(Float64,m+1)
-    x = roots[ n1 ] 
+    x = roots[ n1 ]
     for j = n1 : (n - 1)
         # initial approx
         h = rk2_Lag(pi/2, -pi/2, x, n)
         h = h - x
 
         # scaling:
-        M = 1/h 
-        M2 = M^2 
-        M3 = M^3 
+        M = 1/h
+        M2 = M^2
+        M3 = M^3
         M4 = M^4
 
         # recurrence relation for Laguerre polynomials
-        r = x*(n + .5 - .25*x) 
+        r = x*(n + .5 - .25*x)
         p = x^2
         u[1] = 0.
         u[2] = ders[j]/M
@@ -201,20 +201,20 @@ function InteriorLaguerreGLR(n::Int64, roots, ders, n1::Int64)
         up[1] = u[2]; up[2] = 2*u[3]*M; up[3] = 3*u[4]*M
 
         for k = 2:(m - 2)
-              u[k+3] = ( -x*(2*k+1)*(k+1)*u[k+2]/M - (k*k+r)*u[k+1]/M2 - 
+              u[k+3] = ( -x*(2*k+1)*(k+1)*u[k+2]/M - (k*k+r)*u[k+1]/M2 -
                 (n+.5-.5*x)*u[k]/M3 + .25*u[k-1]/M4 ) / (p*(k+2)*(k+1))
               up[k+2] = (k+2)*u[k+3]*M
         end
         up[m+1] = 0
 
         # Flip for more accuracy in inner product calculation.
-        u = u[m+1:-1:1]  
+        u = u[m+1:-1:1]
         up = up[m+1:-1:1]
 
         # Newton iteration
-        hh = hh1 
-        hh[m+1] = M    
-        step = Inf  
+        hh = hh1
+        hh[m+1] = M
+        step = Inf
         l = 0
         if M == 1
             Mhzz = M*h + zz
@@ -227,9 +227,9 @@ function InteriorLaguerreGLR(n::Int64, roots, ders, n1::Int64)
             h = h - step
             Mhzz = (M*h) + zz
             # Powers of h (This is the fastest way!)
-            hh = [M ; cumprod(Mhzz)]     
+            hh = [M ; cumprod(Mhzz)]
             # Flip for more accuracy in inner product
-            hh = hh[end:-1:1]          
+            hh = hh[end:-1:1]
         end
 
         # Update
@@ -241,13 +241,13 @@ function InteriorLaguerreGLR(n::Int64, roots, ders, n1::Int64)
 end
 
 function BoundaryLaguerreGLR(n::Int64, xs)
-    
+
     u, up = eval_Lag(xs, n)
     theta = atan(sqrt(xs/(n + .5 - .25*xs))*up/u)
     x1 = rk2_Lag(theta, -pi/2, xs, n)
 
     # Newton iteration
-    step = Inf  
+    step = Inf
     l = 0
     while ( (abs(step) > eps(Float64) || abs(u) > eps(Float64)) && (l < 200) )
         l = l + 1
@@ -257,7 +257,7 @@ function BoundaryLaguerreGLR(n::Int64, xs)
     end
 
     ignored, d1 = eval_Lag(x1, n)
-    
+
     x1, d1
 end
 
@@ -267,15 +267,15 @@ function eval_Lag(x, n::Int64)
     L = 0.
     Lp = 0.
     Lm2 = 0.
-    Lm1 = exp(-x/2) 
+    Lm1 = exp(-x/2)
     Lpm2 = 0.
     Lpm1 = 0.
     for k = 0:n-1
         L = ( (2*k+1-x).*Lm1 - k*Lm2 ) / (k + 1)
         Lp = ( (2*k+1-x).*Lpm1 - Lm1 - k*Lpm2 ) / (k + 1)
-        Lm2 = Lm1 
+        Lm2 = Lm1
         Lm1 = L
-        Lpm2 = Lpm1 
+        Lpm2 = Lpm1
         Lpm1 = Lp
     end
     L, Lp
@@ -290,7 +290,7 @@ function rk2_Lag(t, tn, x, n::Int64)
         f1 = (n + .5 - .25*x)
         k1 = -h/( sqrt(abs(f1/x)) + .25*(1/x-.25/f1)*sin(2*t) )
         t = t + h
-        x = x + k1   
+        x = x + k1
         f1 = (n + .5 - .25*x)
         k2 = -h/( sqrt(abs(f1/x)) + .25*(1/x-.25/f1)*sin(2*t) )
         x = x + .5*(k2 - k1)
@@ -318,7 +318,7 @@ function asyRHgen(n, compRepr, alpha, m, qm)
 
     A = zeros(m+1)
     for k =0:m
-        A[k+1] = prod((2*(1:k)-1)/2./(1:k))
+        A[k+1] = prod((2*(1:k)-1)/2/(1:k))
     end
     softEdge = (n*2/m/qm/A[m+1] )^(1/m)
     # Use finite differences for derivative of polynomial when not x^alpha*exp(-x) and use other initial approximations
@@ -330,7 +330,7 @@ function asyRHgen(n, compRepr, alpha, m, qm)
     else
         ak = [-13.69148903521072; -12.828776752865757; -11.93601556323626;    -11.00852430373326; -10.04017434155809; -9.02265085340981; -7.944133587120853;    -6.786708090071759; -5.520559828095551; -4.08794944413097; -2.338107410459767]
         t = 3*pi/2*( (igatt:-1:12)-0.25) # [DLMF (9.9.6)]
-        ak = [-t.^(2/3).*(1 + 5/48./t.^2 - 5/36./t.^4 + 77125/82944./t.^6     -10856875/6967296./t.^8); ak[max(1,12-igatt):11] ]
+        ak = [-t.^(2/3).*(1 + 5/48/t.^2 - 5/36/t.^4 + 77125/82944/t.^6     -10856875/6967296/t.^8); ak[max(1,12-igatt):11] ]
         nu = 4*n+2*alpha+2 # [Gatteshi 2002 (4.9)]
         air = (nu+ak*(4*nu)^(1/3)+ ak.^2*(nu/16)^(-1/3)/5 + (11/35-alpha^2-12/175*ak.^3)/nu + (16/1575*ak+92/7875*ak.^4)*2^(2/3)*nu^(-5/3) -(15152/3031875*ak.^5+1088/121275*ak.^2)*2^(1/3)*nu^(-7/3))
         x = [ bes/(4*n + 2*alpha+2).*(1 + (bes + 2*(alpha^2 - 1) )/(4*n + 2*alpha+2)^2/3 ) ; zeros(mn - itric -max(igatt,0) ) ; air]
@@ -356,7 +356,7 @@ function asyRHgen(n, compRepr, alpha, m, qm)
         end
         step = x[k]
         l = 0 # Newton-Raphson iteration number
-        ov = realmax(Float64) # Previous/old value
+        ov = floatmax(Float64) # Previous/old value
         ox = x[k] # Old x
         # Accuracy of the expansions up to machine precision would lower this bound.
         while ( ( abs(step) > eps(Float64)*40*x[k] ) && ( l < 20) )
@@ -383,7 +383,7 @@ function asyRHgen(n, compRepr, alpha, m, qm)
             print(x[k], "=x[k], k=", k, ", l=", l, ", x[k-1]=", x[k-1], ", x[k-2]=", x[k-1], ", step=", step, ", ox=", ox, ", ov=", ov, ".\n") # Print some debugging information and throw an error.
             error("Newton method may not have converged.")
         elseif ( x[k] > softEdge)
-            warn("Node is outside the support of the measure: inaccuracy is expected.");
+            warn("Node is outside the support of the measure: inaccuracy is expected.")
         end
         if noUnderflow&& useFinDiff
             hh = max(sqrt(eps(Float64))*x[k], sqrt(eps(Float64)) )
@@ -412,7 +412,7 @@ function polyAsyRHgen(np, y, alpha, T::Int64, qm, m::Int64, UQ, k)
     else
         A = zeros(m+1)
         for k =0:m
-            A[k+1] = prod((2*(1:k)-1)/2./(1:k))
+            A[k+1] = prod((2*(1:k)-1)/2/(1:k))
         end
         z = y/(np*2/m/qm/A[m+1] )^(1/m)
         # Also correct but much slower: Hn = 4*m/(2*m-1)*double(hypergeom([1, 1-m], 3/2-m, z))/m
@@ -544,7 +544,7 @@ function getV(alpha,qm,m::Int64,maxOrder::Int64,r)
 
     A = zeros(m+1)
     for k =0:m
-        A[k+1] = prod((2*(1:k)-1.0)/2./(1:k))
+        A[k+1] = prod((2*(1:k)-1.0)/2/(1:k))
     end
     if (r == 1) # Right disk: near z=1
         f = NaN*zeros(mo+2)
@@ -747,7 +747,7 @@ end
 function laguerreExp( n::Int64, compRepr::Bool, alpha::Float64, T::Int64)
 
     if compRepr
-        # Get a heuristic for the indices where the weights are about above realmin.
+        # Get a heuristic for the indices where the weights are about above floatmin.
         mn = min(ceil(Int64, 17*sqrt(n)), n)
     else
         mn = n
@@ -755,103 +755,103 @@ function laguerreExp( n::Int64, compRepr::Bool, alpha::Float64, T::Int64)
     if ( alpha^2/n > 1 )
         warn("A large alpha may lead to inaccurate results because the weight is low and R(z) is not close to identity.")
     end
-    d = 1/(4*n+2*alpha+2);
+    d = 1/(4*n+2*alpha+2)
 
     itric = max(ceil(Int64, sqrt(n)), 7)
     # Heuristics to switch between Bessel, extrapolation and Airy initial guesses.
 
-    iair = floor(Int64,0.9*n);
-    pt = (4*n -4*((itric+1):min(mn, iair-1)) +3)*d;
+    iair = floor(Int64,0.9*n)
+    pt = (4*n .- 4*((itric+1):min(mn, iair-1)) .+ 3)*d
 
-    t = pi^2/16*(pt -1).^2;
-    # This t is not a very good initial approximation of the inverse function of f(y) = (4*n -4*k +3)*d*pi +2*sqrt(y)*sqrt(1-y) -acos(2*y-1);
+    t = pi^2/16 * (pt .- 1).^2
+    # This t is not a very good initial approximation of the inverse function of f(y) = (4*n -4*k +3)*d*pi +2*sqrt(y)*sqrt(1-y) -acos(2*y-1)
     for it = 1:6
-	t = t - (pt*pi +2*sqrt(t-t.^2) -acos(2*t-1) ).*sqrt(t./(1-t))/2;
+		t = @. t - (pt*pi + 2*sqrt(t-t^2) - acos(2t - 1) ) * sqrt(t/(1-t))/2
     end
     # A second option is to use the Roots package and t = fzero(f, 0, 1); for each k
-    # A third option is to improve the initial approximations for k starting from ichebSer = Int64(round(n/10-0.45*alpha+0.3)) with barycentric interpolation on a chebyshev grid as 
-#    xk = 0.5+ 0.49*cos((2*(1:16) -1)/2/16*pi)';
-#    baryc = [8.392374553903038e+02, -1.573904756067641e+04,  1.217801459223059e+05,  -5.241187241822941e+05,   1.561671400871400e+06, -3.632334022840342e+06,   7.056947602530619e+06,  -1.192343707574069e+07,   1.795854669340786e+07,  -2.446733743951402e+07,   3.036493740995492e+07,  -3.430589960928102e+07,   3.489836980231517e+07,  -3.097800484853177e+07,   2.192179297293409e+07,  -8.079248247153265e+06];
+    # A third option is to improve the initial approximations for k starting from ichebSer = Int64(round(n/10-0.45*alpha+0.3)) with barycentric interpolation on a chebyshev grid as
+#    xk = 0.5+ 0.49*cos((2*(1:16) -1)/2/16*pi)'
+#    baryc = [8.392374553903038e+02, -1.573904756067641e+04,  1.217801459223059e+05,  -5.241187241822941e+05,   1.561671400871400e+06, -3.632334022840342e+06,   7.056947602530619e+06,  -1.192343707574069e+07,   1.795854669340786e+07,  -2.446733743951402e+07,   3.036493740995492e+07,  -3.430589960928102e+07,   3.489836980231517e+07,  -3.097800484853177e+07,   2.192179297293409e+07,  -8.079248247153265e+06]
 #    for mix = 1:16
-#	t[ichebSer+1:end] = t[ichebSer+1:end].*(pt[ichebSer+1:end] -xk[mix]);
-#	asum = asum + baryc[mix]./(pt[ichebSer+1:end] -xk[end]);
+#	t[ichebSer+1:end] = t[ichebSer+1:end].*(pt[ichebSer+1:end] -xk[mix])
+#	asum = asum + baryc[mix]./(pt[ichebSer+1:end] -xk[end])
 #    end
-#    t[ichebSer+1:end] = t[ichebSer+1:end].*asum;
+#    t[ichebSer+1:end] = t[ichebSer+1:end].*asum
     # The third option ensures that only 3 Newton iterations are required. However, both are slower in total than the uncommented version, which still takes more than half of the total execution time of laguerreExp. Maybe a planned Clenshaw algorithm can improve this ...
 
 
     jak = besselroots(alpha, itric)
-    bes = jak*0;
-    wbes = 0*bes;
+    bes = jak*0
+    wbes = 0*bes
 
-    bulk = t*0;
-    wbulk = t*0;
+    bulk = t*0
+    wbulk = t*0
 
     ak = [-13.69148903521072; -12.828776752865757; -11.93601556323626;    -11.00852430373326; -10.04017434155809; -9.02265085340981; -7.944133587120853;    -6.786708090071759; -5.520559828095551; -4.08794944413097; -2.338107410459767]
 
-    tair = 3*pi/2*( ((mn-iair+1):-1:12)-0.25);
-    ak = [-tair.^(2/3).*(1 + 5/48./tair.^2 - 5/36./tair.^4 + 77125/82944./tair.^6 -10856875/6967296./tair.^8); ak[max(1,12-mn+iair-1):11] ];
-    air = 0*ak;
+    tair = 3*pi/2*( ((mn-iair+1):-1:12).-0.25)
+    ak = [-tair.^(2/3).*(1 .+ 5/48 ./tair.^2 - 5/36 ./tair.^4 .+ 77125/82944 ./tair.^6 -10856875/6967296 ./tair.^8); ak[max(1,12-mn+iair-1):11] ]
+    air = 0*ak
 
     if (T >= 9)
-	bes = bes + (10644*jak.^8 + 60*(887*alpha^2 - 2879)*jak.^6 + (125671*alpha^4 -729422*alpha^2 + 1456807)*jak.^4 + 3*(63299*alpha^6 - 507801*alpha^4 + 1678761*alpha^2 - 2201939)*jak.^2 + 2*(107959*alpha^8 - 1146220*alpha^6 + 5095482*alpha^4 -10087180*alpha^2 + 6029959) )*d^8/42525;
-	wbes = wbes + (215918*alpha^8 + 53220*jak.^8 + 240*(887*alpha^2 - 2879)*jak.^6 -2292440*alpha^6 + 3*(125671*alpha^4 - 729422*alpha^2 + 1456807)*jak.^4 + 10190964*alpha^4 + 6*(63299*alpha^6 - 507801*alpha^4 + 1678761*alpha^2 -2201939)*jak.^2 - 20174360*alpha^2 + 12059918)/42525*d^8;
+		bes = bes + (10644*jak^8 + 60*(887*alpha^2 - 2879)*jak^6 + (125671*alpha^4 -729422*alpha^2 + 1456807)*jak^4 + 3*(63299*alpha^6 - 507801*alpha^4 + 1678761*alpha^2 - 2201939)*jak^2 + 2*(107959*alpha^8 - 1146220*alpha^6 + 5095482*alpha^4 -10087180*alpha^2 + 6029959) )*d^8/42525
+		wbes = wbes + (215918*alpha^8 + 53220*jak.^8 + 240*(887*alpha^2 - 2879)*jak.^6 -2292440*alpha^6 + 3*(125671*alpha^4 - 729422*alpha^2 + 1456807)*jak.^4 + 10190964*alpha^4 + 6*(63299*alpha^6 - 507801*alpha^4 + 1678761*alpha^2 -2201939)*jak.^2 - 20174360*alpha^2 + 12059918)/42525*d^8
 
-	bulk = bulk + d^7/10886400.*(1-t).^3./t.^3.*(43222750000*(1-t).^(-14) - 241928673000*(1-t).^(-13) + 566519158800*(1-t).^(-12) -714465642135*(1-t).^(-11) + 518401904799*(1-t).^(-10) + 672*(12000*alpha^4 - 24000*alpha^2 +64957561)*(1-t).^(-8) - 212307298152*(1-t).^(-9) + 24883200*alpha^8 - 192*(103425*alpha^4 -206850*alpha^2 + 15948182)*(1-t).^(-7) + 3360*(4521*alpha^4 - 9042*alpha^2 - 7823)*(1-t).^(-6) -232243200*alpha^6 - 1792*(3375*alpha^6 - 13905*alpha^4 + 17685*alpha^2 - 1598)*(1-t).^(-5)+ 16128*(450*alpha^6 - 2155*alpha^4 + 2960*alpha^2 - 641)*(1-t).^(-4) + 812851200*alpha^4 -768*(70875*alpha^8 - 631260*alpha^6 + 2163630*alpha^4 - 2716980*alpha^2 +555239)*(1-t).^(-3) + 768*(143325*alpha^8 - 1324260*alpha^6 + 4613070*alpha^4 -5826660*alpha^2 + 1193053)*(1-t).^(-2) - 1028505600*alpha^2 - 5806080*(15*alpha^8 -140*alpha^6 + 490*alpha^4 - 620*alpha^2 + 127)*(1-t).^(-1) + 210677760);
+		bulk = bulk + d^7/10886400*(1-t).^3/t.^3*(43222750000*(1-t).^(-14) - 241928673000*(1-t).^(-13) + 566519158800*(1-t).^(-12) -714465642135*(1-t).^(-11) + 518401904799*(1-t).^(-10) + 672*(12000*alpha^4 - 24000*alpha^2 +64957561)*(1-t).^(-8) - 212307298152*(1-t).^(-9) + 24883200*alpha^8 - 192*(103425*alpha^4 -206850*alpha^2 + 15948182)*(1-t).^(-7) + 3360*(4521*alpha^4 - 9042*alpha^2 - 7823)*(1-t).^(-6) -232243200*alpha^6 - 1792*(3375*alpha^6 - 13905*alpha^4 + 17685*alpha^2 - 1598)*(1-t).^(-5)+ 16128*(450*alpha^6 - 2155*alpha^4 + 2960*alpha^2 - 641)*(1-t).^(-4) + 812851200*alpha^4 -768*(70875*alpha^8 - 631260*alpha^6 + 2163630*alpha^4 - 2716980*alpha^2 +555239)*(1-t).^(-3) + 768*(143325*alpha^8 - 1324260*alpha^6 + 4613070*alpha^4 -5826660*alpha^2 + 1193053)*(1-t).^(-2) - 1028505600*alpha^2 - 5806080*(15*alpha^8 -140*alpha^6 + 490*alpha^4 - 620*alpha^2 + 127)*(1-t).^(-1) + 210677760)
 	#Computing this term for wbulk takes too much memory
     end
- 
+
 
     if (T >= 7)
         # These higher order terms in the left and bulk region are derived in [Opsomer 2017, in preparation]
-	bes = bes + (657*jak.^6 +36*jak.^4*(73*alpha^2-181) +2*jak.^2*(2459*alpha^4 -10750*alpha^2 +14051) + 4*(1493*alpha^6 -9303*alpha^4 +19887*alpha^2 - 12077) )*d^6/2835;
+		bes = bes + (657*jak.^6 +36*jak.^4*(73*alpha^2-181) +2*jak.^2*(2459*alpha^4 -10750*alpha^2 +14051) + 4*(1493*alpha^6 -9303*alpha^4 +19887*alpha^2 - 12077) )*d^6/2835
 
-	wbes = wbes + (1493*alpha^6 + 657*jak.^6 + 27*(73*alpha^2 - 181)*jak.^4 - 9303*alpha^4 + (2459*alpha^4 -10750*alpha^2 + 14051)*jak.^2 + 19887*alpha^2 - 12077)*4/2835*d^6;
+		wbes = wbes + (1493*alpha^6 + 657*jak.^6 + 27*(73*alpha^2 - 181)*jak.^4 - 9303*alpha^4 + (2459*alpha^4 -10750*alpha^2 + 14051)*jak.^2 + 19887*alpha^2 - 12077)*4/2835*d^6
 
-	bulk = bulk -d^5/181440.*(1-t).^2./t.^2.*(10797500*(1-t).^(-10) - 43122800*(1-t).^(-9) + 66424575*(1-t).^(-8) -48469876*(1-t).^(-7) + 193536*alpha^6 + 16131880*(1-t).^(-6) + 80*(315*alpha^4 - 630*alpha^2 -221)*(1-t).^(-4) - 1727136*(1-t).^(-5) - 967680*alpha^4 - 320*(63*alpha^4 - 126*alpha^2 +43)*(1-t).^(-3) + 384*(945*alpha^6 - 4620*alpha^4 + 6405*alpha^2 - 1346)*(1-t).^(-2) +1354752*alpha^2 - 23040*(21*alpha^6 - 105*alpha^4 + 147*alpha^2 - 31)*(1-t).^(-1) -285696);
+		bulk = bulk -d^5/181440*(1-t).^2/t.^2*(10797500*(1-t).^(-10) - 43122800*(1-t).^(-9) + 66424575*(1-t).^(-8) -48469876*(1-t).^(-7) + 193536*alpha^6 + 16131880*(1-t).^(-6) + 80*(315*alpha^4 - 630*alpha^2 -221)*(1-t).^(-4) - 1727136*(1-t).^(-5) - 967680*alpha^4 - 320*(63*alpha^4 - 126*alpha^2 +43)*(1-t).^(-3) + 384*(945*alpha^6 - 4620*alpha^4 + 6405*alpha^2 - 1346)*(1-t).^(-2) +1354752*alpha^2 - 23040*(21*alpha^6 - 105*alpha^4 + 147*alpha^2 - 31)*(1-t).^(-1) -285696)
 
-	wbulk = wbulk - (1-t).^3./90720./t.^3.*d^6.*(43190000*(1-t).^(-12) -204917300*(1-t).^(-11) + 393326325*(1-t).^(-10) - 386872990*(1-t).^(-9) + 201908326*(1-t).^(-8) +80*(315*alpha^4 - 630*alpha^2 + 53752)*(1-t).^(-6) - 50986344*(1-t).^(-7) - 320*(189*alpha^4 -378*alpha^2 - 89)*(1-t).^(-5) + 480*(63*alpha^4 - 126*alpha^2 + 43)*(1-t).^(-4) -384*(315*alpha^6 - 1470*alpha^4 + 1995*alpha^2 - 416)*(1-t).^(-3) + 2304*(21*alpha^6 -105*alpha^4 + 147*alpha^2 - 31)*(1-t).^(-2) );
+		wbulk = wbulk - (1-t).^3/90720/t.^3*d^6*(43190000*(1-t).^(-12) -204917300*(1-t).^(-11) + 393326325*(1-t).^(-10) - 386872990*(1-t).^(-9) + 201908326*(1-t).^(-8) +80*(315*alpha^4 - 630*alpha^2 + 53752)*(1-t).^(-6) - 50986344*(1-t).^(-7) - 320*(189*alpha^4 -378*alpha^2 - 89)*(1-t).^(-5) + 480*(63*alpha^4 - 126*alpha^2 + 43)*(1-t).^(-4) -384*(315*alpha^6 - 1470*alpha^4 + 1995*alpha^2 - 416)*(1-t).^(-3) + 2304*(21*alpha^6 -105*alpha^4 + 147*alpha^2 - 31)*(1-t).^(-2) )
     end
 
 
     if (T >= 5)
-	bes = bes + (11*jak.^4 +3*jak.^2.*(11*alpha^2-19) +46*alpha^4 -140*alpha^2 +94)*d^4/45;
-	wbes = wbes + (46*alpha^4 + 33*jak.^4 +6*jak.^2*(11*alpha^2 -19) -140*alpha^2 +94)/45*d^4;
+		bes = bes + (11*jak.^4 +3*jak.^2*(11*alpha^2-19) +46*alpha^4 -140*alpha^2 +94)*d^4/45
+		wbes = wbes + (46*alpha^4 + 33*jak.^4 +6*jak.^2*(11*alpha^2 -19) -140*alpha^2 +94)/45*d^4
 
-	air = air -(15152/3031875*ak.^5+1088/121275*ak.^2)*2^(1/3)*d^(7/3) # [Gatteshi 2002 (4.9)], Gives an O(n^{-4}) relative error
+		air = air -(15152/3031875*ak.^5+1088/121275*ak.^2)*2^(1/3)*d^(7/3) # [Gatteshi 2002 (4.9)], Gives an O(n^{-4}) relative error
 
-	bulk = bulk +d^3.*(1-t)./t./720.*(1600*(1-t).^(-6) - 3815*(1-t).^(-5) + 480*alpha^4 +2814*(1-t).^(-4) - 576*(1-t).^(-3) - 960*alpha^2 - 48*(15*alpha^4 - 30*alpha^2 + 7)*(1-t).^(-1) -16*(1-t).^(-2) + 224)
-	wbulk = wbulk +(1-t).^2/720./t.^2.*d^4.*(8000*(1-t).^(-8) - 24860*(1-t).^(-7) + 27517*(1-t).^(-6) - 12408*(1-t).^(-5) + 1712*(1-t).^(-4) +16*(15*alpha^4 - 30*alpha^2 + 7)*(1-t).^(-2) + 32*(1-t).^(-3))
+		bulk = bulk +d^3*(1-t)/t/720*(1600*(1-t).^(-6) - 3815*(1-t).^(-5) + 480*alpha^4 +2814*(1-t).^(-4) - 576*(1-t).^(-3) - 960*alpha^2 - 48*(15*alpha^4 - 30*alpha^2 + 7)*(1-t).^(-1) -16*(1-t).^(-2) + 224)
+		wbulk = wbulk +(1-t).^2/720/t.^2*d^4*(8000*(1-t).^(-8) - 24860*(1-t).^(-7) + 27517*(1-t).^(-6) - 12408*(1-t).^(-5) + 1712*(1-t).^(-4) +16*(15*alpha^4 - 30*alpha^2 + 7)*(1-t).^(-2) + 32*(1-t).^(-3))
     end
 
     if (T >= 3)
-        # From here, the terms are also in [Tricomi 1947 pg. 296] and 
-	bes = bes + (jak.^2 + 2*alpha^2 - 2)*d^2/3;
-	wbes = wbes + (alpha^2 + jak.^2 -1)*2/3*d^2;
+        # From here, the terms are also in [Tricomi 1947 pg. 296] and
+		bes = bes + (jak.^2 + 2*alpha^2 - 2)*d^2/3
+		wbes = wbes + (alpha^2 + jak.^2 -1)*2/3*d^2
 
-	air = air +  ak.^2*(d*16)^(1/3)/5 + (11/35-alpha^2-12/175*ak.^3)*d +  (16/1575*ak+92/7875*ak.^4)*2^(2/3)*d^(5/3);
-	bulk = bulk -d/12*(12*alpha^2 + 5*(1-t).^(-2) - 4*(1-t).^(-1) - 4)
-	wbulk = wbulk - d^2/6*(5*(1-t).^(-3) - 2*(1-t).^(-2) );
+		air = air +  ak.^2*(d*16)^(1/3)/5 + (11/35-alpha^2-12/175*ak.^3)*d +  (16/1575*ak+92/7875*ak.^4)*2^(2/3)*d^(5/3)
+		bulk = bulk -d/12*(12*alpha^2 + 5*(1-t).^(-2) - 4*(1-t).^(-1) - 4)
+		wbulk = wbulk - d^2/6*(5*(1-t).^(-3) - 2*(1-t).^(-2) )
     end
     bes = jak.^2*d.*(1 + bes )
-    air = 1/d +ak*(d/4)^(-1/3) + air; 
-    bulk = bulk + t/d;
+    air = 1/d +ak*(d/4)^(-1/3) + air
+    bulk = bulk + t/d
 
-    w = [ 4*d*bes.^alpha.*exp(-bes)./(besselj(alpha-1, jak)).^2.*(1+ wbes); bulk.^alpha.*exp(-bulk)*2*pi.*sqrt(t./(1-t)).*(1 +wbulk) ; 2^(2*alpha+1/3)*n^(alpha+1/3)*exp.(-air)./(airyaiprime.(ak)).^2];
+    w = [ 4*d*bes.^alpha.*exp(-bes)./(besselj(alpha-1, jak)).^2 .*(1+ wbes); bulk.^alpha.*exp(-bulk)*2*pi.*sqrt(t./(1-t)).*(1 +wbulk) ; 2^(2*alpha+1/3)*n^(alpha+1/3)*exp.(-air)./(airyaiprime.(ak)).^2]
     # For the Airy region, only O(n^{-4}) relative error for x and O(n^{-2/3}) for w as the latter are extremely small or even underflow
     x = [ bes; bulk ; air]
 
 
     if ( minimum(x) < 0.0 ) || ( maximum(x) > 4*n + 2*alpha + 2 ) ||  ( (minimum(diff(x)) <= 0.0) && (T == ceil(Int64, 34/log(n) )) && (n <= 1e5) ) || (minimum(w) < 0.0) # Higher errors when too few terms: when switching from bulk to air and avoid error for extremely large n: previously (n <= 5e6)
-	print(minimum(x), " =min, max= ", maximum(x), "=minmax x, ", 4*n + 2*alpha + 2, ", ",  minimum(diff(x)), "=mindiff, minw=",  minimum(w), '\n' );
-	print(bulk[end-100:end], "=end bulk, start air = ", air[1:100], ", ", findmin(diff(x)))
-	error("Wrong node or weight.")
+		print(minimum(x), " =min, max= ", maximum(x), "=minmax x, ", 4*n + 2*alpha + 2, ", ",  minimum(diff(x)), "=mindiff, minw=",  minimum(w), '\n' )
+		print(bulk[end-100:end], "=end bulk, start air = ", air[1:100], ", ", findmin(diff(x)))
+		error("Wrong node or weight.")
     end
 
     if compRepr
-	k = findlast(w);
-	x = x[1:k]
-	w = w[1:k]
+		k = findlast(w)
+		x = x[1:k]
+		w = w[1:k]
     end
     x, w
 end
